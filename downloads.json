@@ -4,7 +4,7 @@
  "own_workflow_runs": 0,
  "release_downloads": 0,
  "note": "downloads = clones - own_workflow_runs (per day, never below 0) + release_downloads",
- "counted_from": null,
- "counted_to": null,
+ "counted_from": "2026-11-06",
+ "counted_to": "2026-11-19",
  "days": {}
 }
