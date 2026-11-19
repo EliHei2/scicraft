@@ -6,12 +6,12 @@ Figures, papers, experiments and audits. Every skill comes with its scripts and 
 <p align="center">
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
   <a href="https://github.com/EliHei2/scicraft/actions/workflows/gate.yml"><img alt="Gate" src="https://github.com/EliHei2/scicraft/actions/workflows/gate.yml/badge.svg"></a>
+  <a href="https://github.com/EliHei2/scicraft/blob/traffic/downloads.json"><img alt="Downloads" src="https://github.com/EliHei2/scicraft/raw/traffic/badge.svg"></a>
 </p>
-<!-- PUBLIC BADGES: these three read the repository through shields.io and work only once it is public.
+<!-- PUBLIC BADGES: these two read the repository through shields.io and work only once it is public.
      At publication, move them into the paragraph above and delete this comment.
   <a href="https://github.com/EliHei2/scicraft/releases"><img alt="Release" src="https://img.shields.io/github/v/release/EliHei2/scicraft"></a>
   <a href="https://github.com/EliHei2/scicraft/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/EliHei2/scicraft"></a>
-  <a href="https://github.com/EliHei2/scicraft/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/EliHei2/scicraft/total"></a>
 -->
 
 <p align="center"><img src="docs/assets/demo-data-figure.png" alt="A three-panel results figure made by the data-figures skill" width="92%"></p>
@@ -226,7 +226,8 @@ scicraft/
   that does not compile, a private string or machine-made prose. See [`tools/check.py`](tools/check.py).
 - **Honest by design.** Where a habit of research conflicts with honest reporting, only the honest form is
   taught: state the weak result and its scope.
-- **Nothing phones home.** No telemetry, no tracking. See [`SECURITY.md`](.github/SECURITY.md).
+- **Nothing phones home.** No telemetry, no tracking. The downloads badge comes from GitHub's own count of clones
+  and release downloads of this repository. See [`SECURITY.md`](.github/SECURITY.md).
 
 ## How it was made
 
