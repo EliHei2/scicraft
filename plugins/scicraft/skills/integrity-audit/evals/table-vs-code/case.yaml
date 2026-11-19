@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: table-vs-code
+expected_outcome: |
+  A file audit_table2.md that traces the setup sentences and numbers of paper.tex to the code and the run log.
+  It finds that train.py never loads config.yaml, so the learning rate of 3e-4 in the paper and the config is
+  not what ran: launch.sh passes no --lr, so the argparse default of 1e-3 ran, as the log's Namespace line shows.
+  It finds that three seeds ran (0, 1, 2) where the paper says five. It recomputes the mean of the three logged
+  accuracies (84.10) and reports that Table 2's 84.1 reproduces from the log, while the abstract's 84.3 does not
+  match the table. Each finding quotes the sentence of paper.tex with its line and names the record that
+  disagrees, and is left for the author to decide (an author action), with the value actually run stated. The
+  baseline's 83.2 is reported as having no record in the files. paper.tex is unchanged.
+context:
+  scaffold_script: place-files.sh

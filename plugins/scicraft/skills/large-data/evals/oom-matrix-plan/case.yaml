@@ -1,0 +1,17 @@
+schema_version: "1.1"
+name: oom-matrix-plan
+expected_outcome: |
+  A rewritten script that never materializes a dense matrix: it scans the shards lazily reading
+  only the needed columns, filters bots inside the scan, aggregates (user, item) counts with a
+  streaming group-by, maps user and item ids to matrix indices by factorizing each axis and
+  writes those id lists next to the matrix, builds a sparse CSR matrix, and runs a sparse
+  truncated SVD. The item-item step avoids a dense all-items correlation (a restricted item set,
+  sparse products or nearest neighbours on the item factors). The script logs how many rows the
+  bot filter removed. The response explains why the old script died with the size arithmetic of
+  the dense pivot or correlation (40M x 3M or 3M x 3M is far beyond 256 GB), reports a measured
+  peak memory and wall time on the sample shards, and bases the resource advice on measurement
+  with a stated margin, recommending a large-memory CPU node for the build rather than a GPU. It
+  says plainly that the full data were not run here, and suggests measuring one or a few full
+  shards on the cluster before the full job.
+context:
+  scaffold_script: place-files.sh

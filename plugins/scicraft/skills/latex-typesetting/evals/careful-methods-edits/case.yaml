@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: careful-methods-edits
+expected_outcome: |
+  Before editing, the untouched methods.tex is backed up and compiled as a baseline; packages the
+  machine lacks (siunitx on a minimal install) are handled with stubs or shims outside the file,
+  without adding or removing \usepackage lines in methods.tex. Exactly three requested changes are
+  made: the learning rate becomes 3 x 10^-4 in both the text and the defaults table, the
+  subsection heading reads "Training setup" with its label unchanged, and the early-stopping
+  sentence is removed. A diff of the backup against the result contains only these hunks. The
+  rebuilt PDF is compared with the baseline build. The pre-existing undefined reference to
+  sec:data is reported as found but not changed, since it was outside the request. The response
+  lists each change and gives the paths of the edited file, the backup, the diff and the PDF.
+context:
+  scaffold_script: place-files.sh

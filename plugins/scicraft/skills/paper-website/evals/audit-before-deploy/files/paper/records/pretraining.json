@@ -1,0 +1,9 @@
+{
+ "datasets": 137,
+ "time_steps_billion": 2.4,
+ "domains": 7,
+ "parameters_million": 31.6,
+ "layers": 10,
+ "patch_steps": 24,
+ "mask_fraction": 0.35
+}

@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: site-copy-own-words
+expected_outcome: |
+  site_copy.md holds a hero and three short sections (problem, how it works, results) whose sentences are the
+  paper's own sentences from paper.md, pasted or shortened only by cutting, with no paraphrase, no merged
+  sentences, no added connectives and no tagline or separator chains. Every number on the page appears in paper.md
+  with the same value, and the results section keeps the bound the paper states (the gain is concentrated on the
+  rare-domain benchmarks; general benchmarks are within 0.6 points). The final message says how the copy was
+  checked against the paper (for example by running the own-words script with paper.md as the corpus) and names
+  any line that is not a cut of a paper sentence.
+context:
+  scaffold_script: place-files.sh

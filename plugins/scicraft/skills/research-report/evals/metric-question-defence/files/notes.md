@@ -1,0 +1,7 @@
+- ECE in the draft: 15 equal-width bins, test set 50,000 images, values in percentage points
+- binning check: 5 schemes on the same predictions (binning_results.csv)
+- synthetic check: took m3's predictions, replaced labels so the true miscalibration is known (temperature-shifted), 5 levels (synthetic_results.csv)
+- m1 moves by 1.1 points between schemes (3.8 to 4.9), the largest change of any model
+- under quantile30, m4 (2.6) and m5 (2.4) keep order; no rank changes in any scheme
+- share of predictions in the top bin (equal15): m6 71%, m1 38%
+- code: eval/calibration.py at commit 9b1e44d

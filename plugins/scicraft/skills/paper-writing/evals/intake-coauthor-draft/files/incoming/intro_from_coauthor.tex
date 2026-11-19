@@ -1,0 +1,9 @@
+\section{Introduction: Why Retrieval Matters}
+Tabular data is everywhere --- from hospitals to banks --- and it is arguably the most important data modality in industry. Importantly, gradient-boosted trees remain a powerful and robust default \citep{chen2016xgboost}; deep models have struggled to match them \citep{grinsztajn2022tree,shwartz2022tabular,borisov2022deep}.
+
+In this paper, we propose a novel and principled approach. Rather than fitting a single global function, RowRetriever retrieves the most relevant training rows and attends over them, which is not just faster but also more accurate. Our method reaches 0.79 mean accuracy, clearly outperforming all baselines, and it is orders of magnitude faster at training time \citep{NEEDS_CITATION_speed}.
+
+We evaluate on 40 datasets \citep{vanschoren2014openml}. This section is organized as follows. Section 2 reviews related work, Section 3 describes the method, and Section 4 presents results.
+
+\paragraph{Our contributions.}
+(i) RowRetriever, a novel retrieval classifier; (ii) a comprehensive benchmark; (iii) state-of-the-art results across the board.

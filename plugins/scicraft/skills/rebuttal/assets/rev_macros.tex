@@ -1,0 +1,52 @@
+% Revision marking for a revised manuscript. Paste into the preamble after \usepackage{xcolor}.
+%
+% Every added or changed passage is wrapped in \rev{...}. One switch prints the same text with or without color:
+%   \revisedcolortrue   marked copy (what reviewers and editors read)
+%   \revisedcolorfalse  clean copy (identical line breaks, no color)
+% build_variants.sh flips the switches with sed in the main .tex file, so the source is never edited by hand to make a
+% copy. If this block is \input from a separate file, repeat \revisedcolortrue in the main file after the \input.
+%
+% Rules this block serves:
+%   - one color for everything that differs from the submitted version, decided by comparing with the submitted
+%     PDF and not with the markup;
+%   - a new table or figure: wrap its whole caption in \rev{...}, label included, and the tabular body too when the
+%     table has no shading of its own; an existing float: only its changed words;
+%   - a new loss term in an equation:  a \mathbin{\rev{+}} \rev{\lambda \mathcal{L}_{\rm new}}
+%   - punctuation fixes in submitted text are made quietly, without color.
+
+\definecolor{revised}{RGB}{70,130,180}   % light steel blue: [change the color here only]
+\newif\ifrevisedcolor \revisedcolortrue
+% \leavevmode keeps a marked paragraph attached to the heading above it.
+\newcommand{\rev}[1]{\ifrevisedcolor{\ifvmode\leavevmode\fi\color{revised}#1}\else#1\fi}
+% For a whole caption of a new float: the same color without \leavevmode, which would add an empty line above the
+% caption in the marked copy only and move every line below it. Use  \revcap{\caption{...}\label{...}}
+\newcommand{\revcap}[1]{\ifrevisedcolor{\color{revised}#1}\else#1\fi}
+
+% Optional: one color per round of edits, for the authors' own review only. With \shownewfalse (the default) each
+% round macro prints in the revision color like every other change. Turn a round on only in a working copy, and
+% never deliver a copy with more than one color.
+\definecolor{newmark}{RGB}{214,96,0}      % orange
+\newif\ifshownew \shownewfalse
+\newcommand{\new}[1]{\ifshownew\ifrevisedcolor{\ifvmode\leavevmode\fi\color{newmark}#1}\else#1\fi\else\rev{#1}\fi}
+\definecolor{newermark}{RGB}{197,27,125}  % magenta
+\newif\ifshownewer \shownewerfalse
+\newcommand{\newer}[1]{\ifshownewer\ifrevisedcolor{\ifvmode\leavevmode\fi\color{newermark}#1}\else#1\fi\else\rev{#1}\fi}
+
+% Added bibliography entries print in the revision color. List their keys between commas.
+% Works with natbib and a thebibliography or BibTeX-generated .bbl that uses \bibitem[...]{key}.
+\makeatletter
+\newcommand*{\rev@bibkeys}{,[newkey1],[newkey2],}
+\newif\ifrev@bibopen
+\let\rev@orig@lbibitem\@lbibitem
+\def\@lbibitem[#1]#2{\rev@orig@lbibitem[#1]{#2}\rev@bibcolor{#2}}
+\newcommand*{\rev@bibcolor}[1]{%
+  \ifrevisedcolor
+    \edef\rev@tmp{\noexpand\in@{,#1,}{\rev@bibkeys}}\rev@tmp
+    \ifin@
+      \leavevmode\color{revised}\global\rev@bibopentrue
+    \else
+      \ifrev@bibopen\leavevmode\normalcolor\global\rev@bibopenfalse\fi
+    \fi
+  \fi
+  \ignorespaces}
+\makeatother

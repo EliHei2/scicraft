@@ -1,0 +1,10 @@
+summary,value
+weft_mean_rank,2.4
+best_published_fm_mean_rank,5.1
+best_published_fm_name,TabFM-L
+weft_rank1_tasks,7
+total_tasks,12
+weft_elo,1612
+best_published_fm_elo,1530
+classification_tasks_weft_first,6
+regression_tasks_weft_first,1

@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: cut-for-speed
+expected_outcome: |
+  The agent does not treat the change as a free speed-up. It explains that the projection count is part of a
+  batch-level regularizer, so cutting it changes the objective (a cut from 1024 to 256 made 2 of 4 runs collapse
+  in the record), and that the change must be shown to leave the loss trajectory and the per-term losses
+  unchanged at a fixed seed, or be treated as a scientific change the user decides on, before the long run. It
+  checks the arithmetic of the claimed speed-up from profile.txt (the regularizer is 74.9 of 195.0 ms; if its
+  cost scaled linearly with the projection count the step would fall to about 130 ms, about 1.5x, which assumes a
+  scaling nobody measured). It
+  proposes a short paired run (same seed, both settings) with the comparison to make, and either leaves
+  config.yaml unchanged or makes the change only in a separate, clearly named config while saying it is
+  unverified.
+context:
+  scaffold_script: place-files.sh

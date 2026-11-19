@@ -1,0 +1,27 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,booktabs}
+\begin{document}
+
+\section{Datasets}
+
+\paragraph{LUNG-A.} A human lung adenocarcinoma section profiled with an imaging-based spatial transcriptomics panel of 480 genes (412,306 cells after quality control). Public accession: GSE000001.
+
+\paragraph{LUNG-B.} A second section from the same donor block, 480-gene panel (389,114 cells after quality control). \textit{Accession to be added.}
+
+\paragraph{BRAIN-M.} A mouse coronal brain section, 347-gene panel (152,870 cells after quality control). Public accession: GSE000002.
+
+\section{Analyses}
+
+\subsection{Cell-type composition}
+
+For the composition analysis we used LUNG-A. Transcripts with a quality value below 20 were removed, negative-control probes were removed, and cells with fewer than 10 transcripts were discarded. Counts were normalized to 100 counts per cell and log-transformed. Cell types were assigned with a marker-based classifier against the matched single-cell lung reference (HLCA core, 61 cell types at annotation level 3). The segmentation prior was initialized from the same matched lung reference.
+
+\subsection{Contamination analysis}
+
+For the contamination analysis we used LUNG-A and LUNG-B. Transcripts with a quality value below 20 were removed, negative-control probes were removed, and cells with fewer than 20 transcripts were discarded. Counts were normalized to 100 counts per cell and log-transformed. Cell types were assigned against the matched single-cell lung reference (HLCA core, level 3). The segmentation prior was initialized from the same matched lung reference. Mutually exclusive gene pairs were taken from the same reference.
+
+\subsection{Generalization test}
+
+To test generalization we reused LUNG-A and added BRAIN-M. Transcripts with a quality value below 20 were removed, negative-control probes were removed, and cells with fewer than 10 transcripts were discarded. Counts were normalized to 100 counts per cell and log-transformed. For LUNG-A, cell types were assigned against a generic CELLxGENE lung atlas (level 1, 14 cell types) and for BRAIN-M against the Allen mouse brain taxonomy (class level, 34 classes). The segmentation prior used no reference in this analysis (spatial information only).
+
+\end{document}

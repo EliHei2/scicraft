@@ -1,0 +1,191 @@
+% =====================================================================
+%  housestyle.tex: house additions on top of an UNMODIFIED venue style
+%  (ICLR, NeurIPS, ICML, a journal class).
+%
+%  The venue style file owns the page geometry, the type sizes, the
+%  section heads, the title block, the abstract, the running head and the
+%  bibliography style. Do not override any of it here: no geometry, no
+%  font size, no \...geometryfalse switch. Reviewers and checkers read
+%  such changes as a format violation.
+%
+%  This file adds only what the venue leaves open: one accent color for
+%  links and callout rules, a monospace that sits beside Times, microtype,
+%  float placement, caption form, display-math rhythm, table helpers,
+%  callout boxes without tcolorbox, theorem environments and cleveref.
+%
+%  Load order in main.tex:
+%     \usepackage{<venue style>}   (with `times' if the venue loads it so)
+%     \input{housestyle}
+%  Build with pdfLaTeX: pdflatex, bibtex, pdflatex until no "Rerun".
+% =====================================================================
+
+\usepackage[T1]{fontenc}
+% A venue that sets `times' points \ttdefault at Courier, which is far too
+% wide beside Times. Inconsolata (zi4) sits on the Times x-height.
+\IfFileExists{zi4.sty}{\usepackage[scaled=0.95]{zi4}}{}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{url}
+\usepackage[final,tracking=false]{microtype}
+\setlength{\emergencystretch}{1.5em}
+\lefthyphenmin=2
+\righthyphenmin=3
+
+% ---- one accent, carried by links, citations and callout rules ----
+\definecolor{accent}{HTML}{26735B}      % links, citations, box rules
+\definecolor{accentdark}{HTML}{1D5947}  % box headings, citation-dense text
+\definecolor{pale}{HTML}{F2F8F5}        % box fill: a pale tint of the accent
+\definecolor{ink}{HTML}{202020}
+\definecolor{soft}{HTML}{616161}
+% Table rank fills: first, second, third (each also gets a superscript rank)
+\definecolor{rankfirst}{HTML}{D3ECE3}
+\definecolor{ranksecond}{HTML}{D8EBFF}
+\definecolor{rankthird}{HTML}{FDEDCE}
+% The caption names the ranks on the same fills, so no legend is needed:
+% \rankkey{rankfirst}{first}, \rankkey{ranksecond}{second}, \rankkey{rankthird}{third}
+\newcommand{\rankkey}[2]{{\setlength{\fboxsep}{1pt}\colorbox{#1}{\strut #2}}}
+% Ablation deltas, shaded by size: \cellcolor{warn!N} or \cellcolor{ok!N}, N at most 60
+\definecolor{warn}{RGB}{210,85,75}
+\definecolor{ok}{RGB}{65,145,85}
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}
+\makeatother
+\hypersetup{colorlinks=true,linkcolor=accent,citecolor=accent,urlcolor=accent}
+
+% ---- display-math rhythm (most venue styles set none) ----
+\allowdisplaybreaks[1]
+\setlength{\abovedisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{7pt plus 2pt minus 2pt}
+\setlength{\abovedisplayshortskip}{3pt plus 2pt}
+\setlength{\belowdisplayshortskip}{5pt plus 2pt minus 2pt}
+% Main-text-only tightening for a page limit: call \tightenmaindisplays
+% after \maketitle and \restoremaindisplays before the appendix.
+\newlength{\savedabovedisplayskip}\newlength{\savedbelowdisplayskip}
+\newlength{\savedabovedisplayshortskip}\newlength{\savedbelowdisplayshortskip}
+\newcommand{\tightenmaindisplays}{%
+  \setlength{\savedabovedisplayskip}{\abovedisplayskip}%
+  \setlength{\savedbelowdisplayskip}{\belowdisplayskip}%
+  \setlength{\savedabovedisplayshortskip}{\abovedisplayshortskip}%
+  \setlength{\savedbelowdisplayshortskip}{\belowdisplayshortskip}%
+  \setlength{\abovedisplayskip}{3pt plus 1pt minus 2pt}%
+  \setlength{\belowdisplayskip}{3pt plus 1pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{1pt plus 1pt minus 1pt}%
+  \setlength{\belowdisplayshortskip}{1pt plus 1pt minus 1pt}}
+\newcommand{\restoremaindisplays}{%
+  \setlength{\abovedisplayskip}{\savedabovedisplayskip}%
+  \setlength{\belowdisplayskip}{\savedbelowdisplayskip}%
+  \setlength{\abovedisplayshortskip}{\savedabovedisplayshortskip}%
+  \setlength{\belowdisplayshortskip}{\savedbelowdisplayshortskip}}
+
+% ---- floats and captions ----
+\usepackage{flafter}                 % a float never precedes its first mention
+\renewcommand{\topfraction}{.95}
+\renewcommand{\bottomfraction}{.6}
+\renewcommand{\textfraction}{.03}
+\renewcommand{\floatpagefraction}{.85}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{4}
+\renewcommand{\arraystretch}{1.12}
+\usepackage[font=small,labelfont=bf,labelsep=colon,justification=justified,
+            singlelinecheck=false,skip=5pt]{caption}
+\captionsetup[table]{position=top,skip=6pt}
+\IfFileExists{wrapfig.sty}{\usepackage{wrapfig}}{}
+
+% ---- wide floats ----
+% A figure designed wider than the measure spends margin instead of being
+% scaled below its label size. The overhang goes to the RIGHT, because the
+% left margin carries the submission line numbers:
+% \widefig{7in}{...} on a 5.5in measure overhangs 0.15in left, 1.35in right.
+\newcommand{\widefig}[2]{%
+  \makebox[\linewidth][c]{\hspace*{1.2in}\begin{minipage}{#1}#2\end{minipage}}}
+
+% ---- run-in paragraph head that costs no vertical space ----
+\newcommand{\rwpara}[1]{\par\noindent\textbf{#1}\hspace{0.2em}}
+
+% ---- table helpers ----
+% Row-group heading: an italic label across the width, instead of a
+% category column repeated down every row. \grp{<number of columns>}{label}
+% (no optional argument: a row that starts with \addlinespace must expand to
+% \noalign first, which a command with an optional argument does not).
+\newcommand{\grp}[2]{\addlinespace[3pt]\multicolumn{#1}{@{}l}{\itshape #2}\\[1pt]}
+% Best is \textbf; second is \snd; the pair is declared in the caption.
+\newcommand{\snd}[1]{\underline{#1}}
+% Error after a value, small and gray: .58\pmsd{.09}
+\newcommand{\pmsd}[1]{{\tiny\color{black!62}$\pm$#1}}
+% Small gray annotation inside a header cell (sample counts, arrows)
+\newcommand{\hnote}[1]{{\tiny\color{black!62}#1}}
+% p value with an upright, thin-spaced equals sign: \pv{.002}
+\newcommand{\pv}[1]{\textit{p}\,=\,#1}
+% Not applicable
+\newcommand{\na}{\textcolor{soft}{--}}
+% Ragged-right paragraph column: below about 40 characters, justification
+% leaves word spaces the eye reads as holes.
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% ---- callouts: square corners, hidden frame, accent left rule, pale fill ----
+% Few, one style. Jobs that earned a box: the contributions block, and a
+% one-sentence takeaway closing a dense section. Core LaTeX only, because
+% an older kernel can refuse a newer tcolorbox.
+\makeatletter
+\newsavebox{\hs@cbox}
+\newlength{\hs@rule}\setlength{\hs@rule}{1.8pt}
+\newlength{\hs@padl}\setlength{\hs@padl}{9pt}
+\newlength{\hs@padr}\setlength{\hs@padr}{7pt}
+\newlength{\hs@padv}\setlength{\hs@padv}{6pt}
+\newcommand{\hs@openbox}{%
+  \par\addvspace{1.0\baselineskip}\noindent
+  \begin{lrbox}{\hs@cbox}%
+  \begin{minipage}{\dimexpr\linewidth-\hs@rule-\hs@padl-\hs@padr\relax}%
+  \vspace{\hs@padv}\small\raggedright\setlength{\parskip}{0.35\baselineskip}\relax}
+\newcommand{\hs@closebox}[2]{%
+  \vspace{\hs@padv}\end{minipage}\end{lrbox}%
+  {\setlength{\fboxsep}{0pt}\colorbox{#2}{%
+     \textcolor{#1}{\rule[-\dp\hs@cbox]{\hs@rule}{\dimexpr\ht\hs@cbox+\dp\hs@cbox\relax}}%
+     \hspace{\hs@padl}\usebox{\hs@cbox}\hspace{\hs@padr}}}%
+  \par\addvspace{0.75\baselineskip}}
+\newenvironment{insight}{\hs@openbox}{\hs@closebox{accent}{pale}}
+\newenvironment{keybox}{\hs@openbox}{\hs@closebox{black!55}{black!4}}
+\makeatother
+
+% ---- theorem environments (defined only if the venue has not) ----
+\makeatletter
+\theoremstyle{plain}
+\@ifundefined{theorem}{\newtheorem{theorem}{Theorem}}{}
+\@ifundefined{proposition}{\newtheorem{proposition}{Proposition}}{}
+\@ifundefined{lemma}{\newtheorem{lemma}{Lemma}}{}
+\@ifundefined{corollary}{\newtheorem{corollary}{Corollary}}{}
+\theoremstyle{definition}
+\@ifundefined{definition}{\newtheorem{definition}{Definition}}{}
+\@ifundefined{assumption}{\newtheorem{assumption}{Assumption}}{}
+\theoremstyle{remark}
+\@ifundefined{remark}{\newtheorem{remark}{Remark}}{}
+% Boxed statements in the callout look, with the source unchanged:
+% \boxtheorem{proposition} in the preamble, then the usual
+% \begin{proposition}[Title] ... \end{proposition}. Delete the
+% \boxtheorem line and the output is plain amsthm again.
+\newcommand{\boxtheorem}[1]{%
+  \expandafter\let\csname hs@orig@#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname hs@orig@end#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}{\hs@openbox\csname hs@orig@#1\endcsname}%
+    {\csname hs@orig@end#1\endcsname\hs@closebox{accent}{pale}}}
+\makeatother
+
+% ---- operators that appear in prose as well as math ----
+% Wrapped in \ensuremath: a bare \MLP{} in a sentence would otherwise
+% raise "Missing $ inserted".
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\sgOP}{sg}
+\newcommand{\sg}{\ensuremath{\sgOP}}          % stop-gradient
+\DeclareMathOperator{\MLPOP}{MLP}
+\newcommand{\MLP}{\ensuremath{\MLPOP}}
+
+% ---- missing packages on a minimal install, then cross-references ----
+% shims.tex loads cleveref when it exists and a prefix-aware stand-in when
+% it does not. Labels: sec: subsec: fig: tab: eq: alg: box: app: def: thm:
+\InputIfFileExists{shims}{}{\IfFileExists{cleveref.sty}{\usepackage[capitalize,noabbrev]{cleveref}}{}}
+\crefname{algorithm}{Algorithm}{Algorithms}

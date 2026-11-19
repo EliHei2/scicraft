@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: min-score-flag
+expected_outcome: |
+  On a new feature branch of tabeval_repo (main untouched), `tabeval predict` gains a `--min-score` option whose
+  default reproduces the old behavior. The predictions file keeps every input row; low-confidence rows are marked
+  in a boolean column (for example `keep`) and, where useful, the threshold is recorded, and `summary` counts only
+  the kept rows. The existing flags and `scripts/run_all.sh` work unchanged, no dependency is added, and no
+  unrelated lines are reformatted. Commit messages and the PR text carry no AI attribution. A PR message is
+  written to a file that is not committed, in plain prose with identifiers in backticks, stating the new column
+  and the default. Nothing is pushed and no PR is opened. The final message explains why rows are flagged instead
+  of deleted.
+context:
+  scaffold_script: place-files.sh

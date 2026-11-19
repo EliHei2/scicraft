@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: update-docs-sweep
+expected_outcome: |
+  The pending lessons in tabbench/RUN_MAP.md (rows with Synced "-") are folded into tabbench/guidelines/RUNNING.md:
+  the batch size that fits a 24 GB card, PYTHONNOUSERSITE=1 in job scripts, and the mirror URL for the suite_v3
+  download. Those rows now read Synced "yes". STATUS.md carries today's date and next actions that reflect the
+  finished suite v2 sweep and the started v3. The failed model_b entry is still in experiments/EXPERIMENTS.md. The
+  lessons are not copied into CLAUDE.md, which stays short. No file under results/ is touched. The final message
+  says which lesson went where.
+context:
+  scaffold_script: place-files.sh

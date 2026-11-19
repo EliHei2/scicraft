@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: deslop-experiments
+expected_outcome: |
+  experiments.tex is edited in place. Every number, citation key, label and reference of the original survives,
+  the style file is byte-identical, and main.tex still compiles. The prose loses its tells: the dashes, "not just
+  ... but", "It is worth noting", "Importantly", "In order to", "comprehensive", "careful", "strongest", "wins",
+  "the best published model", the slogan "masking is the point", "crucial", the sense verb "sees", the colon in
+  the section heading and the invented count "Three pillars". Results are stated as measured relations with the
+  comparator named. The main table caption says what the entries and the plus-minus values are and what bold
+  means; the daggers are replaced by one significance mark declared in the captions (or kept and declared);
+  ablation labels read "-masking" style instead of "w/o". The regression result where per-dataset trees rank above
+  the model stays in the text with its numbers. The final message lists the changes.

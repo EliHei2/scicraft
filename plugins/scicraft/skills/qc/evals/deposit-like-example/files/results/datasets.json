@@ -1,0 +1,30 @@
+{
+ "adult": {
+  "task": "binary",
+  "n_rows": 48842,
+  "n_features": 14,
+  "source": "UCI",
+  "url": "https://archive.ics.uci.edu/dataset/2/adult"
+ },
+ "bank": {
+  "task": "binary",
+  "n_rows": 45211,
+  "n_features": 16,
+  "source": "UCI",
+  "url": "https://archive.ics.uci.edu/dataset/222/bank+marketing"
+ },
+ "credit": {
+  "task": "binary",
+  "n_rows": 1000,
+  "n_features": 20,
+  "source": "UCI",
+  "url": "https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data"
+ },
+ "higgs_small": {
+  "task": "binary",
+  "n_rows": 98050,
+  "n_features": 28,
+  "source": "OpenML",
+  "url": "https://www.openml.org/d/23512"
+ }
+}

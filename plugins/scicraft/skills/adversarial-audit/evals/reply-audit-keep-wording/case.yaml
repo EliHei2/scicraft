@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: reply-audit-keep-wording
+expected_outcome: |
+  The audit checks the reply against the paper and the review and finds three problems: the reply says the first
+  1,000 rows were hashed while the paper says the first 100 rows; the reply claims that no evaluation table was
+  used to choose hyperparameters, which the paper does not state anywhere; and the reviewer's Q3 on pretraining
+  cost is not answered, although the paper's Appendix C gives 38 GPU-hours on one accelerator and 1.4 seconds of
+  inference for 10,000 rows. The 1,000 is corrected to 100. The unprinted hyperparameter claim is removed or put to
+  the user, not kept silently. The missing Q3 answer is reported, and any answer drafted for it uses only the
+  Appendix C numbers. The rest of the reply keeps the user's wording: the Q2 paragraph and the opening line are
+  unchanged, and the headings and order stay as they were. The final message lists each change with its reason
+  and anything the user must decide.
+context:
+  scaffold_script: place-files.sh

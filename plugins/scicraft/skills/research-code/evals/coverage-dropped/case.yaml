@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: coverage-dropped
+expected_outcome: |
+  The assistant hunts the regression without editing code. It pins the last-good run (2026-11-10, produced by the
+  initial commit) and the current run, finds that the first output that differs is the number of rows kept by
+  the loader (36 against 24 of 40) before scoring, and traces it to the commit "Refactor loader into
+  PredictionReader", which changed the default confidence threshold from 0.2 to 0.5 inside a refactor. It explains
+  that accuracy rose because only confident rows are scored now. It does not blame the data, the README commit or
+  the scoring speed-up. It proposes a fix (restore the 0.2 default, or make the threshold explicit and record it
+  with the results) and states that the fix was not applied and waits for a go.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,47 @@
+% Per-dataset x per-analysis matrix. Needs \usepackage{booktabs,longtable,array} in the preamble.
+% One row per (dataset x analysis): a dataset reused in three analyses has three rows.
+% Shared preprocessing is written once in prose (Datasets and preprocessing); this table and the
+% per-analysis prose give only what differs. Every cell holds the value actually run, read from the
+% run records, never from a config example or an older draft. A cell you cannot fill from the records
+% gets \authoraction{ID}{...}, never a guess.
+%
+% Columns to adapt:
+%   Dataset (ID)          the stable short ID defined once in Datasets and preprocessing
+%   Analysis              the analysis by name (not by figure number)
+%   Input and filters     what enters this analysis: split, subset, quality filters, floors
+%   Configuration         the method's settings, written as the change from the default ("default" if none)
+%   Reference role 1      the reference used to label or score the outputs (cell typing, metric
+%                         reference, gold labels, evaluation protocol)
+%   Reference role 2      the reference that enters the model itself (prior, initialization,
+%                         pretraining corpus). Keep the two roles in separate columns: readers confuse them.
+% Machine-learning reading: Dataset = benchmark or task suite; Input and filters = split and
+% preprocessing; Configuration = model and baseline settings; role 1 = evaluation labels and metric;
+% role 2 = pretraining or tuning data that touches the model.
+\begingroup\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.11\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.12\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.15\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.14\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.14\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.12\textwidth}}
+\caption{Per-dataset, per-analysis inputs, configuration and references. A dataset reused across
+analyses appears once per analysis. [Reference role 1] is used to [label or score the outputs].
+[Reference role 2] enters the model as [a prior or initialization] and is independent of it.}
+\label{tab:dataset-analysis-matrix}\\
+\toprule
+Dataset (ID) & Analysis & Input and filters & Configuration (vs default) & [Reference role 1] & [Reference role 2] \\
+\midrule
+\endfirsthead
+\toprule
+Dataset (ID) & Analysis & Input and filters & Configuration (vs default) & [Reference role 1] & [Reference role 2] \\
+\midrule
+\endhead
+% ---- placeholder rows showing the reuse pattern; replace every bracket with a value from the records.
+% A row that starts with [ must keep the braces {[...]}, or LaTeX reads \\[ as a length. ----
+{[DATA-A]} & [analysis 1] & [split or subset]; [filters] & default & [reference X, level] & [reference X] \\
+{[DATA-A]} & [analysis 2] & as above & [one changed setting] & [reference Y, level] & none \\
+{[DATA-B]} & [analysis 2] & [split or subset]; [filters] & as above & [reference Z, level] & none \\
+% ... one row per remaining (dataset x analysis) ...
+\bottomrule
+\end{longtable}
+\endgroup

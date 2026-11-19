@@ -1,0 +1,35 @@
+\documentclass[11pt]{article}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\title{One Encoder for Many Molecule Collections}
+\author{Anonymous}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We pretrain one graph encoder on nine public molecule collections and evaluate it frozen on 14 property
+prediction tasks. Among 12 compared methods, it ranks first on 9 of the 14 tasks.
+\end{abstract}
+\section{Introduction}
+Molecular property prediction relies on representations learned from limited labeled data. Pretraining on large
+unlabeled collections promises representations that transfer across tasks. Existing pretrained models are trained
+on one collection at a time, which ties them to the chemistry of that collection.
+\section{Results}
+We compare 12 methods on 14 property prediction tasks. Our encoder ranks first on 9 of the 14 tasks, and its mean
+rank is 2.1 against 4.6 for the next method.
+\begin{table}[h]
+\centering
+\caption{Mean rank over 14 tasks.}\label{tab:bench}
+\begin{tabular}{lr}
+\toprule
+Method & Mean rank \\
+\midrule
+Ours & 2.1 \\
+GraphFM & 4.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+Ablations remove one component at a time from a small model trained for 20k steps.
+\section{Conclusion}
+One encoder pretrained on many collections transfers across property prediction tasks.
+\end{document}

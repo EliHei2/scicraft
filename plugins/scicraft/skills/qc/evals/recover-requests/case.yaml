@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: recover-requests
+expected_outcome: |
+  The agent rebuilds the list of the user's instructions from session.jsonl (the user's messages only: no system
+  reminder, no subagent message, no interruption marker, and the bare "go" not counted as a request) and writes it
+  to a ledger file such as REQUESTS.md, in the user's words with times. It checks each against release/: the pip
+  install command is done; the license line still says MIT where Apache-2.0 was asked, so it is open; the citation
+  block request is overridden by the later "coming soon" request, which is open because no citation section
+  exists; the fit then predict fix is done in the README but open in CHANGELOG.md, which still documents
+  fit_predict. The overridden request is marked as overridden, not deleted. No file in release/ is changed. The
+  final message lists the open items briefly.
+context:
+  scaffold_script: place-files.sh

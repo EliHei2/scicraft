@@ -1,0 +1,18 @@
+\section{Methods}
+\label{sec:methods}
+
+This section describes the training and evaluation protocol in detail, and it is the single source for every hyperparameter used in the paper.
+
+\subsection{Model}
+Our principled architecture is not merely a transformer but a row-and-column attention model that alternates attention over the rows and the columns of a table, namely a design that lets every cell attend to every other cell in its row and column \citep{vaswani2017,gorishniy2021}. The encoder has 12 layers, a width of 512 and 8 attention heads, which amounts to 38.4 million parameters.
+
+\subsection{Pretraining}
+It is worth noting that, importantly, in order to ensure robustness, we pretrain on 1.2 million synthetic tables drawn from a structural causal prior \citep{hollmann2023}---the standard choice in this line of work---rather than on real data, so that no benchmark table can leak into pretraining. The objective is the masked-cell loss in Eq.~\ref{eq:loss}:
+\begin{equation}
+\label{eq:loss}
+\mathcal{L} = - \sum_{(i,j) \in M} \log p_\theta(x_{ij} \mid x_{\setminus M})
+\end{equation}
+We train for 400{,}000 steps with AdamW \citep{loshchilov2019} at a learning rate of $2\times10^{-4}$, a batch of 64 tables, and a cosine schedule with 5{,}000 warm-up steps. Training takes 9 days on 8 GPUs. The loss sits at a stable value after roughly 250{,}000 steps, which is why we did not train longer.
+
+\subsection{Evaluation}
+The evaluation is a stress test of generalization. We evaluate on 51 classification datasets from a public benchmark suite \citep{mcelfresh2023} and report accuracy and ROC AUC averaged over 10 random splits (Table~\ref{tab:main}). The model is not only fast but also accurate: it wins on 31 of the 51 datasets. Baselines are tuned with 100 trials of random search each. The comparison is comprehensive. That distinction matters.

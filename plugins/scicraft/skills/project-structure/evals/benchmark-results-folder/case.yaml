@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: benchmark-results-folder
+expected_outcome: |
+  embbench writes every result through one results root per run profile (for example results/runs/full/ and a
+  quick root in scratch/ or results/runs/quick/), never into out_<timestamp> folders. The code writes a config file
+  at the start of a run and a manifest at the end (config, package versions, git commit with a dirty flag). A catalog
+  holds one row per table, and the noisy copies have ids that name their parent and the noise level and seed. Each
+  model's outputs are written append-only into its own folder with a small metadata file. A failure is written as a
+  row of a failures table and the run continues; running again skips finished work. One configuration object with
+  quick and full presets is imported by both scripts/run_bench.py and the notebook script, and the duplicated
+  settings are gone. The results tree is ignored by git. Regenerating figures moves the old ones to an archive folder
+  first. The pipeline was run once on the quick profile, a second run skipped finished work, and the final message
+  says so and says that real models and the GPU run were not tested.
+context:
+  scaffold_script: place-files.sh

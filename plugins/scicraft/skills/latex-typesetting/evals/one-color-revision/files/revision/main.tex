@@ -1,0 +1,48 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,booktabs}
+\usepackage[round]{natbib}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% revision marking from the first round
+\definecolor{revblue}{RGB}{0,0,200}
+\newcommand{\rev}[1]{{\color{revblue}#1}}
+% second round
+\definecolor{neworange}{RGB}{214,96,0}
+\newcommand{\new}[1]{{\color{neworange}#1}}
+
+\title{Retrieval-Augmented Transformers for Tabular Prediction}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+We pair a transformer encoder with a nearest-neighbor retrieval step over the
+training table. \rev{Retrieval uses the same embedding space as the encoder, so
+no second model is trained.} The encoder follows residual designs
+\citep{he2016resnet}.
+
+\section{Method}
+Each query row retrieves its $k=32$ nearest training rows. \new{We set $k$ by
+validation accuracy on a held-out tenth of the training rows.} The model is
+trained with Adam \citep{kingma2015adam}.
+
+\section{Results}
+Table~\ref{tab:main} reports accuracy on the benchmark.
+\begin{table}[h]
+  \caption{\textbf{Accuracy on the benchmark.} Mean over five seeds.}\label{tab:main}
+  \centering
+  \begin{tabular}{@{}lc@{}}\toprule Model & Accuracy \\\midrule Gradient boosting & .842 \\ Ours & .861 \\\bottomrule\end{tabular}
+\end{table}
+
+\section{Conclusion}
+Retrieval improves tabular transformers at no extra training cost.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

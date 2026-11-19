@@ -1,0 +1,9 @@
+{"type": "launched"}
+{"type": "started", "key": "k_a01", "agentId": "a01", "label": "audit:correctness", "phase": "Audit"}
+{"type": "started", "key": "k_a02", "agentId": "a02", "label": "audit:data-leakage", "phase": "Audit"}
+{"type": "started", "key": "k_a03", "agentId": "a03", "label": "audit:efficiency", "phase": "Audit"}
+{"type": "started", "key": "k_a04", "agentId": "a04", "label": "audit:config-guards", "phase": "Audit"}
+{"type": "started", "key": "k_a05", "agentId": "a05", "label": "final:synthesis", "phase": "Synth"}
+{"type": "started", "key": "k_a03", "agentId": "a03r", "label": "audit:efficiency", "phase": "Audit"}
+{"type": "result", "key": "k_a01", "agentId": "a01", "result": "Wrote audit/A_correctness.md: 0 critical, 1 major (label smoothing applied twice in loss.py line 41), 3 minor."}
+{"type": "failed", "key": "k_a03", "agentId": "a03"}

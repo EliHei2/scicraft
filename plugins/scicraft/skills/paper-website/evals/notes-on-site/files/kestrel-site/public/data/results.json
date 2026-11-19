@@ -1,0 +1,227 @@
+{
+ "ours": "Kestrel",
+ "rival": "Method B",
+ "tasks": [
+  {
+   "name": "grid load",
+   "short": "grid",
+   "about": "Forecast the next hour of load from the previous day, scored as a three-class trend.",
+   "metric": "macro F1"
+  },
+  {
+   "name": "server logs",
+   "short": "server",
+   "about": "Flag the minutes that operators marked as incidents.",
+   "metric": "macro F1"
+  },
+  {
+   "name": "gait",
+   "short": "gait",
+   "about": "Label each step phase from a wrist sensor.",
+   "metric": "macro F1"
+  },
+  {
+   "name": "traffic",
+   "short": "traffic",
+   "about": "Detect incidents from loop detector counts.",
+   "metric": "macro F1"
+  },
+  {
+   "name": "bearing wear",
+   "short": "bearing",
+   "about": "Grade the wear of a bearing from its vibration, in three classes.",
+   "metric": "macro F1"
+  }
+ ],
+ "bars": {
+  "label": "rating",
+  "baseName": "baseline",
+  "base": 1000,
+  "min": 960,
+  "max": 1150,
+  "ticks": [
+   1000,
+   1050,
+   1100,
+   1150
+  ],
+  "rows": [
+   {
+    "name": "Kestrel",
+    "value": 1125
+   },
+   {
+    "name": "Method B",
+    "value": 1025
+   },
+   {
+    "name": "Method C",
+    "value": 1023
+   },
+   {
+    "name": "Method D",
+    "value": 981
+   },
+   {
+    "name": "Baseline",
+    "value": 1000
+   }
+  ]
+ },
+ "heat": {
+  "rows": [
+   {
+    "name": "Kestrel",
+    "ranks": [
+     1,
+     1,
+     2,
+     1,
+     1
+    ]
+   },
+   {
+    "name": "Method B",
+    "ranks": [
+     5,
+     2,
+     1,
+     2,
+     5
+    ]
+   },
+   {
+    "name": "Method C",
+    "ranks": [
+     2,
+     4,
+     4,
+     4,
+     2
+    ]
+   },
+   {
+    "name": "Method D",
+    "ranks": [
+     3,
+     3,
+     5,
+     5,
+     4
+    ]
+   },
+   {
+    "name": "Baseline",
+    "ranks": [
+     4,
+     5,
+     3,
+     3,
+     3
+    ]
+   }
+  ]
+ },
+ "ablate": {
+  "scales": [
+   "small",
+   "large"
+  ],
+  "rows": [
+   {
+    "label": "without pretraining",
+    "text": "Kestrel trained without pretraining.",
+    "drops": [
+     {
+      "est": -0.157,
+      "task": "gait"
+     },
+     {
+      "est": -0.145,
+      "task": "bearing wear"
+     }
+    ]
+   },
+   {
+    "label": "without the cross-channel attention",
+    "text": "Kestrel trained without the cross-channel attention.",
+    "drops": [
+     null,
+     {
+      "est": -0.056,
+      "task": "gait"
+     }
+    ]
+   },
+   {
+    "label": "without the masking curriculum",
+    "text": "Kestrel trained without the masking curriculum.",
+    "drops": [
+     {
+      "est": -0.094,
+      "task": "gait"
+     },
+     null
+    ]
+   }
+  ]
+ },
+ "table": {
+  "cols": [
+   "method",
+   "grid load",
+   "server logs",
+   "gait",
+   "traffic",
+   "bearing wear",
+   "mean rank"
+  ],
+  "rows": [
+   [
+    "Kestrel",
+    ".587",
+    ".773",
+    ".626",
+    ".613",
+    ".709",
+    "1.20"
+   ],
+   [
+    "Method B",
+    ".381",
+    ".673",
+    ".767",
+    ".588",
+    ".508",
+    "3.00"
+   ],
+   [
+    "Method C",
+    ".523",
+    ".582",
+    ".517",
+    ".411",
+    ".646",
+    "3.20"
+   ],
+   [
+    "Method D",
+    ".511",
+    ".654",
+    ".451",
+    ".374",
+    ".532",
+    "4.00"
+   ],
+   [
+    "Baseline",
+    ".473",
+    ".379",
+    ".557",
+    ".544",
+    ".549",
+    "3.60"
+   ]
+  ]
+ }
+}

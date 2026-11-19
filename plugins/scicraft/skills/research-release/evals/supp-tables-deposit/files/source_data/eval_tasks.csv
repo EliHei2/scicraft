@@ -1,0 +1,9 @@
+task,source,metric
+task_0,registry A,AUROC
+task_1,registry B,AUROC
+task_2,registry A,AUROC
+task_3,registry B,AUROC
+task_4,registry A,AUROC
+task_5,registry B,AUROC
+task_6,registry A,AUROC
+task_7,registry B,AUROC

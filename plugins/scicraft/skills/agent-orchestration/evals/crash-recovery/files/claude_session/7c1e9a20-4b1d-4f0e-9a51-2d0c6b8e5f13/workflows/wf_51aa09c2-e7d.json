@@ -1,0 +1,16 @@
+{
+ "runId": "wf_51aa09c2-e7d",
+ "status": "completed",
+ "summary": "Pre-cluster code audit, 4 lenses plus synthesis",
+ "logs": [
+  "agent final:synthesis failed: You've hit your session limit",
+  "agent audit:efficiency failed: You've hit your session limit"
+ ],
+ "result": {
+  "findings": [
+   "audit/A_correctness.md"
+  ],
+  "synthesis": "audit/SYNTHESIS.md",
+  "final": null
+ }
+}

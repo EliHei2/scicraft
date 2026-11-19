@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: new-model-looks-worse
+expected_outcome: |
+  team_note.md says the comparison does not support calling v2 a regression yet, because at least three factors
+  differ besides the architecture: training steps (400k against 150k), evaluation context size (1024 against 512
+  rows), and whether the positional feature was actually on (a dataclass default against a YAML value that may not
+  have been read). It also flags checkpoint identity (a file in a shared folder, verify by hash or by reproducing
+  its recorded score). It proposes matched comparisons that change one factor at a time (evaluate v1 at 512 rows,
+  compare at matched steps, confirm use_rowpos from the resolved config echoed at run start or by asserting it) and
+  a noise estimate (a second seed or per-dataset paired comparison) before any verdict. It says to keep the result
+  recorded as inconclusive until then rather than dropping the component.

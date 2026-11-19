@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TabProbe</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #141416; --ink: #f4f4f5; --body: #d2d2d7; --quiet: #8b8b93; --rule: #2e2e34; --ours: #8ec9ff; }
+  body { margin: 0; background: var(--bg); color: var(--body); font: 300 18px/1.62 'Helvetica Neue', Helvetica, Inter, Arial, sans-serif; }
+  main { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .eyebrow { margin-top: 80px; font: 700 12px/1 'Space Grotesk', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #ff4fd8; }
+  h1 { font: 700 72px/1 'Space Grotesk', sans-serif; background: linear-gradient(90deg, #8ec9ff, #ff4fd8); -webkit-background-clip: text; color: transparent; margin: 12px 0; }
+  .tagline { font-size: 22px; color: var(--quiet); }
+  .pills span { display: inline-block; margin: 4px; padding: 4px 12px; border-radius: 999px; background: #2a2a40; font-size: 12px; color: #c9b8ff; }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+  .tile { border-radius: 16px; padding: 24px; background: linear-gradient(160deg, #1e1e2a, #15151c); box-shadow: 0 0 40px rgba(142,201,255,.25); }
+  .tile b { display: block; font: 700 40px 'Space Grotesk', sans-serif; color: var(--ours); }
+  .tile small { color: #6b6b73; font-size: 11px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+  .card { border: 1px solid #33334a; border-radius: 16px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,.5); }
+  .card h3 { font: 700 18px 'Space Grotesk', sans-serif; color: #fff; margin: 0 0 8px; }
+  .card p { font-size: 13px; color: #6b6b73; }
+  table { width: 100%; border-collapse: collapse; margin-top: 64px; font-size: 15px; }
+  th, td { padding: 8px; text-align: right; border-bottom: 1px solid var(--rule); }
+  th:first-child, td:first-child { text-align: left; }
+  tr.us td { color: var(--ours); font-weight: 700; }
+  .punch { margin-top: 32px; font: 700 24px 'Space Grotesk', sans-serif; color: #ff4fd8; }
+  footer { margin: 120px 0 60px; font-size: 11px; color: #6b6b73; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Tabular learning · Foundation models · Benchmarks</p>
+  <h1>TabProbe</h1>
+  <p class="tagline">Supercharging tabular foundation models × in-context learning × scale 🚀</p>
+  <div class="pills"><span>NeurIPS-style</span><span>Open weights</span><span>SOTA</span></div>
+
+  <div class="tiles">
+    <div class="tile"><b>51</b>datasets<br><small>classification and regression</small></div>
+    <div class="tile"><b>1.84</b>mean rank<br><small>lower is better, over 51 datasets</small></div>
+    <div class="tile"><b>0.871</b>mean ROC AUC<br><small>classification tasks only</small></div>
+  </div>
+
+  <div class="cols">
+    <div class="card"><h3>🧠 Pretrain</h3><p>We pretrain a transformer on synthetic tables drawn from structural causal priors.</p></div>
+    <div class="card"><h3>⚡ Adapt</h3><p>At test time the model reads the training rows in context and predicts the test rows in one forward pass.</p></div>
+    <div class="card"><h3>📈 Scale</h3><p>Accuracy keeps rising with the number of context rows up to 50,000.</p></div>
+  </div>
+
+  <table>
+    <tr><th>Method</th><th>Mean rank ↓</th><th>ROC AUC ↑</th><th>RMSE ↓</th></tr>
+    <tr class="us"><td>TabProbe</td><td>1.84</td><td>0.871</td><td>0.412</td></tr>
+    <tr><td>Gradient-boosted trees</td><td>2.31</td><td>0.866</td><td>0.405</td></tr>
+    <tr><td>Prior in-context model</td><td>2.57</td><td>0.859</td><td>0.431</td></tr>
+    <tr><td>MLP</td><td>3.28</td><td>0.842</td><td>0.468</td></tr>
+  </table>
+  <p class="punch">The future of tabular ML is here.</p>
+
+  <footer>Lab A · Institute B · University C · 2026</footer>
+</main>
+</body>
+</html>

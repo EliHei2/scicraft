@@ -1,0 +1,6 @@
+# Claim: a learned attention readout beats a mean over rows for the table embedding.
+# Arm: mean pooling in place of attention pooling.
+# Falsified if: mean pooling matches attention pooling within the noise band.
+base: ../base.yaml
+model:
+  pooling: mean

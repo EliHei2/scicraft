@@ -1,0 +1,12 @@
+model:
+  dim: 256
+  depth: 6
+loss:
+  pred_weight: 1.0
+  iso_weight: 0.1           # isotropy regularizer, computed over random projections of the pooled embeddings
+  iso_num_projections: 1024
+  iso_pool: 4096            # embeddings pooled across the batch for the regularizer
+train:
+  batch_size: 32
+  steps: 20000
+  seed: 0

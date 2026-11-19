@@ -1,0 +1,22 @@
+# Words that check_report.py refuses in the visible text of a report (whole words, case-insensitive).
+# One word or phrase per line. Add the project's own internal labels (working names of variants, run ids).
+#
+# Loaded verbs in a report that answers a question about the author's own work. A draft that used them
+# read as an admission of wrongdoing. Write "state more clearly" or "add this detail" instead, and keep the number.
+inflated
+overstated
+misreported
+misspecified
+conflated
+hacky
+# Labels that say nothing about what a variant is. Name variants <metric>_<source>, <metric>_nocap.
+published metric
+signed metric
+# Phrases rejected as vague. Replace with the concrete reason ("the paper cites no code").
+could not be used
+# Words from the author's "load-bearing" class of machine prose.
+load-bearing
+headline
+by design
+on purpose
+measured rather than asserted

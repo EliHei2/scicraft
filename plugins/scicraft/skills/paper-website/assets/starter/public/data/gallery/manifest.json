@@ -1,0 +1,109 @@
+{
+ "note": "EXAMPLE. Written by pipeline/build_gallery.py in a real site.",
+ "left": "[reference]",
+ "right": "[the model's output]",
+ "legend": [
+  {
+   "name": "type one",
+   "color": "#F58A1F"
+  },
+  {
+   "name": "type two",
+   "color": "#2FCB57"
+  },
+  {
+   "name": "type three",
+   "color": "#6BA8D6"
+  },
+  {
+   "name": "type four",
+   "color": "#B5179E"
+  }
+ ],
+ "samples": [
+  {
+   "id": "s01",
+   "label": "sample 1",
+   "a": "s01-a.svg",
+   "b": "s01-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s02",
+   "label": "sample 2",
+   "a": "s02-a.svg",
+   "b": "s02-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s03",
+   "label": "sample 3",
+   "a": "s03-a.svg",
+   "b": "s03-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s04",
+   "label": "sample 4",
+   "a": "s04-a.svg",
+   "b": "s04-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s05",
+   "label": "sample 5",
+   "a": "s05-a.svg",
+   "b": "s05-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s06",
+   "label": "sample 6",
+   "a": "s06-a.svg",
+   "b": "s06-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s07",
+   "label": "sample 7",
+   "a": "s07-a.svg",
+   "b": "s07-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s08",
+   "label": "sample 8",
+   "a": "s08-a.svg",
+   "b": "s08-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s09",
+   "label": "sample 9",
+   "a": "s09-a.svg",
+   "b": "s09-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s10",
+   "label": "sample 10",
+   "a": "s10-a.svg",
+   "b": "s10-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s11",
+   "label": "sample 11",
+   "a": "s11-a.svg",
+   "b": "s11-b.svg",
+   "meta": "[what describes this sample]"
+  },
+  {
+   "id": "s12",
+   "label": "sample 12",
+   "a": "s12-a.svg",
+   "b": "s12-b.svg",
+   "meta": "[what describes this sample]"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+source	published
+# One row per file. source: path under --src. published: the name in the deposit, in the co-authors' scheme.
+tables/datasets.csv	Supplementary_Table_1_datasets.csv
+tables/evaluation_tasks.csv	Supplementary_Table_2_evaluation_tasks.csv
+tables/hyperparameters.csv	Supplementary_Table_3_hyperparameters.csv
+tables/software_versions.csv	Supplementary_Table_4_software_versions.csv
+figure_2/feature_list.csv	Supplementary_Table_figure_2_feature_list.csv

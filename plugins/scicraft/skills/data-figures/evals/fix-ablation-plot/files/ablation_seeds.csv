@@ -1,0 +1,26 @@
+variant,seed,score
+full model,0,0.804
+full model,1,0.8014
+full model,2,0.8091
+full model,3,0.8189
+full model,4,0.8293
+no pretraining,0,0.749
+no pretraining,1,0.7414
+no pretraining,2,0.726
+no pretraining,3,0.7403
+no pretraining,4,0.7297
+no row attention,0,0.7778
+no row attention,1,0.7907
+no row attention,2,0.7815
+no row attention,3,0.7765
+no row attention,4,0.77
+half data,0,0.7877
+half data,1,0.7893
+half data,2,0.7769
+half data,3,0.7819
+half data,4,0.7986
+frozen encoder,0,0.7461
+frozen encoder,1,0.7607
+frozen encoder,2,0.752
+frozen encoder,3,0.7846
+frozen encoder,4,0.7733

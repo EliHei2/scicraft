@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: check-before-sending
+expected_outcome: |
+  The agent checks benchmark_summary.md against results.json and against the requests in notes_from_me.txt without
+  changing any file, and replies with a short report. The report names each defect with its location and the exact
+  fix: the mean rank in the text (2.1) differs from results.json and the table (2.4); the text says first on 7 of
+  12 datasets where the records say 6; "significantly better than all baselines" does not hold because the
+  comparison with the prior tabular foundation model has adjusted p = .21; an em dash remains although the notes
+  ban them; the word "arm" remains although the notes ask for "ablation"; the number of seeds (5) is not stated
+  although the notes ask for it. The report is short, leads with counts or the most serious items, traces each of
+  the four notes as done or not done, and says what was not checked.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: crash-recovery
+expected_outcome: |
+  The assistant inspects the copied session folder without changing it and without re-running any agent or
+  the training code. It reports that the workflow did not complete despite the old chat's claim: of the
+  audit lenses, one returned (correctness), two died after writing partial files (data leakage, config and
+  guards), one failed and its retry died without writing anything (efficiency), and the synthesis agent died
+  on the session limit, so audit/SYNTHESIS.md was never written. It harvests what exists: the major finding
+  in audit/A_correctness.md (label smoothing applied twice) and the partial findings in B_leakage.md (patients
+  split across train and validation) and D_config.md (misspelled config keys silently ignored). It says plainly
+  that the efficiency lens and the rest of the leakage lens are unaudited, writes a short follow-up list with
+  next actions (for example resume or relaunch only the dead lenses, write the synthesis from the files that
+  exist), and gives a clear answer on whether the code looks safe to submit tonight, naming the leakage finding
+  as a reason for caution.
+context:
+  scaffold_script: place-files.sh

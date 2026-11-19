@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: abstract-intro-from-notes
+expected_outcome: |
+  A file intro.tex with an abstract environment and an Introduction section for a tabular foundation-model paper.
+  The abstract runs from the data type and its scale, through the gap stated as what is lost, to "We introduce"
+  the representation and then the model with its mechanism, one or two result numbers taken from results.csv
+  with the comparison set named by class, a bound that admits the regression weakness, and one implication.
+  The introduction states facts with numbers, what current models do, a bold research question, a short verdict,
+  the approach, the evaluation protocol without results, and an "Our contributions." run-in or box with one
+  "We introduce ..." item per contribution. The paper is framed on tables in general, with hospital records at
+  most one example. No em dashes, no "not X but Y", no evaluative words such as "strongest", no number that is
+  not in the input files.

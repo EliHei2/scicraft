@@ -1,0 +1,11 @@
+{
+  "output_dirs": ["figures/figure_3", "figures/figure_3/panels"],
+  "script_globs": ["code/figure_3/*.py"],
+  "ignore_prefixes": ["_mockup", "_scratch"],
+  "units": [
+    {"label": "panel_a_bench", "cmd": ["code/figure_3/panel_a_bench.py"], "order": 0},
+    {"label": "panel_c_ablation", "cmd": ["code/figure_3/panel_c_ablation.py"], "order": 0},
+    {"label": "supp_3_sweep", "cmd": ["code/figure_3/supp_3_sweep.py"], "order": 1, "cost": "heavy"},
+    {"label": "compose_figure_3", "cmd": ["code/figure_3/_compose_figure_3.py"], "order": 2}
+  ]
+}

@@ -1,0 +1,108 @@
+{
+ "left": "operator labels",
+ "right": "Kestrel",
+ "legend": [
+  {
+   "name": "normal",
+   "color": "#F58A1F"
+  },
+  {
+   "name": "incident",
+   "color": "#2FCB57"
+  },
+  {
+   "name": "maintenance",
+   "color": "#6BA8D6"
+  },
+  {
+   "name": "missing",
+   "color": "#B5179E"
+  }
+ ],
+ "samples": [
+  {
+   "id": "s01",
+   "label": "stream 1",
+   "a": "s01-a.svg",
+   "b": "s01-b.svg",
+   "meta": "5 channels, held out"
+  },
+  {
+   "id": "s02",
+   "label": "stream 2",
+   "a": "s02-a.svg",
+   "b": "s02-b.svg",
+   "meta": "6 channels, held out"
+  },
+  {
+   "id": "s03",
+   "label": "stream 3",
+   "a": "s03-a.svg",
+   "b": "s03-b.svg",
+   "meta": "4 channels, held out"
+  },
+  {
+   "id": "s04",
+   "label": "stream 4",
+   "a": "s04-a.svg",
+   "b": "s04-b.svg",
+   "meta": "5 channels, held out"
+  },
+  {
+   "id": "s05",
+   "label": "stream 5",
+   "a": "s05-a.svg",
+   "b": "s05-b.svg",
+   "meta": "6 channels, held out"
+  },
+  {
+   "id": "s06",
+   "label": "stream 6",
+   "a": "s06-a.svg",
+   "b": "s06-b.svg",
+   "meta": "4 channels, held out"
+  },
+  {
+   "id": "s07",
+   "label": "stream 7",
+   "a": "s07-a.svg",
+   "b": "s07-b.svg",
+   "meta": "5 channels, held out"
+  },
+  {
+   "id": "s08",
+   "label": "stream 8",
+   "a": "s08-a.svg",
+   "b": "s08-b.svg",
+   "meta": "6 channels, held out"
+  },
+  {
+   "id": "s09",
+   "label": "stream 9",
+   "a": "s09-a.svg",
+   "b": "s09-b.svg",
+   "meta": "4 channels, held out"
+  },
+  {
+   "id": "s10",
+   "label": "stream 10",
+   "a": "s10-a.svg",
+   "b": "s10-b.svg",
+   "meta": "5 channels, held out"
+  },
+  {
+   "id": "s11",
+   "label": "stream 11",
+   "a": "s11-a.svg",
+   "b": "s11-b.svg",
+   "meta": "6 channels, held out"
+  },
+  {
+   "id": "s12",
+   "label": "stream 12",
+   "a": "s12-a.svg",
+   "b": "s12-b.svg",
+   "meta": "4 channels, held out"
+  }
+ ]
+}

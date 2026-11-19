@@ -1,0 +1,6 @@
+method,category,mean_accuracy,mean_rank,datasets_ahead_of_gbt
+RowRetriever (ours),retrieval,0.842,2.1,31
+GBT (XGBoost),tree ensemble,0.811,3.4,
+TabMLP,neural,0.787,5.0,12
+TabTransformer,neural,0.795,4.6,14
+kNN,baseline,0.742,6.8,3

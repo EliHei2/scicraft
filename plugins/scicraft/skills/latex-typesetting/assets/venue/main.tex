@@ -1,0 +1,99 @@
+\documentclass{article}
+% Profile A: a conference or journal paper whose venue supplies a style file.
+% Put the venue's files (.sty, .bst) beside this file UNCHANGED and name the
+% style below. Without it, the file still compiles on article defaults, so the
+% house add-on can be checked on any machine.
+\newcommand{\venuestyle}{[venue style]}   % [your venue's style, without .sty]
+\IfFileExists{\venuestyle.sty}{\usepackage{\venuestyle}\usepackage{times}}{%
+  \typeout{*** \venuestyle.sty not found: compiling on article defaults ***}%
+  \usepackage{lmodern}% scalable fonts; T1 Computer Modern is bitmap on a basic install
+  \usepackage[round]{natbib}}
+\input{housestyle}
+% \boxtheorem{proposition}   % optional: propositions in the callout look
+
+% Name macros: every method, model and dataset name is typed once, here.
+\newcommand{\method}{\textsc{[MethodName]}}
+\usepackage{xspace}
+\newcommand{\um}{\ensuremath{\,\mu\mathrm{m}}\xspace}   % xspace keeps the space after it
+
+\title{[Title]}
+\author{Anonymous authors}
+
+\begin{document}
+\maketitle
+\tightenmaindisplays
+
+\begin{abstract}
+[One paragraph.]
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+\method{} is a [one-line description]. \Cref{tab:bench} compares it with
+three baselines and \cref{fig:overview} shows the architecture. Adam
+\citep{kingma2015adam} trains every model; the residual design follows
+\citet{he2016resnet}.
+
+\begin{insight}
+\textbf{Contributions.} [Two or three sentences, taken from the paper's own text.]
+\end{insight}
+
+\begin{figure}[t]
+  \centering
+  \IfFileExists{figure1.pdf}{\includegraphics[width=.98\linewidth]{figure1}}{%
+    \fbox{\parbox[c][3cm][c]{.9\linewidth}{\centering [figure1.pdf at design width = .98\textbackslash linewidth]}}}
+  \caption[Overview]{\textbf{[Claim sentence: what the reader should
+  see.]} \textbf{(a)}~[Panel a.] \textbf{(b)}~[Panel b; the dashed line
+  marks the chance level.] Adapted from Fig.~2 of \citet{he2016resnet}.}
+  \label{fig:overview}
+\end{figure}
+
+\section{Results}\label{sec:results}
+\begin{table}[t]
+  \caption{\textbf{[Claim sentence about the table.]} Mean over [n] seeds
+  with $\pm$ one standard deviation in gray. Fills mark the
+  \rankkey{rankfirst}{first}, \rankkey{ranksecond}{second} and
+  \rankkey{rankthird}{third} rank per column, also given as a superscript.
+  An asterisk marks a significant difference from the best baseline
+  (adjusted $p<.05$, tests in \cref{app:tests}). $\downarrow$ lower is better.}
+  \label{tab:bench}
+  \centering
+  \begingroup\scriptsize\setlength{\tabcolsep}{2.35pt}\renewcommand{\arraystretch}{1.0}
+  % max width shrinks a wide table and leaves a narrow one alone; \resizebox would enlarge it
+  \begin{adjustbox}{max width=\linewidth}
+  \begin{tabular}{@{}lccc@{\hspace{7pt}}c@{}}
+  \toprule
+   & [Task A] & [Task B] & [Task C] & mean \\
+  \addlinespace[-1pt]
+   & \hnote{[n] sets} & \hnote{[n] sets} & \hnote{[n] sets} & rank \hnote{$\downarrow$} \\
+  \midrule
+  \grp{5}{trained from scratch}
+  {[Baseline 1]} & .610\pmsd{.04} & \cellcolor{rankthird}.480\textsuperscript{3}\pmsd{.06} & .700\pmsd{.03} & 3.3 \\
+  {[Baseline 2]} & \cellcolor{ranksecond}.640\textsuperscript{2}\pmsd{.05} & .450\pmsd{.05} & \cellcolor{rankthird}.720\textsuperscript{3}\pmsd{.02} & 2.7 \\
+  \grp{5}{pretrained}
+  {[Baseline 3]} & \cellcolor{rankthird}.620\textsuperscript{3}\pmsd{.04} & \cellcolor{ranksecond}.500\textsuperscript{2}\pmsd{.05} & \cellcolor{ranksecond}.730\textsuperscript{2}\pmsd{.03} & 2.3 \\
+  \method{} & \cellcolor{rankfirst}.660$^{*}$\textsuperscript{1}\pmsd{.04} & \cellcolor{rankfirst}.520\textsuperscript{1}\pmsd{.05} & \cellcolor{rankfirst}.750$^{*}$\textsuperscript{1}\pmsd{.02} & 1.0 \\
+  \bottomrule
+  \end{tabular}
+  \end{adjustbox}
+  \endgroup
+\end{table}
+
+[Results text; values in the table are placeholders.] The loss is
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_{\mathrm{pred}} + \lambda\,\|\sg(z) - \hat z\|_2^2 .
+  \label{eq:loss}
+\end{equation}
+Points closer than 5\um to a boundary are dropped.
+
+\section{Conclusion}\label{sec:conclusion}
+[Conclusion.]\label{mainend}
+
+\IfFileExists{\venuestyle.bst}{\bibliographystyle{\venuestyle}}{\bibliographystyle{plainnat}}
+\bibliography{refs}
+
+\restoremaindisplays
+\appendix
+\section{Statistical tests}\label{app:tests}
+[Tests.]
+
+\end{document}

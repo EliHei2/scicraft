@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: camera-ready-gate
+expected_outcome: |
+  The paper is built out of tree with BibTeX and enough passes, and the build log, BibTeX log and
+  PDF are checked rather than the exit code trusted. The response reports, as problems that block
+  an upload: the undefined reference sec:protocol (printed as ??), the citation grinsztajn2022tree
+  that has no bibliography entry, the overfull table caused by the long header cell, the TODO left
+  in the text, and the figure scaling.pdf whose Helvetica font is not embedded. Purely technical
+  fixes may be applied (embedding the font, making the wide table fit) but the author's sentences
+  are not rewritten; the missing section and the missing reference are raised as questions since
+  they need the author. The response gives a state line with counts and the main-text end page,
+  and does not call the paper ready while any blocking problem remains.
+context:
+  scaffold_script: place-files.sh

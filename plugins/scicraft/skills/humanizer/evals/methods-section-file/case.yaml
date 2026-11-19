@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: methods-section-file
+expected_outcome: |
+  methods.tex is edited in place. The machine tells are gone: the self-narrating first sentence, the filler
+  opener ("It is worth noting that, importantly, in order to ensure robustness"), the TeX em dash aside, the
+  "not merely X but Y" and "not only X but also Y" contrasts, "namely", "so that", "which is why", the furniture
+  verb "sits at", the slogan closers ("The comparison is comprehensive." and "That distinction matters."),
+  "principled" and "stress test". Every number of the original (12, 512, 8, 38.4, 1.2, 400{,}000, 2\times10^{-4},
+  64, 5{,}000, 9, 250{,}000, 51, 10, 31, 100), every citation key, both labels, the table reference and the
+  equation survive unchanged, and nothing new is claimed. "wins on 31 of the 51 datasets" is restated as a
+  measured relation with the same numbers, or kept, and never strengthened. The final message says that a
+  check of numbers, citations and labels before and after was run and what it found, and names anything not
+  checked (for example that LaTeX was not compiled).
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,40 @@
+{
+  "package": "labcraft",
+  "mission": "one researcher's working craft to the people who will work with it next: [who: a new lab, a group, students]. A year of their work with an AI agent was mined into findings files.",
+  "standard": "do not hand-wave, do not fixate on a specific use case",
+  "lead_reader": "a machine-learning researcher",
+  "paths": {
+    "findings": "[private workspace]/findings",
+    "briefs": "[private workspace]/briefs",
+    "build_notes": "[private workspace]/build_notes",
+    "contract": "[package]/docs/AUTHORING.md",
+    "model_skill": "[a finished skill you trust]/SKILL.md",
+    "eval_model": "[that skill]/evals/[one case]/",
+    "gate": "python3 [package]/tools/check_skill.py {folder} --terms {terms}"
+  },
+  "plugins": {
+    "core": {"root": "[package]/plugins/core/skills", "terms": "[private workspace]/private_terms.txt"},
+    "ml": {"root": "[package]/plugins/ml/skills", "terms": "[private workspace]/private_terms.txt"},
+    "internal": {"root": "[internal package]/plugins/internal/skills", "terms": "[private workspace]/private_terms_internal.txt", "gate_extra": " --internal"}
+  },
+  "skills": {
+    "data-figures": {
+      "plugin": "core",
+      "scope": "Publication data panels in the author's house style: benchmark heatmaps, ablation bars, scaling curves.",
+      "must": "A style module that imports and renders; the chart forms used and retired, each with its reason; the visual QC loop.",
+      "primary": ["M2"],
+      "secondary": ["M1: rules tagged FIG"],
+      "existing": ["[repository]/figstyle.py (port into assets/, strip project palettes)"],
+      "notes": "Render two demo panels from synthetic numbers and look at the PNG."
+    },
+    "ml-baselines": {
+      "plugin": "ml",
+      "scope": "Baselines and budgets for benchmark tables.",
+      "must": "Equal budgets, frozen settings before the test split, the audit before the table.",
+      "primary": ["M1"],
+      "secondary": [],
+      "existing": [],
+      "notes": "Integrity guard: M1 section 10 records a request to drop unfavorable tables. Encode only: every table is reported, ties and losses included."
+    }
+  }
+}

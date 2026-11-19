@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: fix-before-print
+expected_outcome: |
+  The poster in poster_workshop is rebuilt as a one-page 841 x 1189 mm PDF under 40 MB in which every font is
+  embedded (the two matplotlib figures name Helvetica without embedding it; embed_base14.py or an equivalent
+  fixes them). The results caption no longer overlaps the results table, and the references print at 14 pt or
+  more (the source set them at 12 pt on the 1000 mm design page, about 10 pt printed). The abstract sentence
+  "Retrieval makes in-context tabular models scale far beyond their context window at almost no cost." is
+  identified as not in main.tex and is replaced by the paper's own sentence or removed, not reworded into new
+  prose. The look is kept: same typeface, colors, grid and figures. The final message lists what was fixed, the
+  gate results (overlaps, smallest printed type, fonts, page size, file size), and points out what was only looked
+  at or remains, such as the large empty area in the lower half of the page.
+context:
+  scaffold_script: place-files.sh

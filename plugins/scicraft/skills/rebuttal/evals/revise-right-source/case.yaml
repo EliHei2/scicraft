@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: revise-right-source
+expected_outcome: |
+  Before editing, the assistant establishes which source the submitted PDF was built from, by comparing the text of
+  submitted.pdf with both folders, and finds that overleaf_export (not paper/, an older draft with a different title
+  and abstract) is the submitted source. It applies the two requested edits to a copy of overleaf_export, wraps every
+  added or changed passage in one revision color behind a switch, gives the new ablation table a fully colored
+  caption, and leaves the unchanged text, including the existing benchmark table caption, black. It builds two PDFs
+  in revised/ from the same source, a marked copy and a clean copy with identical text and layout and no color, and
+  reports which file to upload. The original folders and submitted.pdf are left unchanged.
+context:
+  scaffold_script: place-files.sh

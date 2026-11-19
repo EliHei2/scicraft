@@ -1,0 +1,5 @@
+[
+  {"file": "records/main.json", "path": "methods.ours.rank", "want": 1, "where": "sec. 5: 'ranks first among the three'"},
+  {"file": "records/main.json", "path": "methods.ours.acc", "want": 0.812, "tol": 0.0005, "where": "abstract: 81.2%"},
+  {"file": "records/ablation.json", "path": "no_warmup.q", "want": 0.41, "tol": 0.005, "where": "sec. 6: warmup is not needed (q = .41)"}
+]

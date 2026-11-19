@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper,twoside,openright]{book}
+% Profile B: a free-form book or long report. Every package lives in
+% preamble.tex; no chapter file ever adds a \usepackage.
+\input{preamble}
+
+\title{[Title]}
+\author{[Author]}
+\date{[Year]}
+
+\begin{document}
+\frontmatter
+\maketitle
+\frontchapter{Summary}
+[Summary.]
+\tableofcontents
+\listoffigures
+\phantomsection\addcontentsline{toc}{chapter}{\listfigurename}
+
+\mainmatter
+\chapter{Introduction}\label{ch:intro}
+\chapterquote{[Epigraph, checked against an original printing.]}{[Author]}{[Work]}{[Year]}
+
+\begin{contributionbox}[Contributions]
+[Who did what in this chapter, one or two sentences.]
+\end{contributionbox}
+
+\runninghead{Background}
+\section{Background and notation for the long section title}\label{sec:background}
+\method{} assigns each of $50{,}000$ points to one of $10^{6}$ candidates
+within 5\um{} of its center \citep{lecun1998gradient}. \Cref{fig:overview}
+shows the pipeline, and \cref{box:terms} defines the terms; training uses
+Adam \citep{kingma2015adam} on residual networks \citep{he2016resnet}.
+
+\begin{infobox}{box:terms}{Terms used in this chapter}
+[Background a reader from another field can skip. A box cannot break across
+pages, so keep it short.]
+\end{infobox}
+
+\housefigure[0.98\textwidth]{overview}{fig:overview}{The pipeline in three steps}%
+  {\textbf{(a)}~[Panel a.] \textbf{(b)}~[Panel b.] Adapted from Fig.~1 of \citet{he2016resnet}.}
+
+\subsection{Results: what the first experiment shows}\label{sec:first}
+[Text.] The objective is
+\begin{equation}
+  \hat b = \argmax_{b} \langle z_t, z_b \rangle .\label{eq:assign}
+\end{equation}
+
+\begin{table}[tbp]
+  \caption[Comparison]{\textbf{[Claim sentence.]} Mean over [n] runs.
+  \textbf{Bold} marks the best value, \underline{underline} the~second~best.}
+  \label{tab:compare}
+  \centering\small
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    & [Metric A] & [Metric B] \\
+    \midrule
+    {[Baseline]} & 0.71 & \underline{0.52} \\
+    \method{}    & \textbf{0.78} & \textbf{0.55} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\FloatBarrier
+\section{Conclusions}\label{sec:conclusions}
+[Conclusions; \cref{tab:compare} and \cref{eq:assign}.]
+
+\appendix
+% the appendices get their own line in the contents, so a reader finds them there
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{Appendices}
+\chapter{Supplementary material}\label{app:supp}
+[Appendix.]
+
+\backmatter
+\bibliographystyle{plainnat}
+\bibliography{refs}
+\end{document}

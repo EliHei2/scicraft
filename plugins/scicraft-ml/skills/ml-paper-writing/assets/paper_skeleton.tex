@@ -1,0 +1,118 @@
+\documentclass{article}
+% ---------------------------------------------------------------------
+% Skeleton of a machine-learning conference paper. Replace every
+% [bracketed] placeholder. Sections follow the shapes in SKILL.md section 4.
+%
+% Venue style: put the venue's package, unmodified, next to this file and
+% name it here (without .sty). Without it, the file compiles on plain
+% article with Times as a stand-in, so the shapes can be checked.
+% ---------------------------------------------------------------------
+\newcommand{\venuestyle}{[venue style]}   % [venue package name]
+\IfFileExists{\venuestyle.sty}
+  {\usepackage{\venuestyle}\usepackage{times}}
+  {\usepackage{times}\typeout{ml-paper-writing: venue style \venuestyle.sty not found, using article}}
+\usepackage[T1]{fontenc}
+\input{ml_addon}
+\usepackage{natbib}
+
+% Name macros: every method, model and recurring operator, so a rename is one line.
+\newcommand{\method}{\textsc{[Method]}}
+\newcommand{\sg}{\operatorname{sg}}               % stop-gradient, as an example operator
+
+\title{[Title, the method name and what it lets a reader do]}
+\author{Anonymous authors\\Paper under double-blind review}
+
+\begin{document}
+\maketitle
+\tightenmaindisplays
+
+\begin{abstract}
+[The world (what the data type is and why it matters), one sentence.]
+[The measurement or scale, with a number.]
+[The gap (what existing models fix or discard), stated as what is lost.]
+We introduce [the concept or representation], a [noun] that [does Y].
+[The consequence of that concept, one sentence.]
+To compute [it] at [scale], we introduce \method{}, a [noun] that [mechanism in plain verbs].
+[Training in one sentence.]
+[The result with its number and the comparison set named: "N methods (A, B and C)".]
+[The bound on that result.]
+[One implication, one line.]
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+[Facts about the data type, each with a number and a citation~\citep{assran2023ijepa}.]
+[What current models do with it, named, and the cost of that choice.]
+This raises the question \textbf{[what should be X for data of type T?]}
+[A short verdict of 4 to 10 words.]
+[The approach in one paragraph, the concept first and then the model that computes it.]
+[The evaluation protocol in one or two sentences (tasks, comparators, how they are ranked), with citations. No results here.]
+
+\begin{contributions}
+\textbf{[Concept].} We introduce [concept], a [noun] that [does Y] (\cref{sec:concept}).\par
+\textbf{[Model].} We introduce \method{}, a [noun] whose [cost or property] (\cref{sec:model}).\par
+\textbf{[Objective].} [One sentence.]\par
+\textbf{[Evaluation].} [What is compared, on what, against how many methods.]
+\end{contributions}
+
+\begin{terminology}[{[Application] terms}]
+\textbf{[Term].} [Definition in one sentence for a reader from machine learning.]\par
+\textbf{[Term].} [Definition.]
+\end{terminology}
+
+\section{Related work}\label{sec:related}
+\rwpara{[Family of methods].} [Who did what, with citations, and what it leaves open for this data type.]
+\rwpara{[Second family].} [Same shape.]
+
+\section{Method}\label{sec:method}
+[One roadmap sentence at most: Section 3.1 formalizes ..., Section 3.2 introduces ....]
+\subsection{[Concept]}\label{sec:concept}
+[The data type defined in general terms. The application appears as one instance.]
+\subsection{[Model]}\label{sec:model}
+\rwpara{[Component].} [What it computes, then why, at most one reason.]
+\begin{equation}
+  z = f_\theta(x), \qquad \hat z = \sg\!\left(f_{\bar\theta}(x)\right) \label{eq:example}
+\end{equation}
+
+\section{Experiments}\label{sec:exp}
+\rwpara{Pretraining data.} [Source, size in plain words (``2.1 million tables''), licence pointer to the appendix.]
+\rwpara{Tasks.} [For each task the data, label source, split, probe and metric. Detail in the appendix.]
+\rwpara{Comparators.} [Groups of methods, with versions and citations.]
+\rwpara{Protocol.} [Seeds or folds, what the spread is, the test and its one correction.]
+
+\begin{table}[t]
+\caption{\textbf{[Claim of the table as a sentence].} Each entry is the [mean over 5 seeds] followed by the
+[standard deviation across seeds]. [Higher is better for all columns.] Bold marks the best and underline the
+second best in each column. [One checkpoint per model size, chosen by rule R in \cref{app:selection}.]}
+\label{tab:main}
+\centering\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Method & {[Task A]} & [Task B] & [Task C] \\
+\midrule
+\grp{4}{[pretrained foundation models]}
+{[Comparator 1]} & .712\pmsd{.010} & \second{.640}\pmsd{.020} & .301\pmsd{.011} \\
+{[Comparator 2]} & \second{.731}\pmsd{.008} & .602\pmsd{.015} & \second{.322}\pmsd{.009} \\
+\grp{4}{[baselines]}
+{[Baseline]} & .655\pmsd{.012} & .580\pmsd{.019} & .250\pmsd{.014} \\
+\grp{4}{ours}
+\method{}-S (ours) & \best{.744}\pmsd{.009} & \best{.661}\pmsd{.017} & \best{.330}\pmsd{.010} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\rwpara{[Result as a claim].} \method{} [measured relation], [value] against [value] for [comparator],
+[who that comparator is] (\cref{tab:main}). [One sentence listing the conditions the result survives.]
+
+\section{Limitations}\label{sec:limits}
+\method{} is a first step toward [concept], and several limitations remain. [Limitation with its cause.]
+[Limitation with its cause.] [Concrete next step.] Finally, [the last bound on the evaluation].
+\label{mainend}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\restoremaindisplays
+\section{Model selection}\label{app:selection}
+[The fixed rule used to choose the reported checkpoint per size, applied once, and the number of variants.]
+\end{document}

@@ -1,0 +1,6 @@
+# Claim: attention across columns is needed; without it each cell sees only its own column.
+# Arm: remove column attention, keep everything else (same steps, seed and data as the control).
+# Falsified if: within 3 replicate SDs of the full model on every task.
+base: ../base.yaml
+model:
+  column_attention: false

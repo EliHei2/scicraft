@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: audit-before-sending
+expected_outcome: |
+  A short report, slide by slide, of what is wrong with the deck, found by running the skill's audit and by looking
+  at the rendered slides, without changing the deck. It names at least: gray text and a footnote under 28 px on
+  slide 2; on slide 3 a title that is not a sentence and far more than 25 words, with a dash between phrases; on
+  slide 4 the term "sweat signatures" not in italic and two pictures lying over each other; on slide 5 a picture
+  that runs into the band and a picture shown at twice its pixels. The deck file is left as it was.
+context:
+  scaffold_script: place-files.sh

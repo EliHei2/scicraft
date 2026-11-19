@@ -1,0 +1,204 @@
+% Row retrieval poster, A0 portrait (workshop). Design page 1000 x 1414.2 mm, printed at 0.841 by poster_A0.tex.
+% PROVENANCE: figures/fig_overview.pdf = the paper's Fig. 1; figures/fig_scaling.pdf = the paper's Fig. 2;
+% tables/results.tex = the manuscript's table, unchanged. Prose pasted from paper/main.tex.
+\documentclass{article}
+\usepackage[paperwidth=1000mm, paperheight=1414.2mm, margin=0mm]{geometry}   % A0 aspect; printed at 0.841
+\usepackage{fontspec}
+\IfFontExistsTF{Helvetica Neue}{%
+  \setmainfont{Helvetica Neue}[UprightFont=* Light, BoldFont=* Medium, ItalicFont=* Light Italic,
+    BoldItalicFont=* Medium Italic]
+  \newfontfamily\heavy{Helvetica Neue Bold}
+  \newfontfamily\thin{Helvetica Neue Thin}
+}{% fallback where Helvetica Neue is not installed (Suggested, not yet tested in real work)
+  \IfFontExistsTF{texgyreheros-regular.otf}{\setmainfont{texgyreheros}[Extension=.otf, UprightFont=*-regular,
+    BoldFont=*-bold, ItalicFont=*-italic, BoldItalicFont=*-bolditalic]}{\setmainfont{lmsans10}[Extension=.otf,
+    UprightFont=*-regular, BoldFont=*-bold, ItalicFont=*-oblique, BoldItalicFont=*-boldoblique]}
+  \newcommand{\heavy}{\bfseries}\newcommand{\thin}{}
+}
+\usepackage{amsmath}
+\usepackage[mathrm=sym]{unicode-math}
+% maths is set as in the paper: Computer Modern (Latin Modern Math, also for \mathrm), at the text's x-height
+\setmathfont{latinmodern-math.otf}[Scale=MatchLowercase]
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{booktabs,array,tabularx}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,fit}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% ---------- poster chrome (figures keep the paper's own colors) ----------
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{slate}{HTML}{4A4F5A}
+\definecolor{accent}{HTML}{2B50AA}   % the one accent: the method's name, the coined term, key phrases. Use the
+                                     % host's or the paper's color here.
+
+% ---------- type scale (design pt; printed = x 0.841) ----------
+\newcommand{\sectfont}{\fontsize{46}{54}\selectfont\bfseries}
+\newcommand{\absfont}{\fontsize{33}{42.5}\selectfont}
+\newcommand{\bodyfont}{\fontsize{27}{35}\selectfont}
+\newcommand{\captfont}{\fontsize{25}{31}\selectfont}
+\newcommand{\mathfont}{\fontsize{27}{34}\selectfont}
+
+% ---------- a figure of the paper, or a labelled grey box while the file is missing ----------
+% \fig[includegraphics options]{width cm}{placeholder height cm}{file}
+\newcommand{\fig}[4][]{\IfFileExists{#4}{\includegraphics[width=#2cm,#1]{#4}}{%
+  {\setlength{\fboxsep}{0pt}\setlength{\fboxrule}{0.06cm}\fcolorbox{slate}{black!4}{%
+  \begin{minipage}[c][#3cm][c]{\dimexpr#2cm-0.12cm\relax}\centering\captfont\color{slate}%
+  [figure: \detokenize{#4}]\end{minipage}}}}}
+
+% ---------- the manuscript's table, unchanged, as a plain box ----------
+% \resultstable{width}: for a table that sets itself to \linewidth (tabularx, or \resizebox{\linewidth}{!}{...})
+% \resultstablescaled{width}: for a plain tabular at its natural width, scaled as a whole to the strip's width
+\newcommand{\resultstable}[1]{\begingroup
+  \renewenvironment{table}[1][]{}{}\renewcommand{\caption}[2][]{}\renewcommand{\label}[1]{}%
+  \begin{minipage}{#1}\input{tables/results.tex}\end{minipage}\endgroup}
+\newsavebox{\tablebox}
+\newcommand{\resultstablescaled}[1]{\begingroup
+  \renewenvironment{table}[1][]{}{}\renewcommand{\caption}[2][]{}\renewcommand{\label}[1]{}%
+  \renewcommand{\centering}{}\sbox{\tablebox}{\input{tables/results.tex}}\resizebox{#1}{!}{\usebox{\tablebox}}\endgroup}
+
+% ---------- grammar: section title + rule, then pieces chained below ----------
+% Text is fully justified. TikZ sets \spaceskip from the 10 pt font before the font switch inside text-width
+% nodes; \txt resets it so word spaces come from the poster font. \hyphenpenalty 1000: 5000 left loose lines
+% and one-word last lines.
+\tikzset{
+  piece/.style={anchor=north west, inner sep=0pt, outer sep=0pt},
+  sect/.style={piece, font=\sectfont, text=ink, text height=1.22cm, text depth=0.30cm},
+}
+\newcommand{\rulebelow}[2]{\fill[ink] ($(#1.south west)+(0,-0.3)$) rectangle ++(#2,-0.09);}
+\newcommand{\txt}[3]{\begin{minipage}[t]{\linewidth}#1\spaceskip=0pt\xspaceskip=0pt\frenchspacing
+  \hyphenpenalty=1000\exhyphenpenalty=1000\emergencystretch=2em\color{#2}#3\end{minipage}}
+\newcommand{\body}[1]{\txt{\bodyfont}{ink}{#1}}
+\newcommand{\capt}[1]{\txt{\captfont}{slate}{#1}}
+\newcommand{\hi}[1]{\textbf{\color{accent}#1}}
+\renewcommand{\cite}[1]{{\color{slate}[#1]}}
+\newcommand{\bignum}[1]{{\thin\fontsize{72}{72}\selectfont\color{accent}#1}}
+\newcommand{\numlab}[1]{{\captfont\color{slate}#1}}
+% label under a brace: every label gets one height and depth, so all labels share a baseline
+\newcommand{\lab}[1]{\text{\fontsize{22}{26}\selectfont\color{slate}\vphantom{fp}#1}}
+\newcommand{\datatable}[1]{\begingroup\fontsize{27}{32}\selectfont\spaceskip=0pt\renewcommand{\arraystretch}{1.28}%
+  \setlength{\heavyrulewidth}{2pt}\setlength{\lightrulewidth}{1.1pt}\setlength{\aboverulesep}{0.18em}%
+  \setlength{\belowrulesep}{0.22em}#1\endgroup}
+
+\begin{document}
+\begin{tikzpicture}[remember picture, overlay, x=1cm, y=1cm]
+\coordinate (O) at (current page.south west);
+\newcommand{\at}[2]{($(O)+(#1,#2)$)}
+
+% =====================================================================
+% HEADER (black on white): title, authors, affiliations, a full-width rule
+% =====================================================================
+\node[piece] (title) at \at{3}{139.32} {\begin{minipage}[t]{72cm}\raggedright
+  \fontsize{88}{98}\selectfont\heavy\textcolor{accent}{Row Retrieval} Makes Tabular Foundation\\Models Scale with Context\end{minipage}};
+\node[piece, below=0.6cm of title.south west, anchor=north west] (authors) {\fontsize{35}{42}\selectfont
+  \underline{Jane Doe}\textsuperscript{1}, John Roe\textsuperscript{1}};
+\node[piece, below=0.45cm of authors.south west, anchor=north west, text width=94cm] (affil) {%
+  \begin{minipage}[t]{94cm}\raggedright\fontsize{23}{29}\selectfont\spaceskip=0pt\xspaceskip=0pt\color{slate}%
+  \mbox{\textsuperscript{1}Department of Computer Science, Example University}\end{minipage}};
+\coordinate (hdr) at ($(affil.south west)+(0,-0.55)$);
+\fill[ink] (hdr) rectangle ($(hdr)+(94,-0.2)$);
+
+% =====================================================================
+% BAND 1: Abstract (55.5 cm) | Key idea: the paper's concept figure and its defining equations (36.5 cm)
+% =====================================================================
+\def\Aw{55.5}
+\node[sect, below=1.0cm of hdr, anchor=north west] (s1) {Abstract};
+\rulebelow{s1}{\Aw}
+\node[piece, below=0.75cm of s1.south west, anchor=north west, text width=\Aw cm] (abs) {\txt{\absfont}{ink}{%
+  \textbf{Can a tabular foundation model use more training rows than fit in its context?} In-context learners for
+  tables condition on a fixed number of labelled rows, and their accuracy stops improving once that budget is
+  reached. We introduce \hi{row retrieval}, which selects for every query row the training rows \hi{most similar to
+  it} in the model's own embedding space and places only those in the context. Retrieval makes in-context tabular
+  models scale far beyond their context window at almost no cost. Row retrieval requires \hi{no fine-tuning} and
+  applies to any in-context tabular model.}};
+
+\def\Bx{60.5}\def\Bw{36.5}
+\node[sect] (s2) at ($(s1.north west)+(\Bx-3,0)$) {Row retrieval};
+\rulebelow{s2}{\Bw}
+\node[piece, below=0.75cm of s2.south west, anchor=north west, text width=\Bw cm] (defs) {%
+  \begin{minipage}[t]{\Bw cm}\raggedright\mathfont\spaceskip=0pt\color{ink}%
+  {\captfont\color{slate}the context of a query row $x$}\\[0.3em]
+  {\setlength{\fboxrule}{2.2pt}\setlength{\fboxsep}{0.27cm}\fcolorbox{accent}{accent!7}{%
+    \begin{minipage}{\dimexpr\Bw cm-2\fboxrule-2\fboxsep\relax}\centering
+    {\fontsize{27}{32}\selectfont\bfseries\color{accent}row retrieval}%
+    \fontsize{28}{34}\selectfont\abovedisplayskip=0.3em\belowdisplayskip=0.4em
+    \[\mathcal{C}(x)=\operatorname{top-}k_{\,i}\ \frac{\langle f_\theta(x), f_\theta(x_i)\rangle}{\lVert f_\theta(x)\rVert\,\lVert f_\theta(x_i)\rVert}\]
+    {\captfont\color{slate}The index is built once per dataset and reused for every query.}\end{minipage}}}\end{minipage}};
+
+% =====================================================================
+% BAND 2: Method, the paper's two method figures side by side (2 x 45.85 cm, gutter 2.3 cm)
+% =====================================================================
+\node[fit=(abs)(defs), inner sep=0pt] (b1) {};
+\node[sect] (s3) at ($(b1.south west)+(0,-0.86)$) {Method};
+\rulebelow{s3}{94}
+\def\Fw{45.85}
+\node[piece, below=0.75cm of s3.south west, anchor=north west] (f1) {\fig{\Fw}{16}{figures/fig_overview.pdf}};
+\node[piece] (f2) at ($(f1.north west)+(48.15,0)$) {\fig[height=21.8cm, width=!]{\Fw}{16}{figures/fig_scaling.pdf}};
+\node[fit=(f1)(f2), inner sep=0pt] (f12) {};
+\node[piece, text width=\Fw cm] (c3) at ($(f1.south west |- f12.south)+(0,-0.6)$) {\capt{%
+  \textbf{\color{ink}Row retrieval chooses the context per query.} (a) The base model fills its context with a
+  random subsample of the training set. (b) Row retrieval embeds all training rows once, indexes them and fills the
+  context with the nearest rows to each query.}};
+\node[piece, text width=\Fw cm] (c4) at ($(f2.south west |- f12.south)+(0,-0.6)$) {\capt{%
+  \textbf{\color{ink}Accuracy keeps rising with training rows only under retrieval.} Mean accuracy over the 48
+  datasets against the number of available training rows. The dashed line marks the base model's context length.}};
+
+% =====================================================================
+% BAND 4: Data (31 cm): big numbers and the inventory | Results (61 cm): the manuscript's table and its key
+% =====================================================================
+\node[fit=(c3)(c4), inner sep=0pt] (b3) {};
+\def\Lw{31}\pgfmathsetmacro\Rx{\Lw+5}\pgfmathsetmacro\Rw{92-\Lw}
+\node[sect] (s6) at ($(b3.south west)+(0,-0.86)$) {Data};
+\rulebelow{s6}{\Lw}
+\node[piece, below=0.75cm of s6.south west, anchor=north west] (n6) {%
+  \begin{tabular*}{\Lw cm}{@{\extracolsep{\fill}}ll@{}}
+  \bignum{48} & \bignum{2,000,000}\\[0.3cm]
+  \numlab{classification datasets} & \numlab{rows in the largest}
+  \end{tabular*}};
+\node[piece, below=0.7cm of n6.south west, anchor=north west, text width=\Lw cm] (t6) {\body{%
+  On 48 classification datasets with 10,000 to 2,000,000 rows.}};
+
+\node[sect, below=1.3cm of t6.south west, anchor=north west] (s7) {Evaluation};
+\rulebelow{s7}{\Lw}
+\node[piece, below=0.75cm of s7.south west, anchor=north west, text width=\Lw cm] (c7) {\body{%
+  The gain grows with the size of the training set. On datasets with fewer than 8,192 rows, where the whole
+  training set fits in the context, the two models are level.}};
+
+\node[sect] (s9) at ($(s6.north west)+(\Rx-3,0)$) {Results};
+\node[piece, below=0.23cm of s9.south west, anchor=north west] (t9) {\resultstablescaled{\Rw cm}};
+\node[piece, below=-1.2cm of t9.south west, anchor=north west, text width=\Rw cm] (c9) {\body{%
+  Row retrieval \textbf{ranks first on average} across the 48 datasets.}};
+\node[piece, below=0.35cm of c9.south west, anchor=north west, text width=\Rw cm] (c9b) {\capt{%
+  Accuracy on four dataset groups (mean over datasets $\pm$ SD over five seeds) and mean rank over all 48
+  datasets; lower rank is better. Bold marks the highest value in a column.}};
+
+% =====================================================================
+% FOOTER (black on white): a full-width rule, references and contacts on the left, the release line on the right
+% =====================================================================
+\newcommand{\rsep}{\hspace{0.4em plus 0.2em minus 0.05em}}   % between references
+\def\Fw{77.4}
+\node[anchor=south east, inner sep=0pt] (npt) at \at{97}{1.3} {\fontsize{26}{31}\selectfont\bfseries
+  Preprint coming soon};
+\node[anchor=south, inner sep=0pt] (np) at ($(npt.north)+(0,0.35)$) {\fig{2.4}{2.4}{assets/no_photos.pdf}};
+\node[anchor=south west, inner sep=0pt] (contacts) at \at{3}{1.3} {\begin{minipage}{\Fw cm}%
+  \fontsize{22}{26}\selectfont\spaceskip=0pt\color{slate}%
+  jane.doe@example.org\hfill Example University, Department of Computer Science\end{minipage}};
+\node[anchor=south west, inner sep=0pt] (refs) at ($(contacts.north west)+(0,0.4)$) {\begin{minipage}{\Fw cm}%
+  \fontsize{12}{15}\selectfont\spaceskip=0pt\frenchspacing\color{slate}\textbf{\color{ink}References}\rsep
+  [1]~Chen and Guestrin, XGBoost, KDD~2016\rsep
+  [2]~Malkov and Yashunin, HNSW, IEEE TPAMI~2020\end{minipage}};
+\node[fit=(refs)(contacts)(np)(npt), inner sep=0pt] (foot) {};
+\fill[ink] ($(O |- foot.north)+(3,0.55)$) rectangle ($(O |- foot.north)+(97,0.75)$);
+\node[inner sep=0pt, minimum height=0.2cm, minimum width=94cm, anchor=south west] (footrule) at ($(O |- foot.north)+(3,0.55)$) {};
+
+% ---------- log every box in page cm for box_check.py (add every new node here) ----------
+\foreach \nm in {title,authors,affil,s1,abs,s2,defs,s3,f1,f2,c3,c4,s6,n6,t6,s7,c7,
+                 s9,t9,c9,c9b,np,npt,refs,contacts,footrule}{
+  \path let \p0=(O), \p1=(\nm.south west), \p2=(\nm.north east) in
+    \pgfextra{\pgfmathsetmacro\xa{(\x1-\x0)/28.45276}\pgfmathsetmacro\ya{(\y1-\y0)/28.45276}%
+      \pgfmathsetmacro\xb{(\x2-\x0)/28.45276}\pgfmathsetmacro\yb{(\y2-\y0)/28.45276}%
+      \typeout{BOX \nm\space\xa\space\ya\space\xb\space\yb}};}
+\end{tikzpicture}
+\end{document}

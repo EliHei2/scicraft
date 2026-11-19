@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: cluster-ablation-handoff
+expected_outcome: |
+  A self-contained file handoff/CLUSTER_BRIEF.md, plus one line for the user to paste into the cluster session that
+  points at it. The brief opens with the job and what done means (four ablations, three seeds each, probe accuracy
+  reported per arm by Saturday). It names the places and the exact identifiers from NOTES.md (the running baseline
+  base-s1 that must not be touched, the split file, the checkpoint of record, the eval command). Its first step is
+  the cheap check the user asked for: whether the probe reads the EMA or the student weights, reported before any
+  job is submitted, with a stop for A4 if it reads the student. It warns about the launcher's hard-coded key list
+  as a trap and asks for the resolved config to be checked or logged. Each arm has a falsifier with a number tied to
+  the seed spread of about 0.4. It sets the concurrency to at most four jobs, a give-up order that drops A2 first, a
+  state file for resets, a report contract (per arm kept, killed or inconclusive, with numbers) and a short list of
+  conditions under which to ask the user.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,13 @@
+{
+  "records": "records",
+  "macros": {
+    "AccOurs":      {"file": "main.json", "path": "methods.ours.acc", "digits": 3},
+    "AccOursPct":   {"file": "main.json", "path": "methods.ours.acc", "digits": 1, "scale": 100},
+    "AccBase":      {"file": "main.json", "path": "methods.vit_b16.acc", "digits": 3},
+    "BestBase":     {"file": "main.json", "path": "best_baseline", "text": true},
+    "NSeeds":       {"file": "main.json", "path": "n_seeds", "digits": 0},
+    "DeltaMixup":   {"file": "ablation.json", "path": "no_mixup.delta", "digits": 3, "sign": true},
+    "QMixup":       {"file": "ablation.json", "path": "no_mixup.q", "digits": 3},
+    "AccConvNeXt":  {"file": "main.json", "path": "methods.convnext_t.acc", "digits": 3}
+  }
+}

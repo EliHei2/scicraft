@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: claude-md-trim
+expected_outcome: |
+  CLAUDE.md is rewritten as a short index of at most 500 words: a sentence on what the repository is for, the
+  repository layout, pointers to guideline files, up to ten numbered non-negotiables each opening with a bold
+  imperative, and a done checklist. The detailed rules move into guideline files (for example guidelines/CODE.md,
+  guidelines/EXPERIMENTS.md, guidelines/FIGURES.md) that exist and are named in CLAUDE.md. The two SUPERSEDED
+  blocks are gone from CLAUDE.md; the one fact still worth keeping (prior v2 is the default; prior v1 had a sampler
+  bug) is kept as a dated line or moved. Numbers that a script computes (the mean rank, the dataset count) no longer
+  appear as facts in prose. No rule of the original is lost: each one is in CLAUDE.md or a guideline file, and the
+  final message says where the moved rules went.
+context:
+  scaffold_script: place-files.sh

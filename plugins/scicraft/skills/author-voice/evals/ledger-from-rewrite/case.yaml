@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: ledger-from-rewrite
+expected_outcome: |
+  An edit ledger file (for example EDIT_LEDGER.md) records the rules read off the diff between intro_agent.md and
+  intro_author.md, one entry per rule, each with the author's version as evidence, the before and after, what it
+  generalizes to and how many instances were found and fixed in methods_draft.md. The rules include: no em dashes,
+  no sentence-initial Moreover, Furthermore or In other words, "backbone" becomes "encoder", "leverages" becomes
+  "uses", "honestly" is deleted, "the field wants" is removed or replaced by a named actor, and a sentence that
+  restates its neighbor is deleted. methods_draft.md is changed by exactly these rules: every number (24, 32, 512,
+  9, 400,000, 1,024, 1, 720) is unchanged, and no sentence is rewritten for any other reason. The final message
+  says where the ledger is and lists the changes made to the methods.
+context:
+  scaffold_script: place-files.sh

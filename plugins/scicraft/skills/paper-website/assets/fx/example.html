@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fx example</title>
+<link rel="icon" href="data:,">
+<!-- A toy scene to see the engine run and to try sweep.js and touch.js on (a lasso over the points owns its drag). Serve the skill's assets/ folder
+     (python3 scripts/serve.py 8765 assets) and open /fx/example.html. Replace the scene with the paper's. -->
+<style>
+  :root { --bg: #141416; --ink: #f4f4f5; --body: #d2d2d7; --quiet: #8b8b93; --link: #8cbcf3;
+          --sans: 'Helvetica Neue', Helvetica, Inter, Arial, sans-serif; --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  body { margin: 0; background: var(--bg); color: var(--body); font: 300 18px/1.62 var(--sans); }
+  main { max-width: 1080px; margin: 0 auto; padding: 48px 24px 200px; }
+</style>
+<link rel="stylesheet" href="fx.css">
+</head>
+<body>
+<main>
+  <figure class="fx" data-fx="toy">
+    <h3>[Figure title]</h3>
+    <div class="fx-stage" role="img" aria-label="[What the finished drawing shows, in one or two sentences.]"></div>
+    <ol class="fx-steps">
+      <li><b>[Inputs]</b><span>[A sentence from the paper about the inputs.]</span></li>
+      <li><b>[Model]</b><span>[A sentence from the paper about the model.]</span></li>
+      <li><b>[Output]</b><span>[A sentence from the paper about the output.]</span></li>
+    </ol>
+  </figure>
+</main>
+<script type="module">
+import { Stage, rng, seg, sseg, easeOut } from './core.js';
+import { C, plate, arrow, dot } from './parts.js';
+
+const R = rng(7), pts = Array.from({ length: 40 }, () => [40 + R() * 200, 60 + R() * 200]);
+let lasso = [];                      // a region drawn over the points; a touch drag there belongs to the figure
+const inData = (x, y, narrow) => (narrow ? y < 290 : x < 300);
+const toy = {
+  grabs: (x, y, st) => inData(x, y, st.narrow),
+  pointer(type, x, y, e, st) {
+    if (type === 'down' && inData(x, y, st.narrow)) lasso = [[x, y]];
+    else if (type === 'move' && st.ptr.down && lasso.length) lasso.push([x, y]);
+    return inData(x, y, st.narrow) ? 'crosshair' : null;
+  },
+  size: (narrow) => (narrow ? { W: 400, H: 520 } : { W: 900, H: 320 }),
+  durations: [1.6, 1.6, 1.6],
+  draw(ctx, s) {
+    const wide = !s.narrow;
+    if (lasso.length > 2) {
+      ctx.beginPath(); lasso.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath();
+      ctx.strokeStyle = C.ink; ctx.lineWidth = 1; ctx.stroke();
+    }
+    pts.forEach(([x, y], i) => dot(ctx, x, y, 3.2 * easeOut(seg(s.t, i * 0.03, i * 0.03 + 0.4)), C.greyPt));
+    const box = wide ? [360, 110, 180, 100] : [110, 300, 180, 80];
+    plate(ctx, ...box, { alpha: sseg(s.t, 1.6, 2.2) });
+    const from = wide ? [[260, 160], [350, 160]] : [[200, 270], [200, 292]];
+    arrow(ctx, from, { p: seg(s.t, 1.8, 2.6), color: C.ink });
+    const to = wide ? [[550, 160], [650, 160]] : [[200, 390], [200, 420]];
+    arrow(ctx, to, { p: seg(s.t, 3.2, 3.8), color: C.ink });
+    const ox = wide ? 760 : 200, oy = wide ? 160 : 470;
+    dot(ctx, ox, oy, 26 * easeOut(seg(s.t, 3.6, 4.8)), C.ours);
+  },
+};
+new Stage(document.querySelector('figure.fx'), toy);
+</script>
+</body>
+</html>

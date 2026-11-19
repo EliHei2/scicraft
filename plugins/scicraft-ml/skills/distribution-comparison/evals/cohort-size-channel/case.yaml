@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: cohort-size-channel
+expected_outcome: |
+  The assistant notices that n_records and frac_missing describe how the data were collected (record count
+  and missingness differ strongly between sites) and treats them as collection channels. It reports the
+  two-sample comparison at two levels at least: with all features (AUC near 1) and without the record-count
+  and missingness features (the lab features alone), where the classifiers sit near 0.5 and energy or MMD
+  does not reject. It includes same-size baselines (site halves). shift_report.md says the separation is
+  carried by record count and missingness, not by the lab values, reports both levels with numbers, and
+  does not claim the populations are completely different. It notes that whether the model transfers is a
+  separate question that needs a performance test at site B.
+context:
+  scaffold_script: place-files.sh

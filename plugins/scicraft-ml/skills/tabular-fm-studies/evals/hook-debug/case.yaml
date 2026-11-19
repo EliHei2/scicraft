@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: hook-debug
+expected_outcome: |
+  A fixed embed_tables.py and an explanation. The hooks store a clone of the module output (.detach().clone()),
+  because TabICL writes label embeddings and CLS tokens into these outputs in place, which explains the spurious
+  label effect in a label-free checkpoint. The hooks return None (the setdefault lambdas return a value, which
+  replaces the module output). AMP is switched off (use_amp=False) and the device is passed explicitly, which
+  explains and removes the GPU against CPU mismatch. The pooling excludes the 4 reserved CLS slots of the
+  col_embedder output (or the answer explains that including them encodes the column count), hooks that fire once
+  per normalization batch are concatenated rather than keeping only the first call, and pooling uses the training
+  rows only, triggering the pass with a single query row instead of predicting on all of X. The label shuffle used
+  as a check is seeded. The answer says the fix was not run if tabicl is unavailable, and that the v2 checkpoint
+  is label-aware by design, so this check only applies to v1 or v1.1.
+context:
+  scaffold_script: place-files.sh

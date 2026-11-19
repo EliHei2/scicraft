@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: draft-results-section
+expected_outcome: |
+  Before or alongside the prose, a narrative block for the section exists (a file under the working folder) with a
+  one-sentence claim per subsection, a movement, and an evidence list in which every fact has a provenance and a
+  status tag; the larger-index result is tagged preliminary. paper/sections/results.tex holds about 500 words in two
+  subsections with concrete, scientific headings (no colons, no questions). Every number in the prose appears in the
+  input files with the same value, and results numbers carry a named comparator (for example 0.84 against 0.81 for
+  gradient-boosted trees). The nine datasets where the baseline is ahead are reported. The larger-index result is
+  either left out of the main claim or stated with its missing control (one seed, baseline not rerun), never as a
+  headline improvement, and the final message tells the user why. The prose contains no em dashes, no "not X but
+  Y", no filler openers and no sentence describing the section. The final message says the prose gate was run
+  and what it reported.
+context:
+  scaffold_script: place-files.sh

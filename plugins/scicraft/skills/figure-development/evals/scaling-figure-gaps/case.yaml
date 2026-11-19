@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: scaling-figure-gaps
+expected_outcome: |
+  figures/figure_4 holds a runtime scaling panel as PDF and PNG and a caption draft. Only measured,
+  full-data runtimes are drawn as points. baseline_a on mix-xl (killed at the memory limit) and on
+  all-xxl (not attempted) appear as failure marks, not as measurements. baseline_b on all-xxl ran on a
+  1/16 subsample, so it is treated as not run (a failure mark or absent with the reason), never as a
+  point; this is what made baseline_b look faster on the biggest set. baseline_a on code-m was an
+  estimate after a lost job and baseline_b on books-l has no recorded runtime; neither value is drawn
+  or invented: they are listed as values to fetch, or the dataset is dropped for every method. Lines
+  join only consecutive measured points. The caption names the failure kinds with their caps and says
+  which values are missing. The final message lists what must be fetched and what was not checked.
+context:
+  scaffold_script: place-files.sh

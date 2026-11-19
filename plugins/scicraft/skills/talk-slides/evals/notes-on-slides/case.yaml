@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: notes-on-slides
+expected_outcome: |
+  All six notes are applied to talk_demo/build/build_deck.py and nothing else about the deck is redesigned: the
+  former slides 6 and 7 have changed places, the band on every slide reads "Research Day 2027, Riverside", slide 2
+  keeps its first line and its legend only, slide 9 has the dictated title, slide 8's line under the title reads
+  "2.1 against 4.7", and the last slide lists Dr. Mara Lindqvist with the line "clinical lead" beside the two
+  people. The notes are recorded in the author's words in a ledger file (REQUESTS.md) in the talk folder. Both
+  the deck and its static twin are rebuilt, the audit is run, a new PDF is made from the static twin, and the final
+  message says in a few lines what changed per slide, how any unclear note was read (there is no photo of
+  Dr. Lindqvist, so the message must say what stands in or ask for the photo), and what was not checked.
+context:
+  scaffold_script: place-files.sh

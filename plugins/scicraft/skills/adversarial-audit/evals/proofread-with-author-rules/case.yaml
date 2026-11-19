@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: proofread-with-author-rules
+expected_outcome: |
+  The proofreaders propose edits instead of editing results.md themselves; the proposals sit in a JSON file whose
+  "old" strings each occur exactly once in the original results.md, and the coordinator applies only the error
+  fixes. After the pass, results.md has the same headings, the same table and the same paragraphs in the same
+  order; sentences not touched by a fix are unchanged. "zero-shot" in 4.3 becomes "frozen probing" (RULES 1),
+  "support set" becomes "context rows" (RULES 2) and the semicolon in 4.1 is removed by splitting the sentence
+  (RULES 3). The text's 0.84 contradicts Table 2's 0.81 for the encoder: either the text is set to 0.81 with that
+  reason stated, or the mismatch is listed for the user to decide; it is reported either way. The suggestions in
+  review_notes.md to switch to "zero-shot" and to restructure 4.1 are declined, citing RULES.md. The final message
+  gives counts of findings and applied fixes and a list of items for the user.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: code-audit-before-sweep
+expected_outcome: |
+  An audit/ folder holds the findings (written to files, one per lens or one combined file), a verdict for each
+  finding (confirmed or refuted, with evidence such as a quoted line or a run's output), and a short audit record
+  with counts. The audit finds the three planted defects: the train and test splits overlap (the test slice starts
+  at train_frac - 0.1, so 10% of rows are in both), the reported "test_accuracy" is computed on the training rows,
+  and the config loader silently drops unknown keys, so the misspelled "learning_rte" leaves the learning rate at
+  the default 0.1 instead of 0.01. Fixes that are plainly bugs with no scientific choice (computing accuracy on the
+  test rows, making unknown config keys raise an error) may be applied; the change of the effective learning rate
+  from 0.1 to 0.01 is put to the user as a decision rather than applied silently, because it changes training. The
+  code still runs after the fixes and the response says it was run. The final message gives counts, the most
+  important findings, what was applied and what needs the user's decision.
+context:
+  scaffold_script: place-files.sh

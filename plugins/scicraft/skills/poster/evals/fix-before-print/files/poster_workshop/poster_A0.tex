@@ -1,0 +1,14 @@
+% Print file: the design page (poster_design.tex, 1000 x 1414.2 mm = A0 proportions) placed on an
+% A0 sheet (841 x 1189 mm), so every design size prints at 0.841. Placed as it is: nothing is rasterized.
+% Build with `make`; this file's output, poster.pdf, is the one that goes to the printer.
+\documentclass{article}
+\usepackage[paperwidth=841mm, paperheight=1189mm, margin=0mm]{geometry}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\hypersetup{pdftitle={Row Retrieval Makes Tabular Foundation Models Scale with Context},
+  pdfauthor={Jane Doe, John Roe},
+  pdfsubject={Poster}, pdfkeywords={tabular foundation models, retrieval},
+  pdfdisplaydoctitle=true}
+\begin{document}
+\includepdf[pages=1, width=841mm, height=1189mm, keepaspectratio]{build/poster_design.pdf}
+\end{document}

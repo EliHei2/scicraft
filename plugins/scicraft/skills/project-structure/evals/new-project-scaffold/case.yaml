@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: new-project-scaffold
+expected_outcome: |
+  A folder tabfm with separate trees for code (src/ with a package), configs, scripts, experiments, tests, docs,
+  data and results, where results has one canonical runs tree plus an archived area and smoke tests go to a scratch
+  folder. A .gitignore ignores data, results, scratch, checkpoints and array formats, with a comment giving the
+  reason for each block. The raw stores are referenced through links or one paths file and are not copied. A short
+  agent index file (at most 500 words), README, STATUS, RUN_MAP, DECISIONS, PROVENANCE and an experiments log that
+  keeps failures exist. One file holds every path including the remote address, and a sync script pushes code with
+  rsync without --delete and without .git. No git repository is created. The final message lists the placeholders
+  the user still has to fill and says that the raw store paths do not exist on this machine, so the links could not
+  be checked.

@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: paper-to-poster
+expected_outcome: |
+  A folder poster_workshop holding the poster source and a one-page print PDF of 841 x 1189 mm (A0 portrait) under
+  40 MB in which every font is embedded (the supplied matplotlib figures name Helvetica without embedding it, so
+  they must be fixed, for example with embed_base14.py). The poster places the paper's two figure PDFs and the
+  manuscript's results table unchanged (all four method rows, all five columns); it draws no new diagram or plot.
+  Every sentence of the abstract and captions on the poster is a sentence of main.tex shortened only by cutting;
+  any departure (acronym spelled out, table key) is listed in the report. The byline shows Jane Doe underlined and
+  John Roe with their affiliation; the footer says no preprint is available yet in some form and has no QR code.
+  The final message gives the PDF's path, size and page size, reports the layout checks run (overlaps, smallest
+  printed type, fonts) with their result, and says what was not checked.
+context:
+  scaffold_script: place-files.sh

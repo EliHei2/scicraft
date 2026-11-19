@@ -1,0 +1,3 @@
+mean_pool_plain          2.9e-08
+mean_pool_plus_colpos    3.1e-08
+attn_pool_plus_colpos    2.4e-02

@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: over-limit-and-anonymity
+expected_outcome: |
+  A folder submission/ with an edited main.tex, the unchanged venue2027.sty, refs.bib, the figure (or a cleaned
+  copy) and a compiled PDF; the original files are untouched. The co-author's margin line is removed and the
+  final message says why (the venue style owns the geometry). With the venue's margins the main text ends on or
+  before page 2, reached by moving detail (for example the ablation table or related-work detail) to an appendix
+  with a pointer and by cutting words, not by shrinking fonts, margins or labels. No result number is lost: what
+  leaves the main text appears in the appendix. The submission is anonymous: the author block reads as anonymous
+  with no \thanks, the acknowledgements and grant number are gone, "our previous work" is rewritten in the third
+  person, the GitHub link is removed or replaced by an anonymous placeholder, and the figure whose text layer and
+  metadata carry an author name is cleaned or flagged. The final message reports how the page limit was checked,
+  the anonymity issues found, and what the user still has to do (for example an anonymous code link).

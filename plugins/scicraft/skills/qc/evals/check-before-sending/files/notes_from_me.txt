@@ -1,0 +1,6 @@
+notes I sent myself while we were working on the summary (copied from chat):
+
+10:02  say how many seeds we ran, my sup always asks
+10:05  no em dashes anywhere pls
+10:11  call them ablations, never "arm"
+10:30  numbers must match results.json exactly, don't round differently

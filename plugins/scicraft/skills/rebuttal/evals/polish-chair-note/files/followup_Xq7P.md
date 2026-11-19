@@ -1,0 +1,1 @@
+Thank you for the response. The response clarifies some of my questions, and the paper is clearly written. However, I am still not convinced that the method is substantially better than GraphFM on every task. I would also like to see the method validated on wet-lab measurements of new compounds. I keep my rating of 4.

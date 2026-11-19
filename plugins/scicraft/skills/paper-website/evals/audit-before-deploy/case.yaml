@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: audit-before-deploy
+expected_outcome: |
+  A report of what is wrong with the site, found by running the skill's checks (behaviour checks, leak scan) and by
+  reading the page against the paper, the records and the author's rules in DEPLOY.md, without changing any file.
+  It names at least: an eyebrow line over the name; middle dots between the task names in the results meta line;
+  "1st on 5 of 5 tasks" where the paper and records say four of five; a printed p = 0.04, above the author's .01;
+  the words "95% confidence interval" in a caption; the full-table row open by default; a BibTeX block although the
+  author's rule says no citation block before the preprint; an affiliation list in the footer; a "pvalues" key in
+  results.json that no chart draws; and a local path in charts.js that the leak scan flags. The site's files are
+  left as they were.
+context:
+  scaffold_script: place-files.sh

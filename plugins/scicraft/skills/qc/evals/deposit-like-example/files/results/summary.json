@@ -1,0 +1,78 @@
+{
+ "metric": "balanced accuracy, median over 5 folds and 5 seeds",
+ "n_folds": 5,
+ "n_seeds": 5,
+ "per_dataset": {
+  "adult": {
+   "ours": [
+    0.792,
+    0.011
+   ],
+   "gbdt": [
+    0.776,
+    0.01
+   ],
+   "mlp": [
+    0.751,
+    0.015
+   ]
+  },
+  "bank": {
+   "ours": [
+    0.741,
+    0.014
+   ],
+   "gbdt": [
+    0.748,
+    0.012
+   ],
+   "mlp": [
+    0.712,
+    0.02
+   ]
+  },
+  "credit": {
+   "ours": [
+    0.703,
+    0.018
+   ],
+   "gbdt": [
+    0.695,
+    0.016
+   ],
+   "mlp": [
+    0.671,
+    0.022
+   ]
+  },
+  "higgs_small": {
+   "ours": [
+    0.714,
+    0.009
+   ],
+   "gbdt": [
+    0.709,
+    0.008
+   ],
+   "mlp": [
+    0.69,
+    0.012
+   ]
+  }
+ },
+ "value_format": "[median, iqr]",
+ "ablations": {
+  "no column embedding": {
+   "adult": -0.024,
+   "bank": -0.011,
+   "credit": -0.019,
+   "higgs_small": -0.008
+  },
+  "no row attention": {
+   "adult": -0.012,
+   "bank": -0.004,
+   "credit": -0.009,
+   "higgs_small": -0.006
+  }
+ }
+}

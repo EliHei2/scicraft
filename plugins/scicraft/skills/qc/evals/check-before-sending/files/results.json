@@ -1,0 +1,9 @@
+{
+  "benchmark": "12 classification datasets, 5 seeds each, 5-fold cross-validation",
+  "seeds": 5,
+  "metric": "balanced accuracy, median over folds",
+  "mean_rank": {"ours": 2.4, "gbdt": 2.9, "mlp": 4.1, "knn": 4.6, "logreg": 4.8, "prior_tfm": 2.6},
+  "first_place_count": {"ours": 6, "gbdt": 3, "prior_tfm": 3},
+  "paired_wilcoxon_bh_adjusted_p": {"gbdt": 0.004, "mlp": 0.0008, "knn": 0.0006, "logreg": 0.0005, "prior_tfm": 0.21},
+  "ablation_drop_in_balanced_accuracy": {"no column embedding": 0.031, "no row attention": 0.018, "half pretraining data": 0.009}
+}

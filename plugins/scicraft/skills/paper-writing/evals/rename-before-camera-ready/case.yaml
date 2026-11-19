@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: rename-before-camera-ready
+expected_outcome: |
+  Every reader-facing occurrence of "neighbour pool" and "RR-Pool" in paper/ is replaced: prose, section heading,
+  table row, table caption, figure caption and the legend label in plot_gain.py. The LaTeX label sec:neighbour-pool is
+  renamed (for example sec:retrieval-set) together with every reference to it, so no reference dangles. "RR-Pool"
+  becomes "RowRetriever" with the "(ours)" marker kept in the table. Nothing else in the sentences is reworded and no
+  number changes. A terms file or equivalent records the two old names so a later check fails if they return, and a
+  prose check is run on the sections with its result reported; its remaining hit
+  (a semicolon in the figure caption) is reported to the user and left for their decision, not silently reworded. The final message lists every file changed, says the
+  figure PDF must be regenerated from plot_gain.py (it was not rebuilt if no plotting library ran), and states what
+  was not checked.
+context:
+  scaffold_script: place-files.sh

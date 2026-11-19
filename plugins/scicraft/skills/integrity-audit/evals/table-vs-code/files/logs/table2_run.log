@@ -1,0 +1,6 @@
+2026-03-02 10:14:07 command: python train.py --epochs 50 --seeds 0 1 2
+2026-03-02 10:14:07 args: Namespace(lr=0.001, epochs=50, seeds=[0, 1, 2])
+2026-03-02 11:02:51 seed=0 lr=0.001 epochs=50 test_acc=84.02
+2026-03-02 11:51:30 seed=1 lr=0.001 epochs=50 test_acc=84.31
+2026-03-02 12:40:12 seed=2 lr=0.001 epochs=50 test_acc=83.97
+2026-03-02 12:40:12 done

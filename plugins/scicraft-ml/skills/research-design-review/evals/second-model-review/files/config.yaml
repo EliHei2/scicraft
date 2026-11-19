@@ -1,0 +1,12 @@
+model:
+  d: 64
+loss:
+  recon: smooth_l1        # on L2-normalized vectors
+  recon_beta: 1.0
+  w_recon: 1.0
+  w_iso: 1.0
+  iso_null_normalized: false
+mask:
+  ratio: 0.65
+train:
+  steps: 20000

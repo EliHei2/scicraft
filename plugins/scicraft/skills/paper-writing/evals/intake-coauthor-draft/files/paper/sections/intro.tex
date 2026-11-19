@@ -1,0 +1,10 @@
+\section{Introduction}
+Tabular data make up most of the records kept in medicine, finance and the sciences, and gradient-boosted trees remain the default model for them \citep{chen2016xgboost}.
+Deep tabular models match trees on large datasets but fall behind on small ones, where a global decision function has too few rows to fit \citep{grinsztajn2022tree}.
+
+A classifier that attends over the nearest training rows of each query needs no global fit.
+We introduce RowRetriever, a tabular classifier that retrieves the $k$ nearest training rows for each query and attends over them.
+We evaluate it by 10-fold accuracy on 40 classification datasets from OpenML \citep{vanschoren2014openml}, against tree ensembles, neural tabular models and a nearest-neighbour baseline.
+
+\paragraph{Our contributions.}
+RowRetriever, a retrieval classifier for tabular rows. A benchmark protocol that reports accuracy by training-set size. An analysis of the compute cost of retrieval at inference.

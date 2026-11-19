@@ -1,0 +1,17 @@
+schema_version: "1.1"
+name: restructure-ml-methods
+expected_outcome: |
+  A new file methods_v2.tex in Nature Online Methods register, with methods_draft.tex unchanged. In the Methods
+  chapter there is no code-font internal identifier (n_bins, weight_decay), no figure callout (Fig. 2a, Figure 1b),
+  and the hyperparameter table is a Supplementary Table cited from Methods (or a compact configuration block). The
+  model and training sections name no dataset; OpenML-CC18 and TabArena are described in a datasets section, whose
+  shared preprocessing is stated once. The internal package name tabbench appears at most in Code availability.
+  The weight decay is stated once as 0.05, the run value from run_config.yaml, with no "0.01 versus 0.05"
+  discrepancy framing. The sentence that RowSet outperforms all baselines (mean rank 2.1, P = 0.003) is not in
+  Methods, and the final message tells the author it was moved out as a result and belongs in Results. The repeated
+  caveat about fixed splits appears once. Statistics, Data availability and Code availability sections exist; no
+  DOI, accession or license is invented (open items are author-action markers or questions). Every other value of
+  the draft survives (12 layers, 8 heads, 512, 64 bins, 3e-4, 5,000 warmup steps, 200,000 steps, batch 256, dropout
+  0.1, five seeds 0 to 4, 72 datasets, 10-fold, 100 trials, A100 80 GB, 31 h). The text has no em dashes.
+context:
+  scaffold_script: place-files.sh

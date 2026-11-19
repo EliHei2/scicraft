@@ -1,0 +1,68 @@
+# .gitignore for {{NAME}}
+# Every block says why it is here. A path left out on purpose stays out:
+# do not "fix" an entry by deleting it before reading its reason.
+
+# Python build and cache files: regenerated on every run.
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editors, OS and agent-local settings: per machine, not project state.
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# Data: raw stores are read in place through the links in data/raw/, and every copied
+# input has a row in PROVENANCE.md. Only the README that says what belongs here is tracked.
+/data/*
+!/data/README.md
+
+# Run outputs: regenerable from tracked code and configs, and each run writes a
+# manifest.json that records how. Smoke tests and throwaway checks go to scratch/.
+/results/
+/scratch/
+# A results root per profile made by older code (results_<profile>/) stays out as well.
+/results_*/
+
+# Built distributables (zips, wheels of the shippable folder): rebuilt by a script from a clean
+# tree before each hand-off. A tracked copy went stale within hours of being built.
+/dist/
+
+# Arrays, checkpoints, tables and archives: large, and they churn on every run.
+# A small baseline that a test or contract check reads goes in reference/ (re-included below).
+*.parquet
+*.h5ad
+*.h5
+*.zarr/
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.log
+
+# Compiled documents: one build away from their tracked sources, and binaries that churn.
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.out
+*.toc
+*.synctex.gz
+
+# Superseded drafts: kept on disk for reference, never built and never cited.
+/_attic/
+
+# Frozen baselines and contract files: tracked on purpose, checked by md5.
+!/reference/**

@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: deposit-like-example
+expected_outcome: |
+  The agent opens the co-author's example first and matches its type and count: a handful of short reference
+  tables (datasets, hyperparameters, results per dataset, ablations, baselines). deposit/ holds about five such
+  tables built from results/ (summary.json, config.yaml, datasets.json, baselines.txt), with headers like the
+  example's and units or notes where the example has them, and no copies of the 20 per-seed prediction files.
+  Every value in the tables matches results/ (for example epochs 60 from config.yaml, not 50 from the example).
+  A manifest or README lists the files. Nothing is uploaded. The final message says the target was taken from the
+  example, lists what is in deposit/, and names anything the author must decide or check (for example whether the
+  per-seed predictions should go to a separate data archive).
+context:
+  scaffold_script: place-files.sh

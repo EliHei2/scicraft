@@ -1,0 +1,2 @@
+From the co-author (chat, 14 Nov):
+"honestly I think the ECE numbers for the big models are inflated because of the 15 equal-width bins, the big ones put almost everything in the top bin. can you check before we send the draft to the PI? I need something I can show him."

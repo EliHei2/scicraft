@@ -1,0 +1,58 @@
+% =====================================================================
+%  revision.tex: mark every change from the submitted version in ONE
+%  light blue, behind one switch. Load it at the end of the preamble.
+%
+%  Delivered builds: one color only. Several colors (one per round)
+%  confused the readers and were thrown out.
+%   - changed or added text ........ \rev{...}
+%   - a NEW figure or table ........ \revfloat inside the float, and the
+%                                     whole caption in \rev{...}; the
+%                                     tabular body too when the table has
+%                                     no shading of its own
+%   - an OLD float with edits ...... \rev{} on the changed words only
+%   - a new term in an equation .... \mathbin{\rev{+}}\rev{\lambda\mathcal{L}_{\mathrm{new}}}
+%   - new bibliography entries ..... \revbibkeys{key1,key2}
+%  Deletions cannot be colored: list them in the edit list or the reply.
+%  Decide what is new by comparing with the SUBMITTED PDF, not with the
+%  markup of earlier rounds.
+%
+%  Clean copy: build again with \revisedcolorfalse (revision_clean.tex,
+%  or build_latex.py --variant revision_clean.tex). Same text, same line
+%  breaks, no color.
+% =====================================================================
+\definecolor{revised}{RGB}{70,130,180}
+\newif\ifrevisedcolor \revisedcolortrue
+% \leavevmode keeps a marked paragraph attached to the heading above it.
+\newcommand{\rev}[1]{\ifrevisedcolor{\ifvmode\leavevmode\fi\color{revised}#1}\else#1\fi}
+
+% Inside a new float: its label ("Figure 4", "Table 2") in the revision color.
+\makeatletter
+\newcommand{\revfloat}{\ifrevisedcolor
+  \def\fnum@figure{{\color{revised}\figurename\nobreakspace\thefigure}}%
+  \def\fnum@table{{\color{revised}\tablename\nobreakspace\thetable}}\fi}
+\makeatother
+
+% Optional private tracking of the latest round in a second color, for
+% your own reading only. Keep \showlatestfalse in every build you send.
+\definecolor{latestmark}{RGB}{214,96,0}
+\newif\ifshowlatest \showlatestfalse
+\newcommand{\latest}[1]{\ifshowlatest\ifrevisedcolor{\ifvmode\leavevmode\fi\color{latestmark}#1}\else#1\fi\else\rev{#1}\fi}
+
+% New bibliography entries in the revision color (natbib or a manual
+% thebibliography; works by patching \@lbibitem).
+\makeatletter
+\newcommand*{\rev@bibkeys}{,}
+\newcommand*{\revbibkeys}[1]{\renewcommand*{\rev@bibkeys}{,#1,}}
+\newif\ifrev@bibopen
+\AtBeginDocument{%
+  \let\rev@orig@lbibitem\@lbibitem
+  \def\@lbibitem[#1]#2{\rev@orig@lbibitem[#1]{#2}\rev@bibcolor{#2}}}
+\newcommand*{\rev@bibcolor}[1]{%
+  \ifrevisedcolor
+    \edef\rev@tmp{\noexpand\in@{,#1,}{\rev@bibkeys}}\rev@tmp
+    \ifin@ \leavevmode\color{revised}\global\rev@bibopentrue
+    \else \ifrev@bibopen\leavevmode\normalcolor\global\rev@bibopenfalse\fi
+    \fi
+  \fi
+  \ignorespaces}
+\makeatother

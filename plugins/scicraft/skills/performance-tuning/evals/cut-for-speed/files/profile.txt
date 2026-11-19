@@ -1,0 +1,7 @@
+# per-phase ms/step, mean over steps 500-2500 (sync-bracketed profiling run, one A100)
+data        11.8
+forward     61.2
+iso_loss    74.9
+backward    41.0
+optim        6.1
+total      195.0

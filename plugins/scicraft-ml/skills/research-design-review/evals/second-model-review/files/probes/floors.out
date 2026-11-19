@@ -1,0 +1,4 @@
+predict_zero                0.00781
+best_global_constant        0.00744
+trained_last2000_median     0.00512
+effective_rank_trained      41.3

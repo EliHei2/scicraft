@@ -1,0 +1,114 @@
+% =====================================================================
+%  ml_addon.tex: house additions for a machine-learning conference paper,
+%  loaded AFTER the venue's own, unmodified style package.
+%
+%  The venue style (iclr20XX_conference.sty, neurips_20XX.sty,
+%  icml20XX.sty, ...) owns the page geometry, the type sizes, the fonts,
+%  the section heads, the title block, the abstract and the running head.
+%  Nothing here touches any of them: no geometry, no font size, no font
+%  package, no \...geometryfalse switch. Reviewers and format checkers
+%  read such changes as a violation.
+%
+%  This file adds only what the venue leaves open:
+%    one accent colour for links, citations and callout rules;
+%    two callouts (contributions, terminology) with a left rule;
+%    table helpers (group rows, best and second, spread, rank fills);
+%    a run-in paragraph head; main-text display tightening for page fits.
+%  Built from core LaTeX, xcolor and TikZ only, so it compiles on a
+%  minimal TeX install where tcolorbox is missing or too new.
+%
+%  Load order in main.tex:
+%     \usepackage{<venue style>}      (with `times' if the venue loads it so)
+%     \input{ml_addon}
+%  Fuller typography (fonts for free-form preprints, shims, print
+%  variants) belongs to the latex-typesetting skill.
+% =====================================================================
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs,array}
+\usepackage[table]{xcolor}
+\usepackage{microtype}
+
+% ---- one accent: links, citations and callout rules; everything else ink ----
+\definecolor{accent}{HTML}{26735B}      % muted green; any one dark hue works
+\definecolor{accentdark}{HTML}{1D5947}  % callout titles
+\definecolor{pale}{HTML}{F2F8F5}        % callout fill: a pale tint of the accent
+\definecolor{soft}{HTML}{616161}
+% Rank fills for a results table (first, second, third); declare them in the caption.
+\definecolor{rankfirst}{HTML}{D3ECE3}
+\definecolor{ranksecond}{HTML}{D8EBFF}
+\definecolor{rankthird}{HTML}{FDEDCE}
+% Ablation deltas, shaded by size: \cellcolor{worse!N} or \cellcolor{better!N}, N at most 60.
+\definecolor{worse}{RGB}{210,85,75}
+\definecolor{better}{RGB}{65,145,85}
+
+\makeatletter
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}
+\makeatother
+\hypersetup{colorlinks=true,linkcolor=accent,citecolor=accent,urlcolor=accent}
+% Camera-ready that wants black links: \hypersetup{allcolors=black}
+\usepackage[capitalize,noabbrev]{cleveref}  % \cref{tab:main} prints "Table 1" and cannot drift
+
+% ---- run-in paragraph head for related work and experiments ----
+% \rwpara{Datasets.} Text follows on the same line. Cheaper in height than \paragraph.
+\newcommand{\rwpara}[1]{\par\noindent\textbf{#1}\hspace{0.4em}}
+
+% ---- table helpers ----
+\newcommand{\best}[1]{\textbf{#1}}                  % declared in the caption
+\newcommand{\second}[1]{\underline{#1}}             % declared in the caption
+\newcommand{\pmsd}[1]{{\scriptsize$\pm$#1}}          % spread; the caption says what it is
+\newcommand{\na}{\textcolor{soft}{--}}               % no result; the caption says why
+% Row group inside a booktabs table, instead of a category column repeated down every row.
+% #1 = number of columns, #2 = label.
+\newcommand{\grp}[2]{\addlinespace[3pt]\multicolumn{#1}{@{}l}{\itshape #2}\\[1pt]}
+% Ragged-right text column: below about 40 characters, justification leaves holes.
+\newcolumntype{R}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% ---- callouts: square corners, no frame, accent left rule, pale fill ----
+% Two jobs only: the contributions block and the terminology box. Keep each short;
+% these boxes do not break across pages.
+\makeatletter
+\newsavebox{\mla@box}
+\newlength{\mla@rule}\setlength{\mla@rule}{1.8pt}
+\newlength{\mla@pad}\setlength{\mla@pad}{6pt}
+\newcommand{\mla@open}[1]{%
+  \par\addvspace{0.6\baselineskip}\noindent
+  \begin{lrbox}{\mla@box}%
+  \begin{minipage}{\dimexpr\linewidth-\mla@rule-2\mla@pad\relax}%
+  \vspace{\mla@pad}#1\setlength{\parskip}{0.3\baselineskip}\relax}
+\newcommand{\mla@close}{%
+  \vspace{\mla@pad}\end{minipage}\end{lrbox}%
+  {\setlength{\fboxsep}{0pt}\colorbox{pale}{%
+    \textcolor{accent}{\rule[-\dp\mla@box]{\mla@rule}{\dimexpr\ht\mla@box+\dp\mla@box\relax}}%
+    \hspace{\mla@pad}\usebox{\mla@box}\hspace{\mla@pad}}}%
+  \par\addvspace{0.6\baselineskip}}
+\newenvironment{contributions}
+  {\mla@open{\small\textbf{\textcolor{accentdark}{Our contributions.}}\par}}
+  {\mla@close}
+% \begin{terminology}[Domain terms] ... \end{terminology}: defines the application's
+% terms once for a reader from machine learning.
+\newenvironment{terminology}[1][Terminology]
+  {\mla@open{\footnotesize\textbf{\textcolor{accentdark}{#1}}\par}\footnotesize}
+  {\mla@close}
+\makeatother
+
+% ---- page fitting: tighter displays in the main text only ----
+% \tightenmaindisplays after \maketitle; \restoremaindisplays before the appendix.
+\makeatletter
+\newlength{\mla@a}\newlength{\mla@b}\newlength{\mla@c}\newlength{\mla@d}
+\newcommand{\tightenmaindisplays}{%
+  \setlength{\mla@a}{\abovedisplayskip}\setlength{\mla@b}{\belowdisplayskip}%
+  \setlength{\mla@c}{\abovedisplayshortskip}\setlength{\mla@d}{\belowdisplayshortskip}%
+  \setlength{\abovedisplayskip}{3pt plus 1pt minus 2pt}%
+  \setlength{\belowdisplayskip}{3pt plus 1pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{1pt plus 1pt minus 1pt}%
+  \setlength{\belowdisplayshortskip}{1pt plus 1pt minus 1pt}}
+\newcommand{\restoremaindisplays}{%
+  \setlength{\abovedisplayskip}{\mla@a}\setlength{\belowdisplayskip}{\mla@b}%
+  \setlength{\abovedisplayshortskip}{\mla@c}\setlength{\belowdisplayshortskip}{\mla@d}}
+\makeatother
+
+% ---- a wide figure overhangs to the RIGHT only: the left margin carries line numbers ----
+% \widefig{6.5in}{\includegraphics[width=\linewidth]{fig1}}
+\newcommand{\widefig}[2]{\noindent\makebox[\linewidth][l]{\begin{minipage}{#1}#2\end{minipage}}}

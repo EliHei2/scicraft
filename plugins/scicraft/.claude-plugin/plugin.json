@@ -1,0 +1,11 @@
+{
+  "name": "scicraft",
+  "description": "Research craft that transfers to any lab: figures and schematics, paper, rebuttal and book writing, de-slopping, LaTeX, talks, posters, paper websites, quality gates, integrity audits, project structure, research code and releases, prompts and agent orchestration.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Elyas Heidari"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/EliHei2/scicraft",
+  "repository": "https://github.com/EliHei2/scicraft"
+}

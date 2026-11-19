@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: baseline-reproduction-status
+expected_outcome: |
+  A status file in the repository marks each component of the port as exact reproduction, approximate
+  reproduction or new extension (R, A, E or equivalent words), says where it lives in src/, and what it was checked
+  against. The architecture follows the released code (32-dim output, 75,072 parameters) where the paper's table
+  says 64-dim and 45,424; this is a numbered deviation that says the released code was followed and why. The
+  evaluation uses stratified repeated K-fold where the paper bootstraps before a 70/30 split; the deviation names
+  the leak of duplicates into the test set. Training ran 1,500 steps against the paper's early-stopped schedule of up
+  to 10,000: a deviation, so the trained variant is approximate. The extra descriptor block in src/descriptors.py
+  is marked as a new extension. Only the weight port, which CHECKS.md shows reproduces the authors' released
+  outputs at r = 1.0000, is called exact; nothing else is claimed as exact without a check.
+context:
+  scaffold_script: place-files.sh

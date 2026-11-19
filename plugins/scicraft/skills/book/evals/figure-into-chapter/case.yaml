@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: figure-into-chapter
+expected_outcome: |
+  A figure file in figures/ composed from crops of paper_fig2.pdf (the bar chart and the scatter plot, kept as
+  vector content, nothing re-plotted or redrawn), at the 150 mm measure, upright. The source's own panel letters
+  are masked and new letters a and b are set. The text that the source page carries outside the two panels (the
+  journal running head "Journal of Examples" and the legend line "Hidden legend text of the source paper") and the
+  hidden "HIDDEN DRAFT LABEL" do not appear in the text layer of the new figure, and the axis labels m1 to m4,
+  "acc" and "scaling (params)" are kept. ch3_method.tex gets a figure environment at the comment, with a caption
+  that has a bold claim title, a panel key with a and b, and one source line "Adapted from Fig. 2a,b of
+  \citet{smith2020}." (or an equivalent "Adapted from" line); the caption does not say "Reproduced", does not name
+  the license, slides or a deck. Every sentence of the author's text in ch3_method.tex is unchanged.
+context:
+  scaffold_script: place-files.sh

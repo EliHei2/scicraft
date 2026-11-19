@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: stale-numbers-camera-ready
+expected_outcome: |
+  Every result number in paper/main.tex (prose, caption and table) is replaced by a macro or a generated table
+  fragment produced by a script from results/*.json, and a check that runs before LaTeX fails when the generated
+  macros no longer match the records. The new values come from the records: accuracy .791 (79.1%), not the old
+  78.4%; the claim "best on 4 of 5 benchmarks" is reported as no longer true (the records give 3 of 5) and is
+  changed or flagged rather than kept; the ablation delta becomes -.009. The method with no record (CLIP-L) shows
+  "pending" or an equivalent visible marker, never an invented value. The results files are unchanged. The final
+  message lists each number that changed with its old and new value and the sentence it sits in.
+context:
+  scaffold_script: place-files.sh

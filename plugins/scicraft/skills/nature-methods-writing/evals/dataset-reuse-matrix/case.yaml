@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: dataset-reuse-matrix
+expected_outcome: |
+  A new file supp_analyses_v2.tex, with supp_analyses.tex unchanged. The shared preprocessing (quality value
+  at least 20, negative-control probes removed, at least 10 transcripts per cell, normalization to 100 counts per
+  cell and log transform) is stated once. A table has one row per dataset and analysis pair from analysis_runs.tsv
+  (five rows: composition LUNG-A, contamination LUNG-A, contamination LUNG-B, generalization LUNG-A, generalization
+  BRAIN-M), with the typing reference and the prior reference in separate columns. The contamination analysis uses
+  the run value of 10 transcripts per cell from the tracker, not the 20 in the old text, stated plainly without a
+  "20 versus 10" framing (or flagged as an author action). The per-analysis prose gives only what differs, such as
+  the generic lung atlas and the disabled prior in the generalization test. LUNG-B's missing accession is left as an
+  author-action marker or question, and no accession is invented. Dataset IDs LUNG-A, LUNG-B and BRAIN-M are kept,
+  with their counts (480 and 347 genes; 412,306, 389,114 and 152,870 cells) and the accessions GSE000001 and
+  GSE000002.
+context:
+  scaffold_script: place-files.sh

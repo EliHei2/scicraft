@@ -1,0 +1,128 @@
+{
+  "plugins": {
+    "scicraft": "any field",
+    "scicraft-ml": "machine-learning research"
+  },
+  "stages": [
+    {
+      "title": "Start and organize",
+      "say": [
+        "turn this idea into a plan",
+        "set this project up properly",
+        "add this without breaking my scripts"
+      ],
+      "skills": {
+        "research-kickoff": "Turns an idea into a verified research plan within days.",
+        "project-structure": "Keeps order in a project: code, data, results, governing documents.",
+        "research-code": "Changes research software so that your scripts keep working."
+      }
+    },
+    {
+      "title": "Design and run experiments",
+      "say": [
+        "is this design worth the GPU hours?",
+        "write the job script for the cluster",
+        "this table has a billion rows"
+      ],
+      "skills": {
+        "ml-experiment-design": "Plans experiments before compute is spent: plan, configs, gates.",
+        "research-design-review": "Decides a model design before compute is spent, and locks it.",
+        "cluster-jobs": "Runs work on a batch cluster (LSF, SLURM) from a laptop.",
+        "large-data": "Handles data too big for memory, resumable and honest about coverage.",
+        "performance-tuning": "Makes training or a pipeline faster without changing the science."
+      }
+    },
+    {
+      "title": "Read the results",
+      "say": [
+        "why did this run collapse?",
+        "is this ablation fair?",
+        "what does this embedding hold?"
+      ],
+      "skills": {
+        "training-diagnostics": "Diagnoses a training run: collapsed or alive, bug or effect.",
+        "ml-evaluation": "Makes a benchmark, ablation or leaderboard measure what it claims.",
+        "representation-probes": "Judges a learned representation against its noise floors.",
+        "embedding-maps": "Renders and judges maps of learned embeddings.",
+        "distribution-comparison": "Compares two datasets, with a no-difference baseline for each number.",
+        "tabular-fm-studies": "Reference and tested scripts for tabular foundation models.",
+        "stats-reporting": "Decides how statistics are computed, drawn and worded."
+      }
+    },
+    {
+      "title": "Make the figures",
+      "say": [
+        "make figure 2 from results/",
+        "draw the architecture as a TikZ figure",
+        "this plot looks machine-made"
+      ],
+      "skills": {
+        "figure-development": "Takes a results figure from its claim to checked final panels.",
+        "data-figures": "Builds data panels in one house style, composed at exact millimeters.",
+        "tikz-figures": "Draws architecture diagrams and schematics in TikZ and PGFPlots.",
+        "canvas-schematics": "Builds method and concept schematics on an HTML canvas.",
+        "design-system": "One visual system across figure, slide, poster and web page."
+      }
+    },
+    {
+      "title": "Write",
+      "say": [
+        "draft the methods section",
+        "this paragraph sounds like AI",
+        "assemble a book from my papers"
+      ],
+      "skills": {
+        "paper-writing": "Writes a paper from table of contents to final prose, claim by claim.",
+        "ml-paper-writing": "Writes and checks papers for NeurIPS, ICML and ICLR.",
+        "nature-methods-writing": "Writes Online Methods and Supplementary Notes for Nature journals.",
+        "author-voice": "Keeps text that goes out under your name in your own voice.",
+        "humanizer": "Takes the machine out of a text without changing what it says.",
+        "latex-typesetting": "Typesets in LaTeX and builds a PDF that passes a scripted gate.",
+        "book": "Assembles and builds a book-length document from your own papers.",
+        "research-report": "Builds the report for a supervisor as one HTML file plus a PDF."
+      }
+    },
+    {
+      "title": "Check before it goes out",
+      "say": [
+        "check everything before I send it",
+        "does the paper still say what the code does?",
+        "try to break this"
+      ],
+      "skills": {
+        "qc": "The gate before anything is handed over, with a short report.",
+        "integrity-audit": "Checks that the text matches the code, the records and the data.",
+        "adversarial-audit": "Runs a multi-agent adversarial audit before compute or submission.",
+        "paper-code-parity": "Keeps a paper and its code in agreement while both change."
+      }
+    },
+    {
+      "title": "Answer reviewers, present, release",
+      "say": [
+        "answer reviewer 2",
+        "turn the paper into a poster and a talk",
+        "release the code and the weights"
+      ],
+      "skills": {
+        "rebuttal": "Writes replies to peer review: rebuttals, revisions, chair notes.",
+        "poster": "Builds a conference poster from the paper as one A0 page.",
+        "talk-slides": "Builds a talk from one file: slides, PDF twin, speaker script.",
+        "paper-website": "Builds, checks and deploys the project website of a paper.",
+        "research-release": "Releases the code, weights, notebooks and data of a paper."
+      }
+    },
+    {
+      "title": "Work with agents",
+      "say": [
+        "write the brief for the other session",
+        "run this overnight",
+        "turn my history into skills"
+      ],
+      "skills": {
+        "prompt-writing": "Writes the brief another agent works from, with no other context.",
+        "agent-orchestration": "Runs work with AI agents that survives crashes and comes back true.",
+        "distill-skills": "Turns your own history with an AI agent into installable skills."
+      }
+    }
+  ]
+}

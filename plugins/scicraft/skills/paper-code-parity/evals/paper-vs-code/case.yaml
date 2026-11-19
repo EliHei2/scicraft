@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: paper-vs-code
+expected_outcome: |
+  A paper-to-code map file ties each equation and Table 1 constant of paper/method.tex to the function and config
+  key that implements it, and to a test. The loss in src/train.py averages the consistency term over views while
+  eq. 2 sums it; the code is changed to the sum (the paper is the specification) and the map records the fix. The
+  config's warmup of 2000 steps is changed to Table 1's 5000. Section 3.1 says 8 attention heads while Table 1 says
+  12 and the code uses 12: this is reported to the user as an inconsistency in the paper with a proposed fix, and
+  the code is not changed to 8. A test file asserts the Table 1 constants on the loaded config and the sum over
+  views, and passes. paper/method.tex is unchanged. The final message lists the code changes and the paper edits
+  separately.
+context:
+  scaffold_script: place-files.sh

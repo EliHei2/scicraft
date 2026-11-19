@@ -1,0 +1,9 @@
+path,source,note
+site_a/clicks_2024.parquet,site_a,
+site_a/clicks_2025.parquet,site_a,
+site_b/clicks_2025.parquet,site_b,
+site_b/clicks_2025_clean.parquet,site_b,output of our cleaning pipeline run on site_b 2025
+site_c/clicks_2024.csv,site_c,
+site_c/clicks_2025.csv.gz,site_c,
+site_d/clicks_2024.parquet,site_d,
+site_d/clicks_2025.parquet,site_d,

@@ -1,0 +1,10 @@
+{
+  "n_seeds": 3,
+  "best_baseline": "ViT-B/16",
+  "methods": {
+    "ours":     {"name": "Ours",     "acc": 0.8124, "acc_ci": 0.0031, "ece": 0.021, "params": 86.4, "rank": 1},
+    "vit_b16":  {"name": "ViT-B/16", "acc": 0.8013, "acc_ci": 0.0028, "ece": 0.034, "params": 86.6, "rank": 2},
+    "resnet50": {"name": "ResNet-50","acc": 0.7612, "acc_ci": 0.0040, "ece": 0.029, "params": 25.6, "rank": 3},
+    "convnext_t": {"name": "ConvNeXt-T", "acc": null, "ece": null, "params": 28.6}
+  }
+}

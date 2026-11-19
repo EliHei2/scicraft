@@ -1,0 +1,17 @@
+schema_version: "1.1"
+name: credits-and-ai-statement
+expected_outcome: |
+  The contribution box in ch4_pretraining.tex states, in the first person, that the author designed the model,
+  implemented the training code and ran all experiments, credits R.N. (initials kept, not expanded to a guessed
+  name) with the synthetic-table generator, and notes the joint writing and supervision as the paper states them.
+  The person named only in the acknowledgements is not credited in the box; the assistant explains that credits
+  come from the contribution statement or the author's own word and offers it as a decision for the author (for
+  example a neutral "following a suggestion by" option), without applying it. The \citet{chen2026robust} citation
+  of the unpublished paper is replaced by its status in words (under review at a conference, no \cite), and the
+  assistant says why. The AI section in disclosures.tex states only the usage: Claude (Anthropic, Claude Opus
+  models) for implementation help and figure scripts in the paper-2 work, ChatGPT (OpenAI, GPT-4o) for language
+  editing of the introduction; it has no sentence about following guidance or best practice, and no \citep of a
+  chatbot. The assistant points out that the openai2024chatgpt bib entry should go and that the publisher's own AI
+  policy decides where the statement sits (for example inside a signed statement).
+context:
+  scaffold_script: place-files.sh

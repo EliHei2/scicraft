@@ -1,0 +1,3 @@
+cohort,n_patients,source,url
+public_a,1200,registry A,https://example.org/a
+public_b,860,registry B,https://example.org/b

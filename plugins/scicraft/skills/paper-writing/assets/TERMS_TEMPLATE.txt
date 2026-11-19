@@ -1,0 +1,12 @@
+# Banned terms for prose_qa.py --terms. One per line. "term => replacement" prints the replacement.
+# Matching is whole-word and case-insensitive. Add a row for every rename and every word the author rejects.
+# Rows below come from a real ban list (words the author's published corpus uses zero times); keep, edit or delete.
+symptom => failure mode
+rung => scale, level
+load-bearing => required
+honestly => (delete)
+currency => (name the quantity)
+scale ladder => scale, granularity
+earns its keep => (justify by mechanism with "so" or "because")
+# Renamed variants: erase the old name everywhere, as if it never existed.
+[old variant name] => [current name]

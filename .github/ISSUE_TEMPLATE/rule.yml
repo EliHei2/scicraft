@@ -1,0 +1,21 @@
+name: A rule is missing or wrong
+description: Propose a rule, with the failure behind it
+labels: [rule]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill it belongs to
+    validations:
+      required: true
+  - type: textarea
+    id: story
+    attributes:
+      label: What happened
+      description: What was asked for, what came back, and what replaced it. A rule needs a failure behind it.
+    validations:
+      required: true
+  - type: textarea
+    id: rule
+    attributes:
+      label: The rule, in one or two sentences

@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: coverage-check
+expected_outcome: |
+  The covered share is reported from the one audit that has item rows (M1: 3 covered, 1 partial,
+  1 missing, 1 excluded, so 3 of 5 in-scope items, 60 percent), with the warning that this number is not
+  the package's coverage: the M2 audit file has no item rows (the auditor died or ignored the format)
+  and M3 was never audited, so both must be re-run before the number is used in a status update.
+  The additions for ml-baselines (R2 to SKILL.md, R4 to references/audit.md) are collected into a file
+  per skill for a gap-fill agent. The excluded integrity item is not turned into an addition.
+context:
+  scaffold_script: place-files.sh

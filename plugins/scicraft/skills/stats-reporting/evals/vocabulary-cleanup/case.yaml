@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: vocabulary-cleanup
+expected_outcome: |
+  A file results_clean.md that reports every comparison of results.md in one statistics vocabulary: one
+  correction (Benjamini-Hochberg) for both families, "adjusted p" instead of q, no whiskers, no daggers or
+  "unadjusted" notes, no "detectable", "insignificant", "invariant" or "results remain mixed", and captions that
+  name the center and spread they show. The adjusted p values match a BH recomputation from pvalues.csv. Every
+  comparison that was in results.md is still reported, including the TabBase comparison and the non-significant
+  ablations, with the same rule applied to all. Where p values above a print threshold are written as
+  "significant", the rule is stated. The final message lists what changed and names the ablation whose
+  significance flips when the ablation family moves from Holm to BH (no feature tokens), and says the correction
+  is chosen for the whole paper.
+context:
+  scaffold_script: place-files.sh

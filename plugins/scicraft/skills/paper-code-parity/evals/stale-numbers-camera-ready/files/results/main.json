@@ -1,0 +1,11 @@
+{
+  "n_seeds": 3,
+  "benchmarks_won": 3,
+  "benchmarks_total": 5,
+  "methods": {
+    "ours": {"name": "Ours", "top1": 0.7912, "params_m": 1.2},
+    "full_ft": {"name": "Full fine-tuning", "top1": 0.7795, "params_m": 86.6},
+    "lora": {"name": "LoRA", "top1": 0.7731, "params_m": 0.8},
+    "clip_l": {"name": "CLIP-L", "top1": null, "params_m": 0.0}
+  }
+}

@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: openreview-replies
+expected_outcome: |
+  A folder replies holding paste-ready texts for exactly four comments: one general response and one reply per
+  reviewer (three). Each comment is at most 5,000 characters. The general response is short (about half a page),
+  names the main results, and holds no table, no line numbers and no p values. Each reviewer reply quotes each of
+  that reviewer's points (W1, W2, Q1 ...) in the reviewer's words and answers it with a bold lead sentence followed
+  by evidence with line numbers from paper.txt. Every number in the replies appears in paper.txt. The reply to the
+  first reviewer answers the scaffold question including the fourth place on solubility, and the reply to the
+  second reviewer gives the cost numbers as printed. The final message says that the 5,000-character limit and the
+  Markdown behavior must be checked on the venue's own form.
+context:
+  scaffold_script: place-files.sh

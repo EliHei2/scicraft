@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: prior-sampling-setup
+expected_outcome: |
+  A script synth/sample.py that samples TabICL prior tables one per call and a small test run (or, if tabicl
+  cannot be installed, a clear statement that it was not run). The v1 prior uses mix_scm with is_causal sampled
+  from True and False (restored, because tabicl 2.2.0 fixed it to False), or the answer checks the installed
+  default and says it differs from the pretraining recipe. The v2 prior uses graph_scm with a PriorConfig whose
+  filter_unpredictable_graphs and filter_unpredictable_datasets are True. The generator runs with n_jobs=1 and
+  parallelism goes across tables in the script's own pool, and the answer explains why n_jobs=8 inside
+  PriorDataset was not used (crashes and deadlocks, shared RNG state). numpy, random and torch are seeded before
+  every table, and the graph prior's dependence on PYTHONHASHSEED is handled (a sorted-order patch or a fixed hash
+  seed with a cross-process test). Per-table hyperparameters are recorded. The installed tabicl version is
+  checked against the version the recipes were verified on, and deviations (batch_size_per_gp=1, the v2 port
+  caveat) are written down.

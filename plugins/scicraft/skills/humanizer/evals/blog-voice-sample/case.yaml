@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: blog-voice-sample
+expected_outcome: |
+  The response gives a rewrite of the pasted draft in the writer's voice from the sample (short and plain,
+  first person, a little wry), and, in the default pasted-text mode, the draft, a short list of remaining
+  patterns and the final version. The chatbot residue ("Great question!", "Let me know if you'd like me to
+  expand"), the "isn't just X, it's Y" contrast, the triad "curiosity, collaboration, and growth", the stock
+  words (delve, cutting-edge, showcases, rich interplay, pivotal), the false range "from the foundations of
+  attention to the frontiers of diffusion", the closer "That is the real win." and the send-off "The future
+  looks bright." are gone from the final version. The facts stay: 11 papers this semester, attendance from 5 to
+  14 people. No new fact is added: no paper titles, names, days, times or numbers that are not in the draft
+  (the Thursday meeting time comes from the sample and may only appear if the response says it took it from
+  there). Because the sample uses dashes, the final version may keep a dash or two; it does not have to.

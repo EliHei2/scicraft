@@ -1,0 +1,5 @@
+{
+  "model": {"d_model": 768, "depth": 12, "heads": 12, "patch": 16, "mlp_ratio": 4},
+  "optim": {"lr": 0.001, "warmup_steps": 10000, "weight_decay": 0.05, "decay_embeddings": false},
+  "aug": {"mixup_alpha": 0.8}
+}

@@ -1,0 +1,8 @@
+# The exact upstream code this driver runs. Stamp it before every sync to the remote:
+# a checkout copied without .git loses its commit, and then nobody can say what ran.
+# Fill with: git -C <upstream checkout> rev-parse --abbrev-ref HEAD / rev-parse HEAD
+branch=[branch]
+commit=[full sha]
+base_branch=[main]
+base_commit=[full sha of the base the branch was cut from]
+stamped_on=[YYYY-MM-DD]

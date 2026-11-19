@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: metric-question-defence
+expected_outcome: |
+  A folder ece_reply with an offline HTML report and its PDF. The report quotes the co-author's question exactly,
+  near the top, and answers it first: the ranking of the six models is the same under all five binning schemes,
+  and on synthetic predictions with known miscalibration the measured ECE tracks the true value (for example 4.0
+  measured at a true 4.0). The weakness is stated with its number: ECE of the smallest model moves by 1.1 points
+  across schemes (3.8 to 4.9). Apart from the quoted question, the report does not use the words inflated,
+  overstated, misreported, misspecified, conflated or hacky, and any correction to the draft is phrased as a detail
+  to add or state more clearly. The report does not claim ECE is unbiased beyond the schemes and models tested.
+  Every number traces to the input files.
+context:
+  scaffold_script: place-files.sh

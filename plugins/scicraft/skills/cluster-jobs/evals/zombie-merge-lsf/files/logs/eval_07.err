@@ -1,0 +1,15 @@
+Loading checkpoint /gpfs/projects/fm-eval/ckpt/v3.pt
+Scoring shard 07: 1,180,000 rows (largest shard)
+TERM_MEMLIMIT: job killed after reaching LSF memory usage limit.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   2611.00 sec.
+    Max Memory :                                 16384 MB
+    Average Memory :                             11902.11 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               0.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                9

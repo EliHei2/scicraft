@@ -1,0 +1,13 @@
+method	min_count	score
+ours	5	0.809820
+ours	10	0.820052
+ours	20	0.800449
+ours	50	0.800664
+baseline_a	5	0.736324
+baseline_a	10	0.745298
+baseline_a	20	0.750910
+baseline_a	50	0.747048
+baseline_b	5	0.759371
+baseline_b	10	0.769285
+baseline_b	20	0.772177
+baseline_b	50	0.781029

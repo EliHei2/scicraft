@@ -1,0 +1,25 @@
+000  Under review as a conference paper
+001  ONE ENCODER FOR MANY MOLECULE COLLECTIONS
+...
+412  4 RESULTS
+413  Benchmark. We compare 12 methods (pretrained graph models, task-specific models and baselines) on 14
+414  property prediction tasks. Our encoder ranks first on 9 of the 14 tasks and second on 3 of them. Its
+415  mean rank is 2.1 against 4.6 for the next method, GraphFM. On the remaining 2 tasks it ranks fourth and
+416  fifth.
+417  Table 1 gives the scores per task.
+...
+431  Scaffold split. When every test molecule whose scaffold occurs in the pretraining corpus is removed, our
+432  encoder keeps the best mean rank (2.4). On the solubility task alone it ranks fourth of the 12 methods.
+433  Appendix D gives the full table.
+...
+447  Ablations. Each ablation removes one component of the full model, trained for 200k steps like the reported
+448  model, and is compared with an identically trained control. Removing the 3D distance bias lowers the mean
+449  score over the 14 tasks by .041, the largest drop of the six ablations, and removing the collection token
+450  lowers it by .018. Table 2 gives every ablation.
+...
+463  Seeds. Every number in Tables 1 and 2 is the median over three seeds; Appendix E gives each seed.
+...
+470  Pretraining data. GraphFM was pretrained on 2.1 million molecules and our encoder on 9.8 million. When our
+471  encoder is pretrained on a random 2.1 million subset, it still has the best mean rank (2.6).
+...
+480  Cost. Encoding one million molecules takes 41 GPU-minutes for our encoder and 18 for GraphFM on the same GPU.

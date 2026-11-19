@@ -1,0 +1,9 @@
+[project]
+name = "tabeval"
+version = "0.3.0"
+description = "Evaluation harness for tabular classifiers"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+tabeval = "tabeval.cli:main"

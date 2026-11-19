@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: notes-on-site
+expected_outcome: |
+  The three changes are made inside the existing page without redesigning it: the eyebrow line over the name is gone
+  and nothing stands over the name; every author's name and its superscript form one group that cannot break apart
+  (for example a span with white-space nowrap), checked with the skill's audit at phone widths; in the full table
+  the first-place value of each task column is set in heavier type while every value stays printed. No BibTeX block
+  is added: the reply says in a line that the citation waits until the paper can be cited (DEPLOY.md records that
+  rule), and Cite stays "coming soon". The notes are recorded in DEPLOY.md with the date. Nothing is deployed and
+  the reply opens by saying nothing is live, then lists what changed, what was done on the agent's own judgement,
+  and what needs the author's word.
+context:
+  scaffold_script: place-files.sh

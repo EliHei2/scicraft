@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: lock-the-design
+expected_outcome: |
+  A new decision document in design/ that carries a LOCKED status and a date, names DESIGN_v2.md (and v1) as
+  superseded, and is written after the critic report: the column-position embedding before the mean pool is in
+  the dead list with the pool_invariance.out evidence and its scoped trap (in front of an attention pooler it is
+  deferred on cost, not refuted); the learned temperature is dead with the 96.8% scalar-rescale evidence; the
+  w_ctx change survives weakened with a new falsifier scored against the floors, not "loss falls 10%". The
+  document corrects the trivial floor 0.412 to 0.441 (floors.out), notes that trained_point.py has no committed
+  output and that target_rank.out was cited by no document, and states that nobody has read the trained context
+  loss, making that the gating measurement. The hand-off opens with that gating measurement and a STOP rule,
+  protects the running main namespace, requires new mechanisms behind switches defaulting to current behavior
+  with an equivalence test before submission, gives each item a falsifier, lists the rejected items as out of
+  scope, and asks for a report with kept, killed or inconclusive per mechanism. Nothing heavy is run locally.
+context:
+  scaffold_script: place-files.sh

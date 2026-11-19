@@ -1,0 +1,27 @@
+# Configuration used for every run reported in the paper (written by the launcher at start-up).
+model:
+  n_layers: 12
+  n_heads: 8
+  d_model: 512
+  n_bins: 64
+optim:
+  name: adamw
+  lr: 3.0e-4
+  weight_decay: 0.05
+  warmup_steps: 5000
+  total_steps: 200000
+  schedule: cosine
+  batch_size: 256
+  dropout: 0.1
+seeds: [0, 1, 2, 3, 4]
+hardware: "1x NVIDIA A100 80GB"
+software:
+  python: 3.11.8
+  torch: 2.3.1
+  numpy: 1.26.4
+  scikit-learn: 1.4.2
+  xgboost: 2.0.3
+  catboost: 1.2.5
+baselines:
+  search: random
+  trials_per_dataset: 100

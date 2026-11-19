@@ -1,0 +1,6 @@
+learning_rate,seed,final_top1,diverged
+0.0003,0,79.6,no
+0.0005,0,80.7,no
+0.001,0,81.3,no
+0.002,0,80.2,no
+0.004,0,,yes

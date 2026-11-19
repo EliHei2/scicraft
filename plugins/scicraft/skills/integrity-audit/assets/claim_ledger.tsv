@@ -1,0 +1,2 @@
+id	location	quote	text_says	records_say	source	class	verdict	action
+N0001	[file]:[line]	[the sentence, verbatim]	[value as written]	[value in the records]	[path to log, table or code at commit, with line]	[exact | printed-precision | setting | code | data | unreproducible | no record]	[TRUE | NARROWER | FALSE | OPEN]	[none | fix text: new wording | AUTHOR ACTION Bnn]

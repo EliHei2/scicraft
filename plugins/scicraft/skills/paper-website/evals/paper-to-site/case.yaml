@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: paper-to-site
+expected_outcome: |
+  A folder kestrel-site with public/ (index.html and the page's data) and pipeline/ (a builder and the checks), made
+  from the skill's starter. The page has the name with nothing over it, at most three short statements and the main
+  claim as one sentence from the paper in place of an abstract, the method before the results, two numbers and one open figure
+  for the main claim, the full table in a row that opens, and Cite as "coming soon". Every number on the page is in
+  main.tex or the records, the first-place count is "four of five" (not five), and the page data holds only what
+  the page draws: no p values above .01, no confidence interval. Nothing is pushed or deployed; if a gated build
+  was made, the final message says the gate keeps casual visitors out and is not access control, and never prints
+  the password. The final message leads with whether anything is live, lists what changed, what was done on the
+  agent's own judgement and what needs the author's word, and says which checks ran and which did not.
+context:
+  scaffold_script: place-files.sh

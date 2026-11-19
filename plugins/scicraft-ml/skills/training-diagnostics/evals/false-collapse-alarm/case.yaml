@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: false-collapse-alarm
+expected_outcome: |
+  diagnosis.md concludes that the log does not show collapse and advises against killing the run or raising the
+  regularizer weight on this evidence. It compares windowed medians (the trailing window against the window before
+  it, at least about 20 logged values each) instead of the last rows, and reports that the trailing effrank median
+  (about 167) is level with or above the previous window's (about 164), with the last-row values called noise. It
+  notes that effective rank alone is not a collapse verdict and names a better yardstick (held-out validation trend,
+  a probe against a random-init twin, or the margin over the collapsed solution). It notices that the total loss
+  includes a regularizer whose weight warms up over the first 4000 steps, so the total is not a learning curve across
+  that ramp. It reads the validation rows separately. Numbers quoted match the log.
+context:
+  scaffold_script: place-files.sh

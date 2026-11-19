@@ -1,0 +1,3 @@
+- paper_fig2.pdf is page 4 of our published paper (bib key smith2020), CC BY 4.0
+- book text width is 150 mm, figures go in figures/
+- I want panels a and b, nothing else from that page

@@ -1,0 +1,13 @@
+% Author-action notes. Put \input{authoraction} in the preamble (loads xcolor).
+% Write \authoraction{B01}{what is missing or disagrees, with both sources and their locations}
+% where the gap is. The note prints as a bold red tag while \showauthoractionstrue (the default)
+% and prints nothing after \showauthoractionsfalse, so the submission build needs no text edit.
+% Keep the same IDs in AUTHOR_ACTIONS.md, one row each. Delete a note only when the records answer it.
+\RequirePackage{xcolor}
+\newif\ifshowauthoractions
+\showauthoractionstrue
+\newcommand{\authoraction}[2]{%
+  \ifshowauthoractions
+    \textcolor{red!70!black}{\textbf{[AUTHOR ACTION #1]}~#2}\space
+  \fi
+  \ignorespaces}

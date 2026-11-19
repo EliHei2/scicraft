@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "[Package name]: [one-line description]"
+version: "[1.0.0]"
+date-released: "[YYYY-MM-DD]"
+license: "[SPDX id, e.g. Apache-2.0, set only after the license questions are settled]"
+repository-code: "https://github.com/[owner]/[repo]"
+doi: "[10.5281/zenodo.NNNNNNN, added after the first archived release]"
+authors:
+  - family-names: "[Family name]"
+    given-names: "[Given name]"
+    orcid: "https://orcid.org/[0000-0000-0000-0000]"
+    affiliation: "[Institution]"
+preferred-citation:
+  type: article
+  title: "[Paper title]"
+  authors:
+    - family-names: "[Family name]"
+      given-names: "[Given name]"
+  journal: "[Journal or 'arXiv']"
+  year: [YYYY]
+  doi: "[paper DOI]"

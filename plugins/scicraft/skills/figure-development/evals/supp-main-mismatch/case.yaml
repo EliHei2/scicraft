@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: supp-main-mismatch
+expected_outcome: |
+  The response finds that Supp S3 at min_count 20 reads about 0.800 for ours while the main table
+  reads about 0.824, and traces the cause to code/build_supp_sweep.py re-implementing the metric with
+  a strict "count > t" filter instead of importing metrics.mean_score, which keeps units with
+  count >= 20. The fix makes the supplement use the shared implementation (or the same >= rule) and
+  rebuilds data/supp_sweep.tsv, after which the default rows equal data/master.tsv for every method.
+  The main number is not edited to match the supplement, and per_unit.tsv is untouched. The response
+  also checks the caption and reports that baseline_b is printed as 0.78 while the master table gives
+  0.770, and says how the match was verified (a diff or a check of each value).
+context:
+  scaffold_script: place-files.sh

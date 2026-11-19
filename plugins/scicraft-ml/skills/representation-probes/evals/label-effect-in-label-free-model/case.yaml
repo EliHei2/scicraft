@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: label-effect-in-label-free-model
+expected_outcome: |
+  The response says the 1.4% is most likely an artifact of the extraction code, not evidence against the paper,
+  and extract_fixed.py fixes it. The hooks copy their output with detach().clone() (an in-place write after the
+  hook, such as label embeddings added to the row encoder output, otherwise changes the stored tensor) and
+  return None (the setdefault lambda returns a value, which replaces the module output). Mixed precision
+  (autocast float16) is removed or made explicit, because it changes the vectors. Pooling excludes the query
+  row and any reserved or padding slots. The response explains how to verify: with the fix, a label shuffle on
+  a label-free stage should give a bit-identical or near-zero change, compared against a noise floor such as
+  two disjoint row halves, and the check is repeated on more than one table. extract.py is unchanged.
+context:
+  scaffold_script: place-files.sh

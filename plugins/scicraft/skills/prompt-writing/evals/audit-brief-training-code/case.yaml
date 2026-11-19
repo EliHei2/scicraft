@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: audit-brief-training-code
+expected_outcome: |
+  A file AUDIT_BRIEF.md that a fresh agent can act on with no other context. It states the job and what done means
+  (the audit is finished when every file under train/ has been read and every finding is recorded), says the agent
+  is read-only on the code, and names one output path. It makes the first step a cheap measurement: read the flat
+  reconstruction loss in runs/smoke/train.jsonl and compare it with a trivial baseline (for example predicting the
+  mean), reporting that number before anything else and stopping early if the loss is at or near the trivial floor.
+  It asks for findings written to disk as the agent goes (a skeleton file first), with a fallback of putting them
+  in the final message. Each finding has a location, a problem, a severity and an exact fix. Out-of-scope items
+  (style nits, redesigns, new features) are named. The final report gives counts by severity, then the top
+  findings, then the path, under a word cap. The user's own words about the bar are quoted.
+context:
+  scaffold_script: place-files.sh

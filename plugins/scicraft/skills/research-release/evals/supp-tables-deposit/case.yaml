@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: supp-tables-deposit
+expected_outcome: |
+  upload/ separates small reference tables from bulk data. The tables part holds a handful of short reference
+  tables of the same kind as the co-author's files (dataset table, hyperparameters, feature list, evaluation tasks,
+  software versions), named in her scheme, about as many as the paper cites, and it does not hold the per-sample
+  prediction dump or the embedding coordinates. Values in the staged tables agree with paper.md. The bulk files
+  (per-sample predictions, embeddings) are either placed in a separate data folder with a manifest giving size and
+  checksums, or proposed for a separate data deposit; they are never mixed into the tables. The selection was made
+  by an explicit whitelist. The co-author's files are untouched. The final message shows the staged file list,
+  flags the disagreement between source_data and paper.md, and says that nothing was uploaded.
+context:
+  scaffold_script: place-files.sh

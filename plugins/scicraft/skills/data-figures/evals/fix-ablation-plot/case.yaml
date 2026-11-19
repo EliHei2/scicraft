@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: fix-ablation-plot
+expected_outcome: |
+  A rewritten ablation panel that reads the same ablation_seeds.csv and writes PDF and PNG (and ideally an SVG with
+  live text) at the ICML single-column width of about 82.5 mm, without bbox tight. Bars are thin, start at 0, have
+  no borders, hatches or stars, and every variant is drawn with the same bar width; the reference variant may differ
+  only in color or position. Whiskers show the 25th to 75th percentile around the median over seeds (or the
+  response explains the spread shown); mean with standard deviation is gone. The gray note with seeds, learning
+  rate and an internal run name is removed from the figure and offered as caption text without the run name; the
+  in-plot legend and grid are gone; the long title is cut to a short label or removed. Fonts are embedded TrueType.
+  The per-variant values are unchanged.
+context:
+  scaffold_script: place-files.sh

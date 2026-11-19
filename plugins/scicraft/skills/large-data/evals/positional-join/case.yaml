@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: positional-join
+expected_outcome: |
+  The response explains that merge_preds.py pairs predictions with features by row position
+  (pd.concat along columns after reset_index), while preds.csv comes back in a different order
+  and without 600 of the 20,000 users, so the pairing is wrong. A fixed script joins on user_id,
+  checks that the key is unique on both sides and that the overlap is high (19,400 of 20,000
+  users, 97%), and reports the accuracy on the key join, about 0.90 on 19,400 users. The
+  response states that 600 users have no prediction and that the accuracy covers only the
+  19,400 matched users. The original input files are not modified.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,11 @@
+schema_version: "1.1"
+name: dataset-map-distances
+expected_outcome: |
+  results/ holds one map per encoder and notes.md. The real-versus-synthetic distance for each encoder is computed
+  in the cleaned, scaled embedding or PCA space and not on UMAP coordinates, and notes.md says why (a projection is
+  for pictures only). The projection is fitted on clean items with real and synthetic balanced, and the perturbed
+  variants and the row-chunk copies (ids with _chunk) are placed with transform, not fitted. Both encoders are
+  evaluated on the same 381 datasets present in both files, and notes.md says that three were dropped from the
+  stats view for this reason. The maps show points only, with no density contours.
+context:
+  scaffold_script: place-files.sh

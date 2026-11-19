@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: chat-plan-check
+expected_outcome: |
+  A folder kickoff/ with a SPEC.md that holds plan_from_chat.md verbatim and a claim table with one row per
+  factual claim of the plan, each with a verdict and evidence that names its source. The claim that causal
+  structure is on by default is found wrong for the installed 0.4.0 (core.py sets causal False; the changelog does
+  not mention the change). The claim of reproducibility across processes is found wrong or at least unproven,
+  because core.py iterates over a set of strings; ideally this is shown by running it under two hash seeds. The
+  claim that no pretrained weights exist is wrong (README lists two checkpoints, non-commercial licence). The
+  64-dimension claim is resolved in favour of the released code (32 dimensions, 75,072 parameters) and recorded as
+  a paper-versus-code deviation. The claim about industry practice is marked unverified. Research questions and a
+  status file are drafted; no pipeline code is written. The final message leads with the corrections and says
+  what stays unverified.
+context:
+  scaffold_script: place-files.sh

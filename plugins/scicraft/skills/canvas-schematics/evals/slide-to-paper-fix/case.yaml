@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: slide-to-paper-fix
+expected_outcome: |
+  fig2_code is reworked into a flat paper figure that shows the same content: masked input, encoder,
+  latent z, decoder and a reconstruction loss in panel a; a frozen encoder and a linear probe in
+  panel b. The drop shadows, gradients, the NEW pill, the big centred figure title with its grey
+  subtitle, the sentence titles with periods and the numbered discs are gone; panels carry bold
+  lowercase letters (a, b) with short left-aligned titles; no text is under 18 px at 10 px per mm; the
+  canvas is laid out for 183 mm (1830 px) and the PDF page is 183 mm wide, not 1830 px (484 mm). The
+  renderer requires puppeteer normally with a package.json beside it, with no absolute path. The final
+  message lists what changed, what the checks returned and what was not checked.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,35 @@
+{
+  "_comment": "One statistics vocabulary for one paper. Copy into the project, edit the values that differ, and point stats_lint.py at it with --vocab. Defaults are the author's.",
+  "correction": "Benjamini-Hochberg",
+  "other_corrections": ["Holm", "Bonferroni", "Benjamini-Yekutieli", "Sidak", "Šidák"],
+  "alpha": 0.05,
+  "print_threshold": 0.01,
+  "intervals_on_display": false,
+  "declaration_pattern": "(?i)p values? (?:at or )?(?:below|under|of at most|≤|<=) ?[.0-9]+ (?:are|is) printed|printed only (?:when|if|for) .{0,40}p",
+  "spread_gloss_words": ["standard deviation", "s.d.", "interquartile", "IQR", "25th", "percentile"],
+  "banned": [
+    {"pattern": "(?i)\\bwhiskers?\\b", "use": "error bars, and say what they show (25th to 75th percentile)"},
+    {"pattern": "(?i)(?<!minimum )(?<!smallest )\\b(?:un)?detectabl[ey]\\b(?! effect sizes?)", "use": "significant / no significant change (adjusted p); 'minimum detectable effect', 'smallest detectable difference' and 'detectable effect size' are allowed as power-planning terms"},
+    {"pattern": "(?i)\\binsignifican(?:t|tly|ce)\\b", "use": "not significant (adjusted p = ...), with the effect size"},
+    {"pattern": "(?i)\\bclaimed\\b", "use": "the measured relation, stated plainly"},
+    {"pattern": "(?i)\\bbootstrap(?:ped)? intervals?\\b", "use": "name the object: interquartile range over N bootstrap draws, or 95% confidence interval"},
+    {"pattern": "(?i)\\bq[- ]values?\\b|(?<![A-Za-z])q\\s*(?:=|<|≤|\\\\leq)\\s*0?\\.\\d", "use": "adjusted p"},
+    {"pattern": "(?i)\\bunadjusted\\b", "use": "adjust every p in the family, or state plainly why one is outside it"},
+    {"pattern": "(?i)added after pre-?registration", "use": "a plain sentence saying when and why the item was added"},
+    {"pattern": "(?i)\\bdoes not establish\\b", "use": "state what was measured and its size"},
+    {"pattern": "(?i)\\bresults? (?:are|is|remain|remains|were) mixed\\b", "use": "state which comparisons are significant, with the count and denominator"},
+    {"pattern": "†|\\\\dagger\\b|\\\\textdagger\\b", "use": "no special-case markers; put the item in the family or give a plain reason"},
+    {"pattern": "(?i)\\bseed gap\\b", "use": "the spread between replicate seeds, defined where it is used"}
+  ],
+  "warn": [
+    {"pattern": "(?i)\\b(?:wins?|winning|beats?|outperforms?|falls behind|strongest|best[- ]published)\\b", "use": "a measured relation: ranks below, is rated above ... by Elo, X against Y"},
+    {"pattern": "(?i)\\bleads\\b(?! to\\b)", "use": "ranks first by [measure]; a sentence the author wrote with leads and a named measure stays"},
+    {"pattern": "(?i)\\btop[- ](?:3|three)\\b", "use": "first, if first holds on the stated measure"},
+    {"pattern": "(?i)\\binvariant\\b", "use": "no significant change, unless invariance is the technical property"},
+    {"pattern": "(?i)\\brobustness\\b", "use": "say what was varied: 'change in score by input transformation'"},
+    {"pattern": "(?i)\\b(?:composite|Stouffer)\\b", "use": "on figures and in prose for readers: 'the result over the N tasks together'"},
+    {"pattern": "(?i)\\barms?\\b", "use": "ablation, condition or variant"},
+    {"pattern": "(?i)\\bpre-?registered\\b", "use": "fine in Methods; on a figure say what was fixed in advance"},
+    {"pattern": "(?i)\\b(?:marginally|nearly|almost) significant\\b|\\btrend(?:ing|ed)? towards? significance\\b", "use": "not significant (adjusted p = ...), with the effect size (Suggested, not yet tested in real work)"}
+  ]
+}

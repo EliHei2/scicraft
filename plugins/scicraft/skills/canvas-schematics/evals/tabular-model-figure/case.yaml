@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: tabular-model-figure
+expected_outcome: |
+  The user asked for canvas, so the figure is built here and not routed to tikz-figures.
+  A folder fig1 with the canvas code (library, layout, one region function per panel, main, render
+  script with package.json) and, if the renderer could run, fig1 PDF and PNG files. The canvas is laid
+  out at 10 px per mm for 139.7 mm (about 1397 px wide), so the PDF page is about 139.7 mm wide.
+  Panel a shows masked rows into a student encoder and predictor, full rows into a teacher encoder
+  joined to the student by a dashed EMA arrow, a stop-gradient mark on the teacher path, and a loss
+  between predicted and teacher embeddings; panel b shows a frozen encoder with a linear probe. The
+  colours follow the paper's dark blue and gold (the four-tone theme), no text is under 18 px, there
+  are no shadows or gradients, panel letters are bold lowercase without a period and titles are short
+  noun phrases. The final message says which checks ran (lint, the render check) and what was not
+  checked, or says plainly that rendering could not run and why.
+context:
+  scaffold_script: place-files.sh

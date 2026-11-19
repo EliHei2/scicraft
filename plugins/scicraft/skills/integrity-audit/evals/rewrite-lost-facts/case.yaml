@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: rewrite-lost-facts
+expected_outcome: |
+  A file merge_check.md that compares methods_v1.tex and methods_v2.tex fact by fact, using a numeric-token diff
+  and label and citation diffs. It finds that the dropout of 0.1 was dropped, that the batch size changed from
+  256 to 128, that the citation gorishniy2022 was dropped, and that the label eq:loss was removed although
+  main_refs.tex refers to it (a broken reference). It treats the batch-size change as a disagreement the author
+  must settle against the run records, without choosing either value itself. It reports that the other numbers
+  (12 layers, 8 heads, 512, 1.2 million, 200,000 steps, 5,000 warmup, 15%, 64 bins, patience 10) survived.
+  Neither methods file is modified.
+context:
+  scaffold_script: place-files.sh

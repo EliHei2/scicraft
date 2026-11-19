@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: leaderboard-from-folds
+expected_outcome: |
+  A folder results_table with a results table built from fold_scores.csv and a rating across tasks. Each cell
+  shows the raw metric (median or mean over folds) with its spread and the number of folds, and the caption or
+  notes say what the spread is. expr_recon_mse is treated as lower-is-better. BigFM's missing tasks show an
+  explicit status (OOM) and BigFM is not ranked as if it had played every task. The two spellings ScGPTlike and
+  scgptlike are recognized as one model and merged or flagged before rating. The rating is computed from
+  per-fold paired games (or another paired per-fold method), with uncertainty, and mean rank is given beside it
+  or the rating method is stated. The final message points out that pca64, ridge_counts and gbdt share
+  identical SDs on every task, says this looks like a computation error to check before publication, and lists
+  what was not checked.
+context:
+  scaffold_script: place-files.sh

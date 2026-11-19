@@ -1,0 +1,53 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,booktabs}
+\usepackage{siunitx}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\newcommand{\model}{TabRet}
+
+\title{\model{}: Online Methods}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Model}\label{sec:model}
+\model{} encodes each table row with a six-layer transformer of width $256$
+and retrieves its $k=32$ nearest training rows in the same embedding space.
+Residual connections follow~\citep{he2016resnet}. Rows are drawn from the
+benchmark described in Section~\ref{sec:data}.
+
+\subsection{Setup}\label{sec:setup}
+We train for $50$ epochs with Adam~\citep{kingma2015adam} at a learning rate of
+$10^{-4}$ and a batch size of $512$ rows. Training stops early when the
+validation loss has not improved for five epochs. Each run takes about
+\SI{3}{\hour} on one GPU.
+
+\begin{table}[h]
+  \caption{\textbf{Default hyperparameters.} Used in every analysis unless stated otherwise.}\label{tab:defaults}
+  \centering
+  \begin{tabular}{@{}ll@{}}
+  \toprule
+  Parameter & Value \\
+  \midrule
+  Layers & $6$ \\
+  Width & $256$ \\
+  Neighbors $k$ & $32$ \\
+  Learning rate & $10^{-4}$ \\
+  Batch size & $512$ \\
+  Epochs & $50$ \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Evaluation}\label{sec:eval}
+Accuracy is averaged over five seeds; the defaults of Table~\ref{tab:defaults}
+are used throughout.
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+\end{document}

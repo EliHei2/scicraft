@@ -1,0 +1,16 @@
+method	dataset	n_tokens_M	runtime_h	peak_mem_gb	status	log	notes
+ours	web-s	12	0.4	11.2	done	logs/ours_web-s.out	
+ours	code-m	48	1.3	14.0	done	logs/ours_code-m.out	
+ours	books-l	190	4.8	21.5	done	logs/ours_books-l.out	
+ours	mix-xl	760	17.9	38.0	done	logs/ours_mix-xl.out	
+ours	all-xxl	2900	66.2	39.1	done	logs/ours_all-xxl.out	
+baseline_a	web-s	12	0.9	30.1	done	logs/a_web-s.out	
+baseline_a	code-m	48	3.1	52.0	done	logs/a_code-m.out	estimated from web-s, job lost
+baseline_a	books-l	190	11.7	180.4	done	logs/a_books-l.out	
+baseline_a	mix-xl	760	22.5	512.0	killed	logs/a_mix-xl.out	TERM_MEMLIMIT at 512 GB; runtime is time until kill
+baseline_a	all-xxl	2900			not attempted		
+baseline_b	web-s	12	0.6	18.3	done	logs/b_web-s.out	
+baseline_b	code-m	48	2.0	24.9	done	logs/b_code-m.out	
+baseline_b	books-l	190		33.0	done	logs/b_books-l.out	runtime not in log
+baseline_b	mix-xl	760	30.2	71.0	done	logs/b_mix-xl.out	
+baseline_b	all-xxl	2900	9.8	70.2	done	logs/b_all-xxl.out	ran on 1/16 subsample

@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: polish-last-version
+expected_outcome: |
+  abstract.md is a polish of the author's turn-5 version in chat_log.md, not of the assistant's turn-2 draft and
+  not a new text. The typos ("looses", "comunity") are fixed, the dataset count reads twelve or 12, and the text is
+  at most 120 words, reached by deleting whole sentences or clauses (the sentence about an important finding for
+  the community is the obvious cut) while the author's remaining sentences keep their wording and order. No words
+  from the turn-2 draft (landscape, comprehensive, seamlessly, powerful) and no headings or bullets are added, and
+  no alternative versions are delivered. The final message lists the changes in a few lines (old to new) and says
+  which sentence was cut to meet the limit.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Edit proposals for apply_edits.py",
+  "type": "object",
+  "properties": {
+    "edits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "file": {"type": "string", "description": "path relative to the artifact root"},
+          "old": {"type": "string", "minLength": 12, "description": "exact text, occurring exactly once in the current file"},
+          "new": {"type": ["string", "null"], "description": "replacement; null for a query; equal to old for a deliberate keep"},
+          "why": {"type": "string", "description": "rule or source, with location"},
+          "type": {"type": "string", "enum": ["surgical", "semantic", "query"]},
+          "severity": {"type": "string", "enum": ["blocker", "major", "minor"]},
+          "source": {"type": "string", "description": "file:line or page of the evidence, for fact edits"},
+          "job": {"type": "string"}
+        },
+        "required": ["id", "file", "old", "new", "why", "type"]
+      }
+    }
+  },
+  "required": ["edits"]
+}

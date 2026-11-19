@@ -1,0 +1,26 @@
+method,task,macro_f1,rank
+Kestrel,grid load,0.587000,1
+Method B,grid load,0.381000,5
+Method C,grid load,0.523000,2
+Method D,grid load,0.511000,3
+Baseline,grid load,0.473000,4
+Kestrel,server logs,0.773000,1
+Method B,server logs,0.673000,2
+Method C,server logs,0.582000,4
+Method D,server logs,0.654000,3
+Baseline,server logs,0.379000,5
+Kestrel,gait,0.626000,2
+Method B,gait,0.767000,1
+Method C,gait,0.517000,4
+Method D,gait,0.451000,5
+Baseline,gait,0.557000,3
+Kestrel,traffic,0.613000,1
+Method B,traffic,0.588000,2
+Method C,traffic,0.411000,4
+Method D,traffic,0.374000,5
+Baseline,traffic,0.544000,3
+Kestrel,bearing wear,0.709000,1
+Method B,bearing wear,0.508000,5
+Method C,bearing wear,0.646000,2
+Method D,bearing wear,0.532000,4
+Baseline,bearing wear,0.549000,3

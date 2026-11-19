@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: pool-two-suites
+expected_outcome: |
+  A folder perf_link with a deduplicated list of real datasets and a per-dataset gap table. The answer corrects the
+  "about 190" premise: almost all TabArena datasets (49 of 51) are inside BeyondArena, leaving about 144 unique
+  datasets. It notices that normalized name matching alone misses renamed datasets (about 40 matched by name) and
+  resolves or flags the rest, for example by identical row counts, confirming them by eye. The gap uses TabArena's
+  published per-dataset files with imputed rows excluded, errors averaged over folds per dataset, and a scale-free
+  per-dataset measure (a log error ratio or ranks), because the metric differs by task type. The final message
+  states the detectable correlation at the available n (about 0.38 at 51 datasets, about 0.23 at about 144) and
+  says a null result would be reported as a null, and lists what was not checked (for example that BeyondArena
+  per-dataset results are not hosted as a plain file, or that downloads failed).
+context:
+  scaffold_script: place-files.sh

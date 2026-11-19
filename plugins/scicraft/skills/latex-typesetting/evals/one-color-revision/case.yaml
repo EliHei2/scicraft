@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: one-color-revision
+expected_outcome: |
+  The revised paper marks every change from the submitted version in one light color behind a
+  single switch: the orange second-round marking no longer appears in the marked PDF, and the
+  earlier blue and orange passages are both shown in the same revision color. The note's
+  sentence is added in that color after the results table; the new latency table is added with
+  its whole caption in the revision color and its label (Table 2) colored, and the new
+  reference lecun1998gradient is cited (and may be colored in the bibliography). The paper text
+  does not mention reviewers. Two PDFs are produced from the same source: a marked one and a
+  clean one with no color and the same text. Both build without undefined references or
+  citations. The response names the two files and says how the clean copy is made.
+context:
+  scaffold_script: place-files.sh

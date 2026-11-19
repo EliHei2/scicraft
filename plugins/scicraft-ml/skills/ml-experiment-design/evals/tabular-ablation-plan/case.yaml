@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: tabular-ablation-plan
+expected_outcome: |
+  A plan file plan/EXPERIMENT_PLAN.md and a config folder plan/configs/ with one base YAML and one small YAML per
+  structural variant that starts from the base. The plan orders runs as trivial baselines (a no-learning floor such
+  as raw features or PCA into the same probe), then ablations, then the full model, and treats the full model as
+  the main bet with ablations beside it. Each of the three added components (missing-value token, contrastive loss,
+  attention pooling) has its own arm that changes only that component. Controls are trained with the same recipe,
+  seeds and step budget and compared at matched samples or tables seen; no untrained twin serves as the comparison
+  for an ablation. A replicate arm or seed pair defines a noise band, and differences inside it are called ties.
+  The plan states kill, steer and promote rules written before launch (kill only after warmup, sustained, never
+  across a config change), fits the 5-day, 4-GPU budget, and says which runs come first. It asks for or records
+  the reference model to keep as an arm, and logs time and memory per step.

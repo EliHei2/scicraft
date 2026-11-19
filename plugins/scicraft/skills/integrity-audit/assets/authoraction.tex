@@ -1,0 +1,16 @@
+% Author-action notes for an integrity audit.
+% Put \input{authoraction} in the preamble (needs xcolor; loaded below).
+% Use \authoraction{B01}{what disagrees, with both sources and their locations}
+% where the disagreement is. The note shows in the text as a bold
+% red tag while \showauthoractionstrue (the default), and prints nothing after
+% \showauthoractionsfalse, so the submission build needs no edit to the text.
+% Keep the same IDs in AUTHOR_ACTIONS.md, one row each, and delete a note only
+% when the records answer it.
+\RequirePackage{xcolor}
+\newif\ifshowauthoractions
+\showauthoractionstrue
+\newcommand{\authoraction}[2]{%
+  \ifshowauthoractions
+    \textcolor{red!70!black}{\textbf{[AUTHOR ACTION #1]}~#2}\space
+  \fi
+  \ignorespaces}

@@ -1,0 +1,12 @@
+{
+ "sign_test_all_pairs": {
+  "p": 0.002
+ },
+ "traffic_vs_method_b": {
+  "p": 0.04,
+  "ci95_f1_diff": [
+   0.003,
+   0.047
+  ]
+ }
+}

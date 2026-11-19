@@ -1,0 +1,10 @@
+schema_version: "1.1"
+name: variants-look-identical
+expected_outcome: |
+  notes.md shows that 0.00781 is the trivial floor: smooth-L1 (beta 1) with mean reduction of a zero prediction
+  against unit-norm targets in d = 64 is 0.5/d = 0.0078125. It concludes that the objective is dead (no variant
+  learned beyond predicting zero), so the ladder cannot support "architecture doesn't matter" and the figure should
+  not be made from it; the record should call the result dead or inconclusive. It says high effective rank does not
+  rule this out. It asks for checks that the variants differ (weight or output hashes, or which readout each used)
+  and recommends a redesign or objective fix over a rerun, with a collapse margin or loss-over-floor logged from
+  step 0. The experiments it proposes are few.

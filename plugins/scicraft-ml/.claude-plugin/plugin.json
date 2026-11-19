@@ -1,0 +1,11 @@
+{
+  "name": "scicraft-ml",
+  "description": "Machine-learning research craft: experiment and ablation design, evaluation and benchmarks, training diagnostics, design review, ML paper writing, embedding maps. Builds on the scicraft plugin.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Elyas Heidari"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/EliHei2/scicraft",
+  "repository": "https://github.com/EliHei2/scicraft"
+}

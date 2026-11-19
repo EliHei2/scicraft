@@ -1,0 +1,22 @@
+# Base config of a small tabular transformer (size S). Every knob: paper symbol, reason, arms that change it.
+# Replace the values with your own; keep the comments in this form.
+data:
+  max_rows: 1024          # N: rows per table in context; realistic size, never subsampled below it in training
+  max_features: 100       # F: columns per table; tables with more are split, not truncated
+  missing_token: true     # learned token for missing cells; arm: no_missing_token
+model:
+  d: 192                  # d: token width; scaled with depth across sizes S/M/B
+  d_out: 64               # output embedding size; FIXED across sizes
+  depth: 6                # L: blocks; the scaling axis together with d
+  column_attention: true  # attention across columns inside a row; arm: no_column_attention
+  row_attention: true     # attention across rows inside a column; arm: no_row_attention
+  pooling: attention      # table readout: attention | mean; arm: mean_pooling
+train:
+  steps: 100000           # step budget; every arm and the control share it
+  batch_tables: 32        # tables per step
+  lr: 3.0e-4              # peak learning rate (warmup then WSD)
+  lr_schedule: wsd        # warmup-stable-decay; the cooldown is the deadline device
+  warmup_steps: 2000
+  weight_decay: 0.05      # none on biases, norms, embeddings
+  grad_clip: 1.0
+  seed: 0

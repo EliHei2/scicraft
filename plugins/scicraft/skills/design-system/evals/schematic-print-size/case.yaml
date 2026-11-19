@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: schematic-print-size
+expected_outcome: |
+  The answer converts the canvas to print: 2400 px at 120 mm gives 1 px = 0.05 mm, so 1 pt is about 7.06 px. The
+  14 px labels print at about 2.0 pt and the 20 px text at about 2.8 pt, both under the 5 pt minimum; the 32 px
+  titles print at about 4.5 pt, also under. For 7, 6 and 5 pt the canvas needs about 49.4, 42.3 and 35.3 px
+  (rounded up to 50, 43 and 36 px). The answer keeps three tiers, says to give labels more room rather than shrink
+  them back, and shows or runs the conversion (for example with the skill's units script).

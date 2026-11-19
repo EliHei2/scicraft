@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: fan-out-audit
+expected_outcome: |
+  The assistant launches exactly three agents, one per named lens (correctness, data leakage, efficiency),
+  each with a distinct question, read-only on train.py, each writing its findings to its own file under
+  audit/. It does not run the training and does not edit train.py. Before reporting, it checks the agents'
+  findings against the code itself. The summary is short, gives counts, and names the real problems with
+  their lines: the scaler is fitted on all rows before the train and test split (leakage); the model applies
+  softmax before CrossEntropyLoss, which expects logits (correctness); and it lists efficiency findings
+  honestly as minor where they are minor. It gives the paths of the three audit files and says if any agent
+  failed or any lens is incomplete.
+context:
+  scaffold_script: place-files.sh

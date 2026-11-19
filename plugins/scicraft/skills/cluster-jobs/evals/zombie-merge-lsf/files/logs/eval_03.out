@@ -1,0 +1,7 @@
+Scoring shard 03: 410,000 rows
+peak_gpu_mem_allocated_gb=6.1
+done in 1843 s
+
+Resource usage summary:
+    Max Memory :                                 9120 MB
+    Total Requested Memory :                     16384.00 MB

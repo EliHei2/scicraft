@@ -1,0 +1,4 @@
+parameter,value,unit_or_note
+learning_rate,0.0003,AdamW
+batch_size,512,rows
+epochs,50,

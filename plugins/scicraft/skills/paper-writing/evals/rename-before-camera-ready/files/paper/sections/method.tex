@@ -1,0 +1,5 @@
+\section{Retrieval classifier for tabular rows}\label{sec:method}
+For each query row, RR-Pool builds a neighbour pool of the $k = 32$ nearest training rows under the learned row embedding (\cref{sec:neighbour-pool}).
+
+\subsection{Construction of the neighbour pool}\label{sec:neighbour-pool}
+The neighbour pool is drawn from an index over all training rows. Rows of the query's own fold are excluded from its neighbour pool, so no test row retrieves itself.

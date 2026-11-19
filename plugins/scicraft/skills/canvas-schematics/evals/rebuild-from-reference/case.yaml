@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: rebuild-from-reference
+expected_outcome: |
+  A folder fig_overview holding canvas code, per-region crops of reference.png, and (if the renderer
+  could run) a PDF and PNG of the rebuilt figure. The canvas is 1830 px wide with a height that keeps
+  the reference's aspect ratio within 2 % (about 560 px, so between 549 and 571). Panel a keeps the
+  reference's arrangement: a tissue scene with four call-outs and a 2 x 2 grid of cell-shape vignettes.
+  Panel b draws the points of cells.csv, loaded through a script that sets a JS global (no fetch),
+  coloured by cluster with unassigned points grey, and PROVENANCE.md names cells.csv. No text is under
+  18 px. The final message reports the aspect-ratio check, the lint and render checks, and any place
+  where the rebuild deviates from the reference.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,19 @@
+$ bjobs -w -u $USER
+JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME     SUBMIT_TIME
+5531198 me      PEND  short      submit02                eval_merge   Nov 17 18:42
+$ bjobs -a -w -u $USER | grep eval_
+5531186 me      DONE  gpu        submit02    gpu-n14     eval_00      Nov 17 18:42
+5531187 me      DONE  gpu        submit02    gpu-n14     eval_01      Nov 17 18:42
+5531188 me      DONE  gpu        submit02    gpu-n09     eval_02      Nov 17 18:42
+5531189 me      DONE  gpu        submit02    gpu-n09     eval_03      Nov 17 18:42
+5531190 me      DONE  gpu        submit02    gpu-n21     eval_04      Nov 17 18:42
+5531191 me      DONE  gpu        submit02    gpu-n21     eval_05      Nov 17 18:42
+5531192 me      DONE  gpu        submit02    gpu-n03     eval_06      Nov 17 18:42
+5531193 me      EXIT  gpu        submit02    gpu-n03     eval_07      Nov 17 18:42
+5531194 me      DONE  gpu        submit02    gpu-n17     eval_08      Nov 17 18:42
+5531195 me      DONE  gpu        submit02    gpu-n17     eval_09      Nov 17 18:42
+5531196 me      DONE  gpu        submit02    gpu-n11     eval_10      Nov 17 18:42
+5531197 me      DONE  gpu        submit02    gpu-n11     eval_11      Nov 17 18:42
+5531198 me      PEND  short      submit02                eval_merge   Nov 17 18:42
+$ bjobs -l 5531198 | grep -i depend
+ Dependency condition invalid or never satisfied;

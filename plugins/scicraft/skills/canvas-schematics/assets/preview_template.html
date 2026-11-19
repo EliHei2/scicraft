@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- Region preview harness: preview.html?region=b[&data=panel_b][&scene=1]
+     Loads the core library, the packs named in LAYOUT.PACKS, optional data/<name>.js and
+     scene.js, then regions/region_<id>.js, sizes the canvas to that region's rect plus a
+     24 px pad and draws only that region on a faint frame, at true scale. -->
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:#fff} canvas{display:block} #done-flag{display:none}</style>
+</head><body>
+<canvas id="c"></canvas><div id="done-flag"></div>
+<script src="core_lib.js"></script>
+<script src="layout.js"></script>
+<script>
+  const Q = new URLSearchParams(location.search);
+  const REGION = Q.get('region') || 'a';
+  const files = (LAYOUT.PACKS || []).map(p => `pack_${p}.js`);
+  if (Q.get('scene')) files.push('scene.js');
+  (Q.get('data') || '').split(',').filter(Boolean).forEach(d => files.push(`data/${d}.js`));
+  files.push(`regions/region_${REGION}.js`);
+  (function next(i) {
+    if (i === files.length) return boot();
+    const s = document.createElement('script'); s.src = files[i];
+    s.onload = () => next(i + 1);
+    s.onerror = () => { console.error('missing ' + files[i]); next(i + 1); };
+    document.head.appendChild(s);
+  })(0);
+
+  function boot() {
+    const R = LAYOUT.REGIONS[REGION], PAD = 24, S = LAYOUT.CANVAS.S;
+    const W = R.w + PAD * 2, H = R.h + PAD * 2, canvas = document.getElementById('c');
+    canvas.width = W * S; canvas.height = H * S; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    const ctx = canvas.getContext('2d'); LIB.S = S;
+    ctx.setTransform(S, 0, 0, S, 0, 0); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#e6eaef'; ctx.lineWidth = 1; ctx.setLineDash([4, 4]); ctx.strokeRect(PAD, PAD, R.w, R.h); ctx.setLineDash([]);
+    ctx.save(); ctx.translate(PAD, PAD);
+    const fn = window[R.fn];
+    if (typeof fn === 'function') fn(ctx, R.w, R.h, R); else console.error('region_' + REGION + ' defines no ' + R.fn);
+    ctx.restore();
+    document.getElementById('done-flag').style.display = 'block';
+  }
+</script>
+</body></html>

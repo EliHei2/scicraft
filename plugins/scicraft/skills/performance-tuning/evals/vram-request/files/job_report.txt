@@ -1,0 +1,12 @@
+Job <eval_bigbatch> was submitted from host <login> by user <me>
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   18342.00 sec.
+    Max Memory :                                 41270 MB
+    Average Memory :                             37812.10 MB
+    Total Requested Memory :                     64000.00 MB
+    Max Processes :                              11
+    Max Threads :                                212
+    Run time :                                   1544 sec.

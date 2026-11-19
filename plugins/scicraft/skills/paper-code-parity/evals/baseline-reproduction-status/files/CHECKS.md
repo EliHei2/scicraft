@@ -1,0 +1,2 @@
+- 2026-10-09: load_released on the authors' 20 example datasets reproduces their released meta-features, Pearson r = 1.0000 (max abs diff 3e-7).
+- retrain(): no comparison against a published number yet.

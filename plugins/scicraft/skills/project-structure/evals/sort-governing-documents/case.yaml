@@ -1,0 +1,18 @@
+schema_version: "1.1"
+name: sort-governing-documents
+expected_outcome: |
+  The mixed content of fmbench/CLAUDE.md is sorted into files that each own one question. GOALS.md holds the long
+  goal with a test an outsider could apply (smalltab against tuned XGBoost on the suite, by mean rank over seeds),
+  the active short goal (the 20-dataset pilot) with an absolute due date, three deliverables that each carry a
+  check, the stop rule as the decision it feeds, and the non-goals (regression tasks, a package, a larger
+  context). GUARDRAILS.md holds the invariants with ids, what each prevents and how it is checked: selection on
+  validation folds only, no writes into the shared cache, numbers only from the aggregate tables, the tuned
+  baseline with its stated budget. GUIDELINES.md holds the preferences (file length, type hints, polars, commit
+  style, asking before a new dependency) and a definition of done. The facts and the three notes become knowledge
+  base entries under an index, each with a status and its source, unverified claims marked. The status lines move
+  to STATUS.md. A short narrative says why the project exists and what a win looks like. CLAUDE.md shrinks to an
+  index of at most 500 words that names the four governing documents and gives a reading order. README.md gains a
+  table of which file owns which question. Nothing under src/ changes. The final message says what moved where,
+  what the lead has to confirm, and what the checker reported.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,92 @@
+\documentclass[10pt]{article}
+% Profile C: a journal supplement (Online Methods, Supplementary Notes and
+% Tables) where the journal imposes no class. Computer Modern text and math
+% (matched by default), numbered citations in order of appearance.
+\usepackage[margin=0.85in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}           % scalable Computer Modern; T1 CM is bitmap on a basic install
+\linespread{1.0}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{1.6ex plus 0.4ex minus 0.2ex}{0.9ex}
+\titlespacing*{\subsection}{0pt}{1.1ex plus 0.3ex minus 0.1ex}{0.5ex}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}%
+  \setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdflscape}           % landscape pages for wide supplementary tables
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black}
+\input{shims}                    % after hyperref: cleveref or its stand-in, multirow, siunitx, ...
+\usepackage[expansion=false]{microtype}
+
+\setlist[itemize]{leftmargin=1.45em}
+\setlist[enumerate]{leftmargin=1.45em}
+\renewcommand{\arraystretch}{1.14}
+\setlength{\LTpre}{0.7em}
+\setlength{\LTpost}{0.7em}
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000
+\setlength{\emergencystretch}{1.5em}
+
+% Supplementary numbering: Supplementary Table 1, Supplementary Figure 1
+\renewcommand{\tablename}{Supplementary Table}
+\renewcommand{\figurename}{Supplementary Figure}
+
+% Name and symbol macros, typed once
+\newcommand{\method}{[MethodName]}
+\newcommand{\um}{\ensuremath{\,\mu\mathrm{m}}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\title{\method{}: Online Methods and Supplementary Notes}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Model, training and inference}\label{sec:model}
+\method{} scores a candidate pair by cosine similarity and keeps the best
+candidate,
+\begin{equation}
+  \hat b_t=\argmax_{b} s_{tb}.\label{eq:assign}
+\end{equation}
+Unless an analysis states otherwise, \method{} runs in one fixed default
+configuration\label{subsec:default-config}: [encoder width $64$, $20$ epochs
+with Adam~\citep{kingma2015adam} at learning rate $10^{-3}$, neighbors within
+$5$\um{}]. The full parameter list is in Supplementary Table~\ref{tab:defaults}.
+Residual blocks follow~\citep{he2016resnet,lecun1998gradient}.
+
+\section{Analyses}\label{sec:analyses}
+Every analysis uses the default configuration of
+Section~\ref{subsec:default-config}; a setting that differs from it is stated
+where its result is reported.
+
+\begin{longtable}{@{}lll@{}}
+\caption{\textbf{Default parameters.} Values used in every analysis unless
+stated otherwise.}\label{tab:defaults}\\
+\toprule
+Parameter & Value & Set by \\
+\midrule
+\endfirsthead
+\toprule
+Parameter & Value & Set by \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+Encoder width & $64$ & fixed \\
+Epochs & $20$ & fixed \\
+Learning rate & $10^{-3}$ & fixed \\
+Neighbor radius & $5$\um{} & [heuristic, Section~\ref{sec:model}] \\
+\end{longtable}
+
+\bibliographystyle{unsrtnat}
+\bibliography{refs}
+\end{document}

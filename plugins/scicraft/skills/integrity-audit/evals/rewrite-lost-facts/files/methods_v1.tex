@@ -1,0 +1,13 @@
+\section{Training}
+\label{sec:training}
+The encoder has 12 transformer layers with 8 attention heads and a hidden size of 512.
+We pretrain on 1.2 million tables from the public corpus \cite{corpus2024} for 200,000 steps.
+We use a batch size of 256, a dropout of 0.1 and a cosine schedule with 5,000 warmup steps.
+The objective is the masked-cell loss of Eq.~\ref{eq:loss}:
+\begin{equation}
+\mathcal{L} = -\sum_{i \in M} \log p(x_i \mid x_{\setminus M}),
+\label{eq:loss}
+\end{equation}
+where $M$ masks 15\% of the cells.
+Numerical features are quantile-binned into 64 bins following \cite{gorishniy2022}.
+Fine-tuning uses early stopping with a patience of 10 epochs on the validation split.

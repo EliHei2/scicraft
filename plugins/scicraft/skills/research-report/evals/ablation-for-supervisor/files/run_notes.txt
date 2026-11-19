@@ -1,0 +1,4 @@
+all runs: ViT-S/16, 800 epochs, batch 1024, AdamW lr 1e-3 cosine, eval on the 50k val images
+code: branch main, commit 3f9a2c1 (10 Nov 2026)
+each ablation removes exactly one thing, everything else = full
+no_mixup = mixup and cutmix both off

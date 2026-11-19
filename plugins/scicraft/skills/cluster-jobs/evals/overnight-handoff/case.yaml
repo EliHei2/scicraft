@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: overnight-handoff
+expected_outcome: |
+  A brief file written for the cluster-side agent and a one-line paste instruction (with the push
+  command to host tfmcluster and directory /lustre/work/tfm/agent/briefs/). The brief is
+  self-contained: it opens with the job and what done means as checks (a 3 x 12 table of mean and
+  sd over 3 seeds plus per-seed raw numbers, failures listed with reasons and never filled in); it
+  gives every path from context.md once; it names the running pretrain_large jobs and directory as
+  untouchable; it requires the code at commit 4e1c9a2 and the unchanged scorer; it has a stage 0
+  with a preflight and a calibration of one large.pt unit (one task, one seed) whose peak GPU memory
+  is read before the large.pt fan-out; it requires one job per unit (no arrays), resume-safe
+  launching, a job-name prefix, and per-run output directories; it forbids writing checkpoints or
+  predictions; and it ends with a report contract and the conditions under which to stop or ask.
+  No unfilled placeholders remain.
+context:
+  scaffold_script: place-files.sh

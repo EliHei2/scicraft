@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\title{Towards a Universal Molecular Encoder}
+\author{Anonymous}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study whether a single graph encoder can be pretrained across several molecule collections. Early results on
+six tasks are promising and suggest that multi-collection pretraining helps on most of them.
+\end{abstract}
+\section{Introduction}
+Representations for molecules are usually learned per dataset. We ask whether this is necessary, and we explore a
+pretraining scheme that mixes collections. This draft reports preliminary experiments.
+\section{Results}
+On six tasks the encoder is competitive with the best baselines and ranks among the top methods on most tasks.
+\begin{table}[h]
+\centering
+\caption{Preliminary scores on six tasks.}\label{tab:bench}
+\begin{tabular}{lr}
+\toprule
+Method & Mean rank \\
+\midrule
+Ours & 2.8 \\
+GraphFM & 4.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\section{Conclusion}
+Multi-collection pretraining is a promising direction for future work.
+\end{document}

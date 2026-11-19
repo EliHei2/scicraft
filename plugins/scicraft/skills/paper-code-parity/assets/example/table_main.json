@@ -1,0 +1,12 @@
+{
+  "records": "records/main.json",
+  "rows": "methods",
+  "row_order": ["ours", "vit_b16", "resnet50", "convnext_t"],
+  "label": {"key": "name", "head": "Method"},
+  "columns": [
+    {"key": "acc", "head": "Top-1 acc.", "digits": 3, "best": "max"},
+    {"key": "ece", "head": "ECE", "digits": 3, "best": "min"},
+    {"key": "params", "head": "Params (M)", "digits": 1, "lead0": true}
+  ],
+  "missing": "pending"
+}

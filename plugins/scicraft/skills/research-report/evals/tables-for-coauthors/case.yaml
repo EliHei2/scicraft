@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: tables-for-coauthors
+expected_outcome: |
+  A folder drive_upload that holds exactly the two missing supplementary tables, Supplementary Table 4 (ablation
+  results per seed, top-1 and top-5) and Supplementary Table 5 (learning-rate sweep), as short CSV files named and
+  shaped like the colleague's (Table_S4_<name>.csv, Table_S5_<name>.csv, plain headers, no index column). No
+  per-image prediction file, no embedding coordinates and no per-epoch log is in the folder, and no README or prose
+  file is added, since the colleague's tables have none. Values equal those in outputs/. The diverged learning-rate
+  run is kept in Table S5 and marked as diverged, not dropped. The final message names the folder, gives one line
+  per table, says which output files were left out and why (per-item data kept locally), and says nothing was
+  uploaded.
+context:
+  scaffold_script: place-files.sh

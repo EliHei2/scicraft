@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Audit findings",
+  "type": "object",
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "where": {"type": "string", "description": "file:line, or the exact quoted text"},
+          "problem": {"type": "string"},
+          "severity": {"type": "string", "enum": ["blocker", "major", "minor"]},
+          "evidence": {"type": "string", "description": "source text or program output, with its location"},
+          "fix": {"type": "string", "description": "exact replacement, DELETE, or a question for the author"},
+          "type": {"type": "string", "enum": ["surgical", "semantic", "query"]}
+        },
+        "required": ["id", "where", "problem", "severity", "evidence", "fix"]
+      }
+    },
+    "uncovered": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "for replies: sentences of the review that the reply does not answer head-on"
+    },
+    "read_in_full": {"type": "array", "items": {"type": "string"}},
+    "pattern_searched_only": {"type": "array", "items": {"type": "string"}}
+  },
+  "required": ["findings"]
+}

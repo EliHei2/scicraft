@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: paper-to-talk
+expected_outcome: |
+  A folder talk_research_day with a PowerPoint deck, a PDF of it and a speaker script, built for a six-minute talk
+  to a non-specialist hospital audience. The deck has a title slide, about six to eight talk slides and an
+  acknowledgements slide. Every talk slide has a title that is one full sentence of at most ten words, taken from
+  the sentences of paper.md (cut, not paraphrased), and carries at most about 25 words. The talk opens on why
+  sepsis is recognized late, not on the sensor's engineering, and states the main result as one number. Since no
+  figures exist, pictures are clearly marked stand-ins and the final message says so, lists what the author must
+  supply or check (the event's exact name and date, pictures, people to thank), and says plainly what was not
+  tested (for example that the slideshow was not run). No number appears that is not in paper.md.
+context:
+  scaffold_script: place-files.sh

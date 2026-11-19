@@ -1,0 +1,109 @@
+<title>[Report title, two to five words]</title>
+<style>
+/* One reading column. Serif text that matches TeX equations, Helvetica Neue headings that match the figures.
+   Four sizes only (28/19/15/13 px), ink for all text, one accent for links and box rules.
+   The bold section opener (.msg) is body size: a bold lead set larger than the body was rejected. */
+:root {
+  --bg: #ffffff; --ink: #15191e; --rule: #d8dde3; --tint: #f3f6f9; --accent: #0072b2;
+  --f-text: Charter, "Bitstream Charter", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --f-head: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --s-1: 28px; --s-2: 19px; --s-3: 15px; --s-4: 13px;
+  --mm: 4.95px;  /* figures at one scale: width in mm (read from the PNG) times this */
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #101418; --ink: #e8ebee; --rule: #2c343c; --tint: #172028; --accent: #56b4e9; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #101418; --ink: #e8ebee; --rule: #2c343c; --tint: #172028; --accent: #56b4e9; color-scheme: dark }
+html { -webkit-text-size-adjust: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-text); font-size: var(--s-3); line-height: 1.55;
+  font-variant-numeric: lining-nums tabular-nums; font-kerning: normal; margin: 0; }
+main { max-width: 960px; margin: 0 auto; padding: 40px 16px 80px; }
+p, ul, ol { max-width: 74ch; margin: 0 0 10px; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+code, .mono { font-family: var(--f-mono); font-size: 0.84em; }
+b, strong { font-weight: 700; }
+
+h1 { font-family: var(--f-head); font-size: var(--s-1); line-height: 1.15; font-weight: 600; letter-spacing: -0.012em; margin: 0 0 6px; }
+.meta { font-family: var(--f-head); font-size: var(--s-4); margin: 0 0 26px; max-width: none; letter-spacing: 0.01em; }
+h2 { font-family: var(--f-head); font-size: var(--s-2); line-height: 1.25; font-weight: 600; margin: 56px 0 12px; padding-top: 14px;
+  border-top: 1px solid var(--rule); scroll-margin-top: 16px; }
+h3 { font-family: var(--f-head); font-size: var(--s-3); font-weight: 600; margin: 22px 0 6px; }
+.msg { font-weight: 700; font-size: var(--s-3); margin: 0 0 6px; max-width: 78ch; }
+.answer { font-weight: 700; font-size: var(--s-3); margin: 0 0 10px; max-width: 78ch; }
+.lede { font-size: var(--s-3); margin: 0 0 18px; max-width: 80ch; }
+
+.tldr { background: var(--tint); border-left: 3px solid var(--accent); padding: 14px 20px 12px; margin: 0 0 8px; max-width: 82ch; }
+.tldr h2 { font-size: var(--s-4); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px; padding: 0; border: 0; color: var(--accent); }
+.tldr ol { margin: 0; padding-left: 20px; max-width: none; }
+.tldr li { margin: 0 0 6px; }
+.box { background: var(--tint); border-left: 3px solid var(--accent); padding: 10px 16px; margin: 0 0 16px; max-width: 80ch; }
+.box p { margin: 0; max-width: none; } .box p + p { margin-top: 6px; }
+.small { font-size: var(--s-4); }
+
+.eq { margin: 14px 0 6px; overflow-x: auto; text-align: center; }
+.figrow { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin: 14px 0 6px; }
+.figrow > figure { flex: 1 1 100%; }
+figure { margin: 0 0 8px; min-width: 0; }
+figure .plate { background: #ffffff; padding: 0; max-width: 100%; }
+figure img { display: block; max-width: 100%; height: auto; }
+figcaption { font-size: var(--s-4); line-height: 1.45; margin-top: 6px; max-width: 92ch; }
+
+.tw { overflow-x: auto; margin: 10px 0 14px; }
+table { border-collapse: collapse; width: 100%; font-size: var(--s-4); }
+th, td { padding: 6px 10px 6px 0; vertical-align: top; text-align: left; border-bottom: 1px solid var(--rule); }
+th { font-family: var(--f-head); font-weight: 600; border-bottom: 1.5px solid var(--ink); }
+
+details { margin: 0; border-top: 1px solid var(--rule); scroll-margin-top: 16px; }
+details:last-of-type { border-bottom: 1px solid var(--rule); }
+details > summary { cursor: pointer; padding: 11px 0; font-family: var(--f-head); font-size: var(--s-3); font-weight: 600; }
+details[open] > summary { margin-bottom: 6px; }
+details > *:last-child { margin-bottom: 16px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 680px) { h1 { font-size: 24px; } }
+</style>
+<main>
+<h1>[Title: what was asked, in the reader's words]</h1>
+<p class="meta">[For whom, e.g. Reply to the question of 3 March] [Author] [Date]</p>
+
+<p class="answer">[One sentence: the answer, with its number.]</p>
+<p class="lede"><b>Summary.</b> [Sentence 1: what was measured or asked, in words a reader without context knows.] [Sentence 2: what was done, with its size.] [Sentence 3: the answer, with its number, and what it means for the decision.]</p>
+
+<section class="tldr" aria-labelledby="tldr-h">
+<h2 id="tldr-h">TL;DR</h2>
+<ol>
+<li><b>[One-line finding with its number.]</b> [At most one plain sentence more] (<a href="#s1">Fig. R1</a>).</li>
+<li><b>[One-line finding with its number.]</b> (<a href="#s2">Fig. R2</a>).</li>
+<li><b>[The weakness found, with its number.]</b> (<a href="#s2">Fig. R3</a>).</li>
+</ol>
+</section>
+
+<h2 id="s1">1. [Section title: the question this section answers]</h2>
+<p class="msg">[One short sentence that states the section's result.]</p>
+<p>[Plain text. Define each term where it is first used. Every sentence carries a number or a decision.]</p>
+<div class="eq">\[ [\text{the formula, stated once}] \]</div>
+<p class="small">[What each symbol is, in one or two sentences.]</p>
+<div class="figrow"><figure><div class="plate"><img src="[figures/r1_name.png]" alt="[What the figure shows]"></div>
+<figcaption><b>Figure R1. [The claim of the figure as one sentence.]</b> [What is plotted on each axis, what each mark and color is, n, the statistic and its spread (median and IQR), which run and which settings.]</figcaption></figure></div>
+
+<h2 id="s2">2. [Section title]</h2>
+<p class="msg">[One short sentence that states the section's result.]</p>
+<p>[Plain text.]</p>
+<div class="tw"><table>
+<tr><th>[Column]</th><th>[Column]</th></tr>
+<tr><td>[value]</td><td>[value]</td></tr>
+</table></div>
+
+<h2 id="supp">Supplementary figures</h2>
+<div class="figrow"><figure><div class="plate"><img src="[figures/s1_name.png]" alt="[What the figure shows]"></div>
+<figcaption><b>Figure S1. [Claim.]</b> [Full caption.]</figcaption></figure></div>
+
+<h2 id="appendix">Appendix</h2>
+<details id="appA"><summary>A. [Variants and controls]</summary>
+<p class="small">[Everything a careful reader may want and the decision does not need.]</p>
+</details>
+<!-- posted-replies:start -->
+<!-- posted-replies:end -->
+<details id="appB"><summary>B. Code and data</summary>
+<p class="small">[Repository, branch, commit and date of the code that made every number. The folder that holds the report, the figure scripts and the tables behind every figure.]</p>
+</details>
+</main>

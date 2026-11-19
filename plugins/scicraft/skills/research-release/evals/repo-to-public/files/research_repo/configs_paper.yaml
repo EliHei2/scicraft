@@ -1,0 +1,6 @@
+# configuration of the reported model (paper Table 1)
+act: tanh
+use_old_norm: false
+mix_variant: B
+n_out: 8
+seed: 0

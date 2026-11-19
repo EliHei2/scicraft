@@ -1,0 +1,14 @@
+# Private leak patterns for scripts/leak_scan.py --private. Keep the real file OUTSIDE every repository.
+# One regular expression per line; lines starting with # are ignored. Matching is case sensitive; start a line
+# with (?i) to ignore case on that line only. Replace every <placeholder> (square brackets are regex syntax here).
+#
+# People: supervisors, co-authors, collaborators, reviewers
+(?i)\b<Firstname> <Lastname>\b
+# In-house sample, patient or cohort identifiers
+\bPATIENT-\d{4}\b
+\b<COHORT>_\d+\b
+# Internal run, campaign and model-variant names
+\b<campaign-name>\b
+# Working title of the paper, internal hosts, group codes, bucket names
+(?i)\b<working title>\b
+\b<host>\.<institute>\.<tld>\b

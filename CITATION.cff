@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If scicraft helps your work, please cite it as below."
+title: "scicraft: research craft as skills for Claude Code"
+type: software
+authors:
+  - family-names: Heidari
+    given-names: Elyas
+    # orcid: "https://orcid.org/XXXX-XXXX-XXXX-XXXX"
+version: 0.1.0
+date-released: 2026-11-18
+license: Apache-2.0
+repository-code: "https://github.com/EliHei2/scicraft"
+url: "https://github.com/EliHei2/scicraft"
+abstract: >-
+  Skills for Claude Code that carry a researcher's working craft: figures and
+  schematics, paper, book and rebuttal writing, typesetting, talks and posters,
+  quality gates, integrity audits, project structure, machine-learning experiment
+  design and evaluation, and work with AI agents. Distilled from a year of
+  research sessions and audited against their records.
+keywords:
+  - agent skills
+  - Claude Code
+  - scientific writing
+  - scientific figures
+  - machine learning research
+  - reproducibility
+# doi: "10.5281/zenodo.XXXXXXX"

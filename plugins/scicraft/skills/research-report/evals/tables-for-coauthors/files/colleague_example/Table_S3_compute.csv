@@ -1,0 +1,3 @@
+model,gpu,n_gpus,hours
+ViT-S/16,A100 80GB,8,61
+ViT-B/16,A100 80GB,16,94

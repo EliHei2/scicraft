@@ -1,0 +1,16 @@
+\section{Benchmark of retrieval against tree ensembles}\label{sec:results}
+RR-Pool reaches 0.842 mean accuracy on the 40 datasets, against 0.811 for XGBoost, the highest-ranked baseline (\cref{tab:main}). Enlarging the neighbour pool from 32 to 128 rows changes accuracy by less than 0.002 (\cref{sec:neighbour-pool}).
+
+\begin{table}[t]
+\caption{\textbf{RR-Pool ranks first by mean accuracy over 40 datasets.} Mean accuracy over 10 folds per dataset, then over datasets.}\label{tab:main}
+\begin{tabular}{lcc}
+Method & Category & Mean accuracy \\
+RR-Pool (ours) & retrieval & 0.842 \\
+XGBoost & tree ensemble & 0.811 \\
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\includegraphics{figures/gain_vs_size.pdf}
+\caption{\textbf{Accuracy gain of RR-Pool over XGBoost by training-set size.} One point per dataset; the dashed line marks zero gain.}\label{fig:gain}
+\end{figure}

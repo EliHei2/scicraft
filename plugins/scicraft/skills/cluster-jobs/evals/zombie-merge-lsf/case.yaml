@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: zombie-merge-lsf
+expected_outcome: |
+  The response explains that shard 07 failed with TERM_MEMLIMIT at its 16 GB limit and that the
+  merge was submitted with done() dependencies, so its condition can never be satisfied and it
+  pends forever instead of failing. It gives a paste-ready LSF command set: kill the stuck merge
+  job 5531198, resubmit only shard 07 with a memory request derived from the measured peaks in the
+  logs (shards of 410k and 820k rows peaked at about 9.1 and 14.6 GB, so 1.18M rows needs roughly
+  20 GB, plus a modest margin; not a blanket large number), then resubmit the merge gated on the new
+  shard-07 job. It either keeps done() and states the recovery for a future failure, or switches to
+  ended() with the merge checking that all 12 shard outputs exist. Shards that finished are not
+  resubmitted. It suggests making launch_eval.sh resume-safe (skip shards with output) and taking
+  memory as an explicit parameter. It says the assistant ran nothing on the cluster.
+context:
+  scaffold_script: place-files.sh

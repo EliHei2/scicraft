@@ -1,0 +1,3 @@
+dataset,role,n_train,n_test,url
+ImageNet-1k,pretraining and evaluation,1281167,50000,https://www.image-net.org
+CIFAR-100,transfer evaluation,50000,10000,https://www.cs.toronto.edu/~kriz/cifar.html

@@ -1,0 +1,5 @@
+{
+  "columns": ["method", "dataset", "metric", "value"],
+  "ids": {"method": ["ours", "vit_b16"], "dataset": ["imagenet_val", "cifar100"], "metric": ["acc", "ece"]},
+  "grid": ["method", "dataset", "metric"]
+}

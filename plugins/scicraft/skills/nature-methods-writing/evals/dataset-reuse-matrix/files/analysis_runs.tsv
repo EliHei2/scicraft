@@ -1,0 +1,6 @@
+analysis	dataset	qv_min	controls_removed	min_transcripts_per_cell	normalization	typing_reference	typing_level	prior_reference	config_delta_vs_default	run_id
+composition	LUNG-A	20	yes	10	total 100, log1p	HLCA core	level 3 (61 types)	HLCA core	none	r014
+contamination	LUNG-A	20	yes	10	total 100, log1p	HLCA core	level 3 (61 types)	HLCA core	none	r015
+contamination	LUNG-B	20	yes	10	total 100, log1p	HLCA core	level 3 (61 types)	HLCA core	none	r016
+generalization	LUNG-A	20	yes	10	total 100, log1p	CELLxGENE lung atlas	level 1 (14 types)	none (spatial only)	prior disabled	r021
+generalization	BRAIN-M	20	yes	10	total 100, log1p	Allen mouse brain taxonomy	class (34 classes)	none (spatial only)	prior disabled	r022

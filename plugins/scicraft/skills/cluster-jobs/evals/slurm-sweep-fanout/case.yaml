@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: slurm-sweep-fanout
+expected_outcome: |
+  A corrected job setup for SLURM and a copy-paste command set the user runs, grouped by machine
+  (laptop sync, then the submit node). Because arrays are disabled, configs are submitted as a loop
+  of single jobs, one per config, each writing to its own run directory. The job body calls the
+  interpreter by its absolute path from notes_cluster.md, sets thread caps and a node-local TMPDIR,
+  uses set -u or equivalent, and skips a config whose output already exists so a relaunch submits
+  only what is missing. The first thing submitted is one calibration config, with instructions to
+  read its peak host memory (sacct MaxRSS) and its GPU memory from the framework, and to set memory
+  for the rest from that measurement with a modest margin instead of 256G. The aggregation runs
+  after all configs end, as a CPU job with a dependency, and either checks that all 48 results are
+  present (afterany) or comes with recovery instructions for a failed config (afterok). No
+  placeholder paths remain. The response says the commands were not run on the cluster.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: benchmark-figure
+expected_outcome: |
+  A folder fig_main with one script per panel (a rank heatmap and an accuracy against latency scatter), the panel
+  PDFs and PNGs, and a composed figure whose PDF page is 139.7 mm wide (the NeurIPS text width) with bold lowercase
+  panel letters. Fonts in the PDFs are embedded TrueType, not Type 3, and no text is under 5 pt. The heatmap prints
+  the rank in every cell and shows the crashed baseline-dataset cell as missing or failed, never imputed; ranks are
+  computed only among methods that ran. The scatter draws every model at the same marker size, uses medians with an
+  IQR (or states the spread used), and labels points directly with manuscript-style names. The final message lists
+  what the user must check and what was not checked.
+context:
+  scaffold_script: place-files.sh

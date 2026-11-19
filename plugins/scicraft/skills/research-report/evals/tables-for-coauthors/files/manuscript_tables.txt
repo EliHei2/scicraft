@@ -1,0 +1,6 @@
+Supplementary tables cited in the manuscript (main.tex):
+Supplementary Table 1: training hyperparameters (already on the drive)
+Supplementary Table 2: datasets with links (already on the drive)
+Supplementary Table 3: compute (already on the drive)
+Supplementary Table 4: ablation results per seed (top-1 and top-5)
+Supplementary Table 5: learning-rate sweep (final top-1 per learning rate)

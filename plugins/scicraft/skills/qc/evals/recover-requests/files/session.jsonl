@@ -1,0 +1,11 @@
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:08:11.000Z", "sessionId": "s1", "message": {"role": "user", "content": "<system-reminder>context</system-reminder>"}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:10:02.000Z", "sessionId": "s1", "message": {"role": "user", "content": "for the release readme: the install command should be pip install tabmodel, not the git url"}}
+{"type": "assistant", "timestamp": "2026-11-12T09:10:40.000Z", "message": {"role": "assistant", "content": [{"type": "text", "text": "Changing the install command."}]}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:14:30.000Z", "sessionId": "s1", "message": {"role": "user", "content": [{"type": "text", "text": "add a citation block with the bibtex at the bottom of the readme"}]}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:20:00.000Z", "sessionId": "s1", "message": {"role": "user", "content": "go"}}
+{"type": "user", "isSidechain": true, "timestamp": "2026-11-12T09:25:00.000Z", "sessionId": "s1", "message": {"role": "user", "content": "Read the README and list sections"}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:31:12.000Z", "sessionId": "s1", "message": {"role": "user", "content": "license line in the readme should say Apache-2.0, we decided that with the tech transfer office"}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:33:00.000Z", "sessionId": "s1", "message": {"role": "user", "content": "[Request interrupted by user]"}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:40:45.000Z", "sessionId": "s1", "message": {"role": "user", "content": "actually make the citation block say coming soon instead of bibtex, the paper isnt out yet"}}
+{"type": "user", "isSidechain": false, "timestamp": "2026-11-12T09:52:19.000Z", "sessionId": "s1", "message": {"role": "user", "content": [{"type": "text", "text": "the quickstart uses fit_predict but the api is fit then predict. fix that everywhere incl the CHANGELOG"}]}}
+{"type": "assistant", "timestamp": "2026-11-12T09:53:00.000Z", "message": {"role": "assistant", "content": [{"type": "text", "text": "Fixing the quickstart."}]}}

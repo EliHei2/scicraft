@@ -1,0 +1,38 @@
+# Banned in reply prose and in new revision text. One regex per line; a line starting with # is a comment.
+# Used by:  check_replies.py --ban banned_reply_terms.txt   and   rev_passages.py --ban banned_reply_terms.txt
+# "rather than" is a fault in reply prose (check_replies.py). In paper text rev_passages.py reports it as a warning
+# only: there "X rather than Y" with Y a real candidate is the author's allowed form (see the sibling humanizer skill).
+# Each line was a word or frame that an author struck in a real rebuttal. Add the project's own retired names,
+# internal code names and run labels at the bottom; delete a line only when the venue's field uses the word as a term.
+
+# vague statistics words: say "significant (adjusted p < .05)" or "no significant change", with the test named once
+\bundetectable\b
+\binsignificant\b
+\bno detectable\b
+\bwithin noise\b
+\bmixed\b
+\bdoes not establish\b
+\binvariant\b
+\bwhiskers\b
+# question frames read as machine-made: state the finding ("X holds (evidence)")
+\bwe (examined|tested|asked|checked) whether\b
+\byour questions? (was|were) whether\b
+# staged contrast and filler
+\bnot only\b
+\brather than\b
+\bnamely\b
+\bIt is worth noting\b
+\bImportantly\b
+# phrases that concede or attack
+\bwe never claimed\b
+\bis worse than\b
+\bdo(es)? not match\b
+# evaluative words: state the measured relation instead ("ranks below", "is rated above ... by Elo")
+\bstrongest\b
+\bbest published\b
+\bfalls behind\b
+\bunambiguously\b
+\bunbeatable\b
+# markers that need a footnote to read
+†
+# project terms (add below: retired names, internal labels, code identifiers)

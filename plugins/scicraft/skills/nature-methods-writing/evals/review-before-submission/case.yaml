@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: review-before-submission
+expected_outcome: |
+  A list of problems in methods.md with line numbers and a fix for each, and methods.md unchanged. The list
+  names: WINDOW_SEC and config/default.yaml in code font in Methods (state the window as 30 s in words, move
+  identifiers to a software note); the figure callout Fig. 2c; the cohort name SleepWrist-2k inside the Training
+  section (move to a datasets section); the eight-row hyperparameter table inside Methods (move to a Supplementary
+  Table); the results sentence with macro F1 0.71, outperforms and P < 0.001 (move to Results); missing Statistics and
+  reproducibility and Data availability sections; and a Code availability statement with only a GitHub link (needs an
+  archived version with a DOI and a license). It does not invent values for the missing items.
+context:
+  scaffold_script: place-files.sh

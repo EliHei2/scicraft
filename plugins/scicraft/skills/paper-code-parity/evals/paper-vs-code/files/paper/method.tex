@@ -1,0 +1,30 @@
+\section{Method}
+\subsection{Encoder}
+The encoder is a transformer of depth $L$ with 8 attention heads per layer and width $d$.
+Each image is split into patches of side $p$.
+
+\subsection{Objective}
+We draw $V$ augmented views of each image. The prediction loss is
+\begin{equation}
+\mathcal{L}_{\mathrm{pred}} = \frac{1}{N}\sum_{i=1}^{N} \lVert \hat{y}_i - y_i \rVert^2 .
+\end{equation}
+The consistency loss is summed over views,
+\begin{equation}
+\mathcal{L}_{\mathrm{cons}} = \sum_{v=1}^{V} \lVert z^{(v)} - \bar{z} \rVert^2 ,
+\end{equation}
+and the total loss is $\mathcal{L} = \mathcal{L}_{\mathrm{pred}} + \lambda \mathcal{L}_{\mathrm{cons}}$.
+
+\begin{table}[h]
+\centering
+\caption{Hyperparameters.}
+\begin{tabular}{ll}
+depth $L$ & 12 \\
+width $d$ & 768 \\
+heads & 12 \\
+patch side $p$ & 16 \\
+views $V$ & 2 \\
+$\lambda$ & 0.5 \\
+learning rate & $3\times10^{-4}$ \\
+warmup steps & 5000 \\
+\end{tabular}
+\end{table}

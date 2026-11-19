@@ -1,0 +1,8 @@
+{
+  "name": "schematic-render",
+  "private": true,
+  "description": "Headless-browser renderer for canvas schematics: paired PNG and mm-true PDF.",
+  "dependencies": {
+    "puppeteer": "^24.37.5"
+  }
+}

@@ -1,0 +1,15 @@
+schema_version: "1.1"
+name: second-model-review
+expected_outcome: |
+  ADJUDICATION.md adjudicates the external review claim by claim (C1 to C5), each with file:line in config.yaml
+  or a probe output as evidence, and records each claim as accepted, rejected or adapted. C1 is rejected or
+  corrected: config.yaml already uses smooth-L1, and identity_check.out shows smooth-L1 on unit vectors equals
+  (1 - cos)/d, so the issue is a gradient scale of 1/d, not norm invariance. C2 is adapted: grad_share.out shows
+  the isotropy term carries about 99% of the trunk gradient, so the fix is rebalancing (null-normalize the
+  regularizer, raise w_recon or warm the weight) rather than a vague cut. C3 is rejected for the trained run:
+  effective rank 41.3 and the loss below both trivial floors. C4 is corrected: the ratio in force is 0.65, not
+  0.75, and there is no measurement supporting a sweep. C5 is rejected: the trained loss sits below the floors,
+  so the objective is alive but weak and the verdict is tune, not redesign. Anything without evidence is marked
+  inconclusive with the measurement that would settle it. The external review is not accepted wholesale.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,5 @@
+parameter,value
+learning_rate,0.0003
+batch_size,256
+epochs,40
+weight_decay,0.001

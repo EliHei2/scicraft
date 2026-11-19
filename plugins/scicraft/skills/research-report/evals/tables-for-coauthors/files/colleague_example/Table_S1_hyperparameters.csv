@@ -1,0 +1,3 @@
+model,optimizer,learning_rate,weight_decay,batch_size,epochs
+ViT-S/16,AdamW,0.001,0.05,1024,800
+ViT-B/16,AdamW,0.0008,0.05,1024,800

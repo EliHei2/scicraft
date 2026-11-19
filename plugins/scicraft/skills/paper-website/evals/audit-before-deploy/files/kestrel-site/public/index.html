@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel: a pretrained encoder for multivariate sensor streams</title>
+<meta name="description" content="Kestrel turns any multivariate stream into one embedding per time step.">
+<link rel="icon" href="brand/mark.svg">
+<link rel="preload" href="fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- The bar. Its mark is the page's one mark: at the top it is drawn large beside the name (page.js moves it into the
+     slot .mast-mark) and it shrinks into this place as the page scrolls. -->
+<header class="top" id="bar">
+  <a class="top-home" href="#top" aria-label="Kestrel, back to the top"><img id="mark" src="brand/mark.svg" alt="" width="30" height="30"><span>Kestrel</span></a>
+  <nav class="top-nav" aria-label="Sections"><a href="#method">Method</a><a href="#results">Results</a><a href="#evidence">Ablations</a><a href="#gallery">Gallery</a><a href="#release">Release</a></nav>
+  <a class="top-cta" href="#cite">Cite</a>
+  <i class="top-progress" aria-hidden="true"></i>
+</header>
+
+<!-- First screen: the mark and the name, who made it, and the ONE interaction that shows the paper's claim.
+     Nothing stands over the name: no tagline, no result. -->
+<div class="hero" id="top">
+  <div class="mast">
+    <div class="mast-title">
+      <p class="eyebrow">One encoder for every sensor stream</p>
+      <div class="mast-name"><span class="mast-mark" aria-hidden="true"></span><h1>Kestrel</h1></div>
+      <p class="sub">A pretrained encoder for multivariate sensor streams</p>
+    </div>
+    <div class="who">
+      <p class="authors">Ana Example<sup>1</sup>, Ben Sample<sup>2</sup>, Chen Placeholder<sup>1</sup>, Dora Fictive<sup>1,†</sup></p>
+      <p class="insts"><span><sup>1</sup>Institute of Example Studies</span><span><sup>2</sup>Sample University</span><span><sup>†</sup>supervision</span></p>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="cmp" data-cmp>
+      <img class="cmp-a" src="demo/a.svg" alt="Operator labels on one server log stream"><img class="cmp-b" src="demo/b.svg" alt="Kestrel embeddings of the same stream">
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Move the divider between operator labels and Kestrel embeddings">
+      <span class="tag cmp-tl">operator labels</span><span class="tag cmp-tr">Kestrel</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- The opening: at most three short statements of the problem, in the author's words, and the paper's main claim in one
+     sentence. No abstract, no paragraphs. If a line is not the best thing to say here, it does not go here. -->
+<section id="idea">
+  <p class="viewer-note">One server log stream, with the minutes operators marked as incidents on the left and Kestrel embeddings on the right.</p>
+  <ol class="why">
+    <li data-rv style="--d:0">Every new sensor deployment starts without labels.</li>
+    <li data-rv style="--d:1">A model trained on one stream breaks when the sampling rate, the channel count or the noise changes.</li>
+    <li data-rv style="--d:2">Labelled anomalies are rare, so supervised models see a few dozen positives at most.</li>
+  </ol>
+  <p class="mainclaim" data-rv style="--d:3"><img src="brand/mark.svg" alt="" width="24" height="24">Kestrel turns any multivariate stream into one embedding per time step, so a linear probe can read any downstream label from it.</p>
+</section>
+
+<!-- How it works comes before the results. Interactive figures with the paper's sentences as step captions; this
+     starter only holds the place. The section ends on what the model was trained on. -->
+<section id="method">
+  <div class="head" data-rv><h2>How it works</h2><p class="meta">patches, channels, masking</p></div>
+  <figure class="result first">
+    <h3 class="claim">Patches, channels and masked prediction</h3>
+    <div class="cmp" style="aspect-ratio: 16 / 7; margin-top: 30px" aria-hidden="true"><img class="cmp-a" src="demo/b.svg" alt=""></div>
+    <figcaption>Kestrel cuts each channel into patches of 24 steps and embeds each patch with a shared tokenizer.</figcaption>
+  </figure>
+
+  <!-- What it was trained on or built from: one statement, a few numbers from the paper, one sentence. No results. -->
+  <div class="block" id="data">
+    <h2 class="block-h" data-rv>Pretrained on 137 public&nbsp;datasets.</h2>
+    <dl class="stats five">
+      <div data-rv style="--d:0"><dt data-count="137">137</dt><dd>datasets</dd></div>
+      <div data-rv style="--d:1"><dt data-count="2.4" data-dec="1" data-unit=" B">2.4 B</dt><dd>time steps</dd></div>
+      <div data-rv style="--d:2"><dt data-count="31.6" data-dec="1" data-unit=" M">31.6 M</dt><dd>parameters</dd></div>
+      <div data-rv style="--d:3"><dt data-count="7">7</dt><dd>domains</dd></div>
+      <div data-rv style="--d:4"><dt data-count="10">10</dt><dd>layers</dd></div>
+    </dl>
+    <p class="block-line" data-rv>This is the first checkpoint; larger models trained on more domains will&nbsp;follow.</p>
+  </div>
+</section>
+
+<!-- Results: two numbers, ONE open figure for the main claim, then rows that open on a click. -->
+<section id="results">
+  <div class="head" data-rv><h2>Results</h2><p class="meta">grid load · server logs · gait · traffic · bearing wear</p></div>
+  <p class="lead">Every method is read with the same linear probe on frozen embeddings, and scored by macro&nbsp;F1.</p>
+  <dl class="stats two" id="headline">
+    <div class="win" data-rv style="--d:0"><dt>1st</dt><dd>on 5 of 5 tasks</dd></div>
+    <div class="win" data-rv style="--d:1"><dt>1125</dt><dd>rating, against 1025 for Method&nbsp;B</dd></div>
+  </dl>
+
+  <figure class="result" id="benchmark">
+    <h3 class="claim sr">Kestrel ranks first on four of the five tasks and second on gait.</h3>
+    <div class="charts one">
+      <div class="chart"><h4 class="ch-t">Rating across tasks</h4><div data-chart="bars" role="img" aria-label="Kestrel 1125, Method B 1025, Method C 1023, Baseline 1000, Method D 981."></div></div>
+    </div>
+    <figcaption>Kestrel is rated above every other method in a two-sided sign test over all task and seed pairs (p&nbsp;=&nbsp;0.002). On traffic alone the difference to Method B is weaker (p&nbsp;=&nbsp;0.04).
+      <details class="more"><summary>How to read the chart</summary><p>Error bars show the 95% confidence interval. Across tasks, Kestrel has a rating of 1125 against 1025 for the strongest comparator, Method B, where the baseline is&nbsp;fixed&nbsp;at&nbsp;1000.</p></details>
+    </figcaption>
+  </figure>
+
+  <figure class="result" id="by-task">
+    <h3 class="claim">Kestrel ranks first on four of the five tasks and second on&nbsp;gait.</h3>
+    <div class="charts one">
+      <div class="chart"><h4 class="ch-t">Rank per task</h4><div data-chart="heat" role="img" aria-label="Rank of each method on each of the five tasks."></div></div>
+    </div>
+    <figcaption>Every method is read with the same linear probe on frozen embeddings, and scored by macro&nbsp;F1.</figcaption>
+  </figure>
+
+  <div class="folds">
+    <details class="fold" id="table" open><summary><h3 class="claim">The full table</h3><i aria-hidden="true"></i></summary>
+      <figure class="result">
+        <div class="table-wrap"><table class="bench" data-table></table></div>
+        <figcaption>Macro F1 per task on held-out streams; mean rank over the five&nbsp;tasks.</figcaption>
+      </figure>
+    </details>
+    <details class="fold" id="protocol"><summary><h3 class="claim">How the benchmark is run</h3><i aria-hidden="true"></i></summary>
+      <dl class="proto">
+        <div><dt>Data</dt><dd>Five public benchmarks; held-out streams only.</dd></div>
+        <div><dt>Readout</dt><dd>Frozen embeddings.</dd></div>
+        <div><dt>Probe</dt><dd>The same linear probe for every&nbsp;method.</dd></div>
+        <div><dt>Statistics</dt><dd>A two-sided sign test over all task and seed&nbsp;pairs.</dd></div>
+      </dl>
+    </details>
+  </div>
+</section>
+
+<!-- Ablations and other supporting evidence: a lead sentence and rows. Nothing here is open by default. -->
+<section id="evidence">
+  <div class="head" data-rv><h2>Ablations</h2><p class="meta">two model sizes</p></div>
+  <p class="lead">Removing any part of Kestrel lowers macro F1 on at least one task at one of the two model&nbsp;sizes.</p>
+  <div class="folds">
+    <details class="fold" id="components"><summary><h3 class="claim">Removing any part lowers macro F1 on at least one&nbsp;task.</h3><i aria-hidden="true"></i></summary>
+      <figure class="result">
+        <div class="charts one">
+          <div class="chart"><h4 class="ch-t">Largest significant loss when a part is removed</h4><div data-chart="ablate" role="img" aria-label="Without pretraining .157 and .145; without the cross-channel attention .056; without the masking curriculum .094."></div></div>
+        </div>
+        <figcaption>Without pretraining, F1 falls by up to .157; without the masking curriculum, by up to&nbsp;.094.</figcaption>
+      </figure>
+    </details>
+  </div>
+</section>
+
+<!-- Gallery: a wall of tiles. A click opens the comparison over the page. -->
+<section id="gallery">
+  <div class="head" data-rv><h2>Gallery</h2><p class="meta">12 streams</p></div>
+  <p class="lead">Twelve held-out streams, operator labels against Kestrel embeddings. Click any tile to&nbsp;compare.</p>
+  <div class="wall" id="wall"></div>
+  <dialog class="inspector" id="inspector" aria-labelledby="ins-title">
+    <div class="cmp" data-cmp>
+      <img class="cmp-a" alt=""><img class="cmp-b" alt="">
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Move the divider">
+      <span class="tag cmp-tl"></span><span class="tag cmp-tr"></span>
+    </div>
+    <div class="ins-side">
+      <div class="ins-head"><b class="ins-title" id="ins-title"></b><span class="ins-meta"></span></div>
+      <div class="legend"></div>
+      <div class="ins-nav"><button type="button" class="ins-prev">previous</button><button type="button" class="ins-next">next</button></div>
+    </div>
+    <button type="button" class="ins-close">close</button>
+  </dialog>
+</section>
+
+<!-- Release: what exists and what is coming, each said once. A citation is offered only when the paper can be cited. -->
+<section id="release">
+  <div class="head" data-rv><h2>Release</h2><p class="meta">coming soon</p></div>
+  <p class="lead">Kestrel turns any multivariate stream into one embedding per time&nbsp;step.</p>
+  <ul class="soon-list">
+    <li><b>Code</b><span>GitHub</span><em>coming soon</em></li>
+    <li><b>Weights</b><span>Hugging Face</span><em>coming soon</em></li>
+    <li id="cite"><b>Cite</b><span>BibTeX</span><em>below</em></li>
+  </ul>
+  <pre class="code"><code>@article{example2026kestrel,
+  title={Kestrel: a pretrained encoder for multivariate sensor streams},
+  year={2026}
+}</code></pre>
+  <pre class="code"><code>import kestrel
+model = kestrel.load("first-checkpoint")
+z = model.embed(stream)          # one embedding per time step</code></pre>
+  <div class="folds">
+    <details class="fold" id="card"><summary><h3 class="claim">Model card</h3><i aria-hidden="true"></i></summary>
+      <dl class="spec">
+        <div><dt>Input</dt><dd>a multivariate stream, any number of channels</dd></div>
+        <div><dt>Output</dt><dd>one embedding per time step</dd></div>
+        <div><dt>Size</dt><dd>31.6 M</dd></div>
+        <div><dt>License</dt><dd>to be confirmed</dd></div>
+      </dl>
+    </details>
+    <details class="fold" id="limits"><summary><h3 class="claim">Limitations</h3><i aria-hidden="true"></i></summary>
+      <p>Kestrel saw only public datasets in pretraining, and seven domains do not cover every sensor. Streams sampled faster than 2 kHz were not part of pretraining. The five tasks use linear probes; fine-tuning was not&nbsp;evaluated.</p>
+    </details>
+  </div>
+</section>
+
+<section class="closing" id="end">
+  <p class="closing-line" data-rv>One pretrained encoder can read many kinds of sensor streams without being trained&nbsp;again.</p>
+  <a class="again" href="#top">Back to the top <span aria-hidden="true">↑</span></a>
+</section>
+
+</main>
+
+<!-- The footer holds marks only (institutes, funders). Affiliations are at the top; do not repeat them here as a list. -->
+<footer class="foot">
+  <p>1 Institute of Example Studies, 2 Sample University</p>
+  <img src="brand/mark.svg" alt="Kestrel" width="30" height="30" loading="lazy">
+</footer>
+
+<script type="module">
+import { initPage } from './page.js';
+import { initCharts } from './charts.js';
+initPage();
+initCharts();
+</script>
+</body>
+</html>

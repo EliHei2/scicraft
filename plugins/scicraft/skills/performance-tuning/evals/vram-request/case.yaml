@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: vram-request
+expected_outcome: |
+  REQUEST.md explains that the scheduler's Max Memory (about 41 GB) is host RAM, not GPU memory, and that the
+  GPU footprint is the logged vram_peak_gb (at most about 6.1 GB live tensors), with vram_reserved_gb (about
+  9.8 GB) as the allocator's pool and not the footprint. It recommends a GPU memory request near the measured
+  peak with a modest margin (a common smaller card, well under 80 GB), host memory from the measured RAM with a
+  margin, and warns that a 400-step test on a small shard can under-read the peak: size on a longer run of the
+  densest shard before the full eval (or remeasure). It notes the 212 threads against the core count as worth
+  pinning. It does not tell the user to go bigger.
+context:
+  scaffold_script: place-files.sh

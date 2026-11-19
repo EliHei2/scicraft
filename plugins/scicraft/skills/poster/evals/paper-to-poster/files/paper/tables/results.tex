@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Row retrieval ranks first on average.} Accuracy on four dataset groups (mean over datasets $\pm$ SD over five seeds) and mean rank over all 48 datasets; lower rank is better. Bold marks the highest value in a column.}
+\label{tab:results}
+\small
+\begin{tabular}{lccccc}
+\toprule
+method & small & medium & large & very large & mean rank $\downarrow$\\
+\midrule
+Gradient-boosted trees & .812{\scriptsize$\pm$.004} & .843{\scriptsize$\pm$.003} & .861{\scriptsize$\pm$.002} & \textbf{.874}{\scriptsize$\pm$.002} & 2.4\\
+Base model, random context & \textbf{.826}{\scriptsize$\pm$.005} & .839{\scriptsize$\pm$.004} & .842{\scriptsize$\pm$.004} & .843{\scriptsize$\pm$.003} & 3.1\\
+Base model, fine-tuned & .824{\scriptsize$\pm$.006} & .846{\scriptsize$\pm$.004} & .858{\scriptsize$\pm$.003} & .866{\scriptsize$\pm$.003} & 2.9\\
+\midrule
+Row retrieval (ours) & \textbf{.826}{\scriptsize$\pm$.005} & \textbf{.852}{\scriptsize$\pm$.003} & \textbf{.866}{\scriptsize$\pm$.002} & .871{\scriptsize$\pm$.002} & \textbf{1.6}\\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,288 @@
+% =====================================================================
+%  preamble.tex : one preamble for every TikZ / PGFPlots paper figure.
+%
+%  Copy this file verbatim as the top of each figure file and put the
+%  figure body (one tikzpicture) before \end{document}.
+%
+%  THEME SWITCH (edit the two lines below, or set them from the shell:
+%     pdflatex "\def\figtheme{serif}\input{fig.tex}")
+%    \figtheme   minimal : sans text and math, 4-tone palette
+%                          (dark blue, light blue, mustard gold, greys). DEFAULT.
+%                serif   : Palatino text and math, black outlines,
+%                          blue family plus one warm red contrast.
+%    \figfamily  auto    : the theme's font (minimal = sans, serif = Palatino)
+%                sans    : Helvetica clone + sans math (helvet + sansmath)
+%                serif   : Palatino text + math (mathpazo)
+%                cm      : TeX default Computer Modern, to match a venue
+%                          paper whose body math is Computer Modern
+%  Every color and style below has the SAME NAME in both themes, so a
+%  figure body switches theme without edits.
+%
+%  Compile:  pdflatex -interaction=nonstopmode -halt-on-error fig.tex
+%  Frame decks (animation): add multi=tikzpicture to the class options.
+%  Needs: standalone, tikz, pgfplots, helvet + sansmath (sans), mathpazo
+%  (serif). All are in a full TeX Live; see references/workflow_qa.md for
+%  a minimal tree.
+% =====================================================================
+\documentclass[border=6pt]{standalone}
+\providecommand*{\figtheme}{minimal}
+\providecommand*{\figfamily}{auto}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}  % shaded bands: \addplot fill between
+\usepgfplotslibrary{statistics}   % boxplot
+\usepgfplotslibrary{groupplots}   % 1xN panel rows with a shared legend
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{bm}
+
+% ---- resolve the theme and the font family ---------------------------
+\makeatletter
+\def\fig@serif{serif}\def\fig@sans{sans}\def\fig@cm{cm}\def\fig@auto{auto}
+\edef\fig@theme{\figtheme}\edef\fig@family{\figfamily}
+\ifx\fig@family\fig@auto
+  \ifx\fig@theme\fig@serif \let\fig@family\fig@serif \else \let\fig@family\fig@sans \fi
+\fi
+\ifx\fig@family\fig@sans
+  \usepackage{helvet}
+  \usepackage{sansmath}
+  \renewcommand{\familydefault}{\sfdefault}
+  \newcommand{\figfont}{\sffamily\sansmath}   % sans text AND sans math
+  % sansmath takes uppercase Greek from the T1 Helvetica clone, which has
+  % none: Phi, Gamma, ... print as black boxes. Take them from CM sans.
+  \DeclareSymbolFont{sfgreek}{OT1}{cmss}{m}{n}
+  \SetSymbolFont{sfgreek}{bold}{OT1}{cmss}{bx}{n}
+  \DeclareMathSymbol{\Gamma}{\mathord}{sfgreek}{"00}
+  \DeclareMathSymbol{\Delta}{\mathord}{sfgreek}{"01}
+  \DeclareMathSymbol{\Theta}{\mathord}{sfgreek}{"02}
+  \DeclareMathSymbol{\Lambda}{\mathord}{sfgreek}{"03}
+  \DeclareMathSymbol{\Xi}{\mathord}{sfgreek}{"04}
+  \DeclareMathSymbol{\Pi}{\mathord}{sfgreek}{"05}
+  \DeclareMathSymbol{\Sigma}{\mathord}{sfgreek}{"06}
+  \DeclareMathSymbol{\Upsilon}{\mathord}{sfgreek}{"07}
+  \DeclareMathSymbol{\Phi}{\mathord}{sfgreek}{"08}
+  \DeclareMathSymbol{\Psi}{\mathord}{sfgreek}{"09}
+  \DeclareMathSymbol{\Omega}{\mathord}{sfgreek}{"0A}
+\else\ifx\fig@family\fig@serif
+  \usepackage{mathpazo}                       % Palatino text + matched math
+  \newcommand{\figfont}{\rmfamily}
+\else
+  \usepackage{lmodern}                        % cm: Computer Modern shapes as
+  \newcommand{\figfont}{\rmfamily}            % vector fonts (T1 needs lmodern)
+\fi\fi
+\makeatother
+
+\usetikzlibrary{
+  arrows.meta, positioning, calc, shapes.geometric, shapes.misc,
+  backgrounds, fit, decorations.pathreplacing, decorations.pathmorphing,
+  patterns, matrix, quotes, angles, fadings, bending, 3d,
+}
+
+% =====================================================================
+%  PALETTE : role names, one meaning each. Structure is grey, data is
+%  color. At most one accent and one contrast in a figure.
+% =====================================================================
+% matplotlib "Blues" ramp, low = light, high = dark. The one sanctioned
+% lightness ramp: depth, time, ordinal index, density, energy.
+\definecolor{ramp0}{RGB}{247,251,255}\definecolor{ramp1}{RGB}{222,235,247}
+\definecolor{ramp2}{RGB}{198,219,239}\definecolor{ramp3}{RGB}{158,202,225}
+\definecolor{ramp4}{RGB}{107,174,214}\definecolor{ramp5}{RGB}{66,146,198}
+\definecolor{ramp6}{RGB}{33,113,181}\definecolor{ramp7}{RGB}{8,81,156}
+\definecolor{ramp8}{RGB}{8,48,107}
+\definecolor{paper}{HTML}{FFFFFF}
+\definecolor{navy}{HTML}{1A254B}      % deepest ink: source dots, highlighted path
+\definecolor{accent}{HTML}{2B50AA}    % the protagonist: the model, "ours", focal points
+\definecolor{truth}{HTML}{CBCBCC}     % observed / data layer drawn UNDER predictions
+\makeatletter
+\ifx\fig@theme\fig@serif
+  % serif theme: black structure, blue family, one warm red contrast
+  \definecolor{ink}{HTML}{000000}       % box outlines, spines, primary arrows
+  \definecolor{slate}{HTML}{5A5F6B}     % secondary text
+  \definecolor{annot}{HTML}{7E7E7E}     % glosses, support arrows, fields
+  \definecolor{mist}{HTML}{9AA0AB}      % faint structure, gridlines
+  \definecolor{cloud}{HTML}{DEDEDE}     % generic box fill
+  \definecolor{accentL}{HTML}{A7BED3}   % soft fills, halos, density tint
+  \definecolor{accentMd}{HTML}{6078B8}  % target dots (two-tone rule)
+  \definecolor{accentBox}{HTML}{9FC1E0} % the ONE special module per pipeline
+  \definecolor{mapfill}{HTML}{8C90A4}   % tall "map" box fill
+  \definecolor{contrast}{HTML}{F2545B}  % the ONE contrasting category
+  \colorlet{contrastL}{contrast!30!white}
+  \definecolor{link}{HTML}{5774BC}      % in-figure citation text only
+\else
+  % minimal theme (default): near-black structure, 4 tones
+  \definecolor{ink}{HTML}{1A1A1A}
+  \definecolor{slate}{HTML}{5A5F6B}
+  \definecolor{annot}{HTML}{9AA0AB}
+  \definecolor{mist}{HTML}{9AA0AB}
+  \definecolor{cloud}{HTML}{E7E9EE}
+  \definecolor{accentL}{HTML}{9EBEE0}
+  \colorlet{accentMd}{accent}
+  \colorlet{accentBox}{ramp3}
+  \definecolor{mapfill}{HTML}{C9CED6}
+  \definecolor{contrast}{HTML}{B8860B}  % mustard gold: held-out, target, "other"
+  \definecolor{contrastL}{HTML}{E8D6A0}
+  \colorlet{link}{accent}
+\fi
+\makeatother
+\colorlet{cloudPale}{cloud!55!white}   % faded back copies in a stack
+% categorical series, in this order; at most 3 per axis
+\colorlet{c1}{accent}\colorlet{c2}{contrast}\colorlet{c3}{slate}\colorlet{c4}{accentL}
+
+% =====================================================================
+%  TEXT SIZES : three tiers at the printed width, plus the panel letter.
+%  Build the figure at the width it prints (about 89 mm for one column,
+%  183 mm for a full page) and include it at that width. Then these are
+%  the printed sizes, the same as in the paper's data panels.
+% =====================================================================
+\newcommand*{\figL}{\fontsize{7}{8.4}\selectfont}       % titles, block names, equations
+\newcommand*{\figM}{\fontsize{6}{7.2}\selectfont}       % labels, notes, group titles
+\newcommand*{\figS}{\fontsize{5}{6}\selectfont}         % ticks, tags, legends: the floor
+\newcommand*{\figLetter}{\fontsize{8}{9.6}\selectfont}  % panel letter a, b, c
+
+% =====================================================================
+%  BASE STYLES
+% =====================================================================
+\tikzset{
+  base/.style={font=\figfont\figL, line width=0.7pt, line cap=round, line join=round,
+    >={Stealth[length=2.2mm,width=1.8mm]}},
+  block/.style={draw=ink, line width=0.7pt, rounded corners=2.5pt, fill=cloud,
+    inner sep=6pt, minimum height=9mm, text=ink, align=center},
+  block accent/.style={block, fill=accentL!45, draw=navy!80!black},
+  op/.style={draw=ink, circle, line width=0.7pt, fill=paper, inner sep=0pt, minimum size=5mm},
+  var/.style={draw=ink, circle, line width=0.7pt, fill=paper, minimum size=7mm},
+  varfill/.style={var, fill=accentL!45},
+  flow/.style={->, line width=0.9pt, draw=ink},
+  flowfaint/.style={->, line width=0.7pt, draw=slate},
+  flowdash/.style={flow, dashed},
+  agg/.style={->, line width=0.7pt, draw=annot, >={Stealth[length=2mm]}},
+  group/.style={draw=slate, dashed, rounded corners=3pt, line width=0.6pt, inner sep=9pt},
+  grouptitle/.style={font=\figfont\figM\bfseries, text=slate, text height=1.5ex, text depth=.25ex},
+  panel/.style={font=\figfont\bfseries\figLetter, text=ink, text height=1.5ex, text depth=.25ex},   % bold lowercase a b c, no period
+  ptitle/.style={font=\figfont\figL, text=ink, text height=1.5ex, text depth=.25ex},      % panel title: 4 words or fewer
+  note/.style={font=\figfont\figM, text=slate, align=center, text height=1.5ex, text depth=.25ex},
+  tag/.style={font=\figfont\figS, text=slate},
+  cite/.style={font=\figfont\figM, text=link},
+  brace/.style={decorate, decoration={brace, amplitude=5pt}, draw=slate, line width=0.6pt},
+  frustum/.style={draw=ink!45, line width=0.4pt, dashed},  % zoom / flow connector
+  frame/.style={draw=ink!85, line width=0.6pt, rounded corners=2pt},
+  chip/.style={draw=ink, rounded corners=2.5pt, fill={#1}, inner sep=2.5pt,
+    font=\figfont\figL, minimum size=5mm},               % labeled object box
+  chip/.default=accentL!45,
+  callout/.style={rounded corners=3pt, fill=cloud!70, draw=none, inner sep=5pt},
+  softarrow/.style={->, draw=navy!35, line width=1pt},
+  % edge relations by line style, one ink (three relations at most)
+  structedge/.style={draw=ink, line width=0.8pt},
+  msg/.style={->, draw=contrast, dashed, line width=0.8pt},
+  attn/.style={draw=accentL, dotted, line width=0.8pt},
+  eprimary/.style={draw=ink, line width=1.4pt},
+  esecondary/.style={draw=ink, line width=0.7pt, densely dotted},
+  econnect/.style={draw=slate, line width=0.9pt, dash dot},
+  emesh/.style={draw=accentL, line width=0.5pt},
+  eq/.style={font=\figfont\figL, text=ink},
+  eqfill/.style={rounded corners=3pt, fill=cloud, draw=none, inner sep=6pt, text=ink},
+}
+
+% =====================================================================
+%  ARCHITECTURE GRAMMAR : blocks, token rows, depth stacks, arrows
+% =====================================================================
+\tikzset{
+  nnblock/.style={rectangle, rounded corners=3pt, draw=ink, line width=0.8pt, fill=cloud,
+    inner sep=5pt, minimum height=8mm, align=center, text=ink, font=\figfont\figL},
+  nnblock accent/.style={nnblock, fill=accentL!45, draw=navy!80!black},
+  nnlayer/.style={rectangle, rounded corners=1.5pt, draw=slate, line width=0.6pt, fill=paper,
+    minimum height=4.2mm, inner xsep=6pt, align=center, font=\figfont\figM, text=ink},
+  nnio/.style={circle, draw=ink, line width=0.7pt, fill=cloud, minimum size=4.5mm, inner sep=0pt},
+  token/.style={rectangle, draw=navy!70!black, line width=0.5pt, fill=accentL,
+    minimum size=3.4mm, inner sep=0pt},
+  tokenvis/.style={token, fill=accent, draw=navy},
+  masktoken/.style={rectangle, draw=contrast, line width=0.6pt, fill=contrastL,
+    minimum size=3.4mm, inner sep=0pt, densely dashed},
+  nnarrow/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.8pt, draw=ink,
+    rounded corners=2pt},
+  emaarrow/.style={-{Stealth[length=2mm,width=1.6mm]}, line width=0.7pt, draw=slate,
+    densely dashed, rounded corners=2pt},
+  % operator pipeline (serif theme look; works in both): thick outline boxes
+  opbox/.style={rounded corners=4.5pt, draw=ink, line width=1.3pt, fill=cloud,
+    inner sep=8pt, minimum size=12mm, align=center, text=ink},
+  opbox accent/.style={opbox, fill=accentBox},
+  opbox map/.style={opbox, fill=mapfill, minimum width=10mm, minimum height=18mm},
+  opbox faint/.style={opbox, fill=cloudPale},
+  % arrow hierarchy: black = structure, grey = support, color never an arrow
+  spine/.style={->, draw=ink, line width=1.6pt, >={Stealth[length=2.6mm,width=2.2mm]}},
+  field/.style={->, draw=annot, line width=0.5pt, >={Stealth[length=1.6mm]}},
+  traj/.style={draw=annot, opacity=0.55, line width=0.5pt},
+  trajhi/.style={draw=navy, line width=0.8pt},
+}
+% Depth and repetition macros (written for this preamble). A copy at depth d
+% sits d steps up and right of the front position and is drawn with opacity
+% 1 - d/(n+1), deepest first, so nearer copies cover farther ones.
+% \nnstack{(x,y)}{style}{w}{h}{n}{dx}{dy}: n empty copies of size w x h behind
+% the position (x,y); draw the labeled front node yourself afterwards.
+\newcommand{\nnstack}[7]{%
+  \pgfmathtruncatemacro\figN{#5}%
+  \foreach \dd in {\figN,...,1}{%
+    \path #1 ++({\dd*(#6)},{\dd*(#7)})
+      node[#2, minimum width=#3, minimum height=#4, opacity={1-\dd/(\figN+1)}] {};}}
+% \StackBox{(x,y)}{style}{n}{label}: as \nnstack, sized by the label itself
+% (copies carry the label invisibly), then the labeled front node.
+\newcommand{\StackBox}[4]{%
+  \pgfmathtruncatemacro\figN{#3}%
+  \foreach \dd in {\figN,...,1}{%
+    \path #1 ++({\dd*1.4ex},{\dd*1ex})
+      node[#2, opacity={1-\dd/(\figN+1)}, text opacity=0] {#4};}
+  \path #1 node[#2] {#4};}
+% \opstack{(x,y)}{label}: a module shared by k inputs, as two faded operator
+% boxes behind a labeled front box named `opfront`. Wire grey `agg` arrows from
+% the back copies and one black `spine` arrow from the front.
+\newcommand{\opstack}[2]{%
+  \foreach \dd in {2,1}{\path #1 ++({\dd*1ex},{\dd*0.8ex}) node[opbox faint] {};}
+  \path #1 node[opbox] (opfront) {#2};}
+% \tokenrow{(x,y)}{style}{n}{gap}: n token cells in a row, the first at (x,y).
+\newcommand{\tokenrow}[4]{%
+  \pgfmathtruncatemacro\figN{#3-1}%
+  \foreach \cc in {0,...,\figN}{\path #1 ++({\cc*(#4)},0) node[#2] {};}}
+
+% =====================================================================
+%  GEOMETRY FRAGMENT STYLES : the names generator scripts emit
+%  (scripts/density_zoom.py, scripts/tikz_emit.py)
+% =====================================================================
+\tikzset{
+  ptdot/.style={accent},
+  celledge/.style={draw=mist, line width=0.45pt},
+  tcelledge/.style={draw=ink, line width=0.7pt},
+  gridline/.style={draw=mist, line width=0.5pt, opacity=0.8},
+  tnleaf/.style={draw=navy, line width=0.8pt, rounded corners=1pt, minimum size=4.4mm, inner sep=0pt},
+  tnint/.style={draw=navy, line width=0.8pt, circle, minimum size=4.4mm, inner sep=0pt},
+  tedge/.style={draw=mist, line width=0.7pt},
+  tpath/.style={draw=ink, line width=1.5pt},
+  tnpath/.style={draw=ink, line width=1.0pt, circle, fill=navy, minimum size=4.4mm, inner sep=0pt},
+  egoring/.style={draw=black!22, line width=0.6pt},
+  egospoke/.style={draw=ink, line width=0.45pt},
+}
+
+% =====================================================================
+%  PGFPLOTS : despined axes, ticks outside, frameless legend
+% =====================================================================
+\pgfplotsset{
+  spare axis/.style={
+    width=7cm, height=5cm, axis lines=left,
+    axis line style={ink, line width=0.7pt},
+    tick align=outside, tick style={ink, line width=0.6pt},
+    label style={font=\figfont\figM},
+    tick label style={font=\figfont\figS},
+    title style={font=\figfont\figL\bfseries},
+    every axis plot/.append style={line width=1pt},
+    legend style={draw=none, fill=none, font=\figfont\figS,
+      /tikz/every even column/.append style={column sep=6pt}},
+    legend cell align=left,
+    clip=false,
+  },
+  colormap={ramp}{rgb255=(247,251,255) rgb255=(222,235,247) rgb255=(198,219,239)
+    rgb255=(158,202,225) rgb255=(107,174,214) rgb255=(66,146,198)
+    rgb255=(33,113,181) rgb255=(8,81,156) rgb255=(8,48,107)},
+}
+
+\begin{document}
+% ---- figure body goes here (one tikzpicture), then \end{document} ----

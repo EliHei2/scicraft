@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: zoom-figure-keep-old
+expected_outcome: |
+  A new zoom-ladder figure (PNG and PDF) in figures/ under a new file name, with figures/field_zoom.png left
+  byte-identical. The panels go from the whole sample down to single points with boxes marking the next window;
+  each panel has a short strip that names its unit (bin size or pooled width, cells, or points). The color comes
+  from one basis fitted once on pooled units of the whole sample and every crop is colored from that fit; the
+  stretch is at the 5th and 95th percentiles with low-count edge bins masked. Windows are placed on the cell_type
+  annotation (or the report says they were placed on the field). A JSON sidecar beside the figure records the
+  parameters and the numbers left off the figure. A split-half reliability with a re-paired null is reported per
+  pooling level, with the note that it shows the value survives resampling and does not choose the pooling scale.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,14 @@
+schema_version: "1.1"
+name: project-page-copy
+expected_outcome: |
+  site_copy.md is rewritten in place. The tagline chained with multiplication signs and the line of phrases
+  joined by middle dots are gone, and no symbol separates phrases anywhere. The em dash and the "not just X,
+  it's Y" contrast are gone. "wins", "strongest", "beats" and "by a wide margin" are replaced with measured
+  relations that results.md supports (for example "ranks first on 9 of 12 clinical prediction tasks"); the copy
+  does not claim a wide margin, since results.md gives a mean ROC AUC difference of +0.012. The bold-label list
+  that says nothing ("TabLoom is fast") and the send-off ("The future looks bright", "speak to the power")
+  are cut or turned into facts from results.md. The install command and the documentation link are unchanged.
+  Every number in the new copy appears in site_copy.md or results.md. The final message lists what changed and
+  says what could not be checked.
+context:
+  scaffold_script: place-files.sh

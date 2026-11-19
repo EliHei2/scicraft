@@ -1,0 +1,3 @@
+dataset,method,balanced_accuracy_median,balanced_accuracy_iqr,n_folds
+adult,theirs,0.781,0.012,5
+adult,gbdt,0.776,0.01,5

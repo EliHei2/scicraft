@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Name]: [the paper's title]</title>
+<meta name="description" content="[One sentence from the abstract.]">
+<link rel="icon" href="brand/mark.svg">
+<link rel="preload" href="fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- The bar. Its mark is the page's one mark: at the top it is drawn large beside the name (page.js moves it into the
+     slot .mast-mark) and it shrinks into this place as the page scrolls. -->
+<header class="top" id="bar">
+  <a class="top-home" href="#top" aria-label="[Name], back to the top"><img id="mark" src="brand/mark.svg" alt="" width="30" height="30"><span>[Name]</span></a>
+  <nav class="top-nav" aria-label="Sections"><a href="#method">Method</a><a href="#results">Results</a><a href="#evidence">Ablations</a><a href="#gallery">Gallery</a><a href="#release">Release</a></nav>
+  <a class="top-cta" href="#cite">Cite</a>
+  <i class="top-progress" aria-hidden="true"></i>
+</header>
+
+<!-- First screen: the mark and the name, who made it, and the ONE interaction that shows the paper's claim.
+     Nothing stands over the name: no tagline, no result. -->
+<div class="hero" id="top">
+  <div class="mast">
+    <div class="mast-title">
+      <div class="mast-name"><span class="mast-mark" aria-hidden="true"></span><h1>[Name]</h1></div>
+      <p class="sub">[The rest of the paper's title]</p>
+    </div>
+    <div class="who">
+      <p class="authors"><span class="au">[First Author]<sup>1</sup></span>, <span class="au">[Second Author]<sup>2</sup></span>, <span class="au">[Third Author]<sup>1</sup></span>, <span class="au">[Last Author]<sup>1,†</sup></span></p>
+      <p class="insts"><span><sup>1</sup>[Institute one]</span><span><sup>2</sup>[Institute two]</span><span><sup>†</sup>supervision</span></p>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="cmp" data-cmp>
+      <img class="cmp-a" src="demo/a.svg" alt="[What the left side shows]"><img class="cmp-b" src="demo/b.svg" alt="[What the right side shows]">
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Move the divider between [left] and [right]">
+      <span class="tag cmp-tl">[reference]</span><span class="tag cmp-tr">[the model's output]</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- The opening: at most three short statements of the problem, in the author's words, and the paper's main claim in one
+     sentence. No abstract, no paragraphs. If a line is not the best thing to say here, it does not go here. -->
+<section id="idea">
+  <p class="viewer-note">[One or two sentences on what the first screen shows, with any caveat the paper makes about it.]</p>
+  <ol class="why">
+    <li data-rv style="--d:0">[First statement of the problem.]</li>
+    <li data-rv style="--d:1">[Second statement.]</li>
+    <li data-rv style="--d:2">[Third statement.]</li>
+  </ol>
+  <p class="mainclaim" data-rv style="--d:3"><img src="brand/mark.svg" alt="" width="24" height="24">[The paper's main claim, one sentence.]</p>
+</section>
+
+<!-- How it works comes before the results. Interactive figures with the paper's sentences as step captions; this
+     starter only holds the place. The section ends on what the model was trained on. -->
+<section id="method">
+  <div class="head" data-rv><h2>How it works</h2><p class="meta">[what the figures cover]</p></div>
+  <figure class="result first">
+    <h3 class="claim">[What this figure shows]</h3>
+    <div class="cmp" style="aspect-ratio: 16 / 7; margin-top: 30px" aria-hidden="true"><img class="cmp-a" src="demo/b.svg" alt=""></div>
+    <figcaption>[A method figure goes here: a canvas that plays once in view, rests on a finished frame, and takes its captions from the paper.]</figcaption>
+  </figure>
+
+  <!-- What it was trained on or built from: one statement, a few numbers from the paper, one sentence. No results. -->
+  <div class="block" id="data">
+    <h2 class="block-h" data-rv>[One plain statement about the data, e.g. "Trained on four public&nbsp;benchmarks."]</h2>
+    <dl class="stats five">
+      <div data-rv style="--d:0"><dt data-count="000">000</dt><dd>[unit one]</dd></div>
+      <div data-rv style="--d:1"><dt data-count="00.0" data-dec="1" data-unit=" B">00.0 B</dt><dd>[unit two]</dd></div>
+      <div data-rv style="--d:2"><dt data-count="00.0" data-dec="1" data-unit=" M">00.0 M</dt><dd>[unit three]</dd></div>
+      <div data-rv style="--d:3"><dt data-count="00">00</dt><dd>[unit four]</dd></div>
+      <div data-rv style="--d:4"><dt data-count="00">00</dt><dd>[unit five]</dd></div>
+    </dl>
+    <p class="block-line" data-rv>[One sentence the author wants said about this version, e.g. that it is the first checkpoint.]</p>
+  </div>
+</section>
+
+<!-- Results: two numbers, ONE open figure for the main claim, then rows that open on a click. -->
+<section id="results">
+  <div class="head" data-rv><h2>Results</h2><p class="meta">[00 methods on 00&nbsp;tasks]</p></div>
+  <p class="lead">[The paper's sentence that says what was evaluated.]</p>
+  <dl class="stats two" id="headline">
+    <div class="win" data-rv style="--d:0"><dt>[1st]</dt><dd>[what that number counts, with the comparison in numbers]</dd></div>
+    <div class="win" data-rv style="--d:1"><dt>[top&nbsp;3]</dt><dd>[what that number counts]</dd></div>
+  </dl>
+
+  <figure class="result" id="benchmark">
+    <h3 class="claim sr">[The paper's claim for this figure. Read aloud only: the two numbers above say it.]</h3>
+    <div class="charts one">
+      <div class="chart"><h4 class="ch-t">[What the chart shows]</h4><div data-chart="bars" role="img" aria-label="[The chart in one sentence, with its main numbers.]"></div></div>
+    </div>
+    <figcaption>[One or two sentences from the paper.]
+      <details class="more"><summary>How to read the chart</summary><p>[The paper's caption.]</p></details>
+    </figcaption>
+  </figure>
+
+  <figure class="result" id="by-task">
+    <h3 class="claim">[A second finding, as the paper states it.]</h3>
+    <div class="charts one">
+      <div class="chart"><h4 class="ch-t">Rank per task</h4><div data-chart="heat" role="img" aria-label="[The heat map in one sentence.]"></div></div>
+    </div>
+    <figcaption>[One sentence from the paper.]</figcaption>
+  </figure>
+
+  <div class="folds">
+    <details class="fold" id="table"><summary><h3 class="claim">The full table</h3><i aria-hidden="true"></i></summary>
+      <figure class="result">
+        <div class="table-wrap"><table class="bench" data-table></table></div>
+        <figcaption>[What an entry is, as the paper's table caption says.]</figcaption>
+      </figure>
+    </details>
+    <details class="fold" id="protocol"><summary><h3 class="claim">How the benchmark is run</h3><i aria-hidden="true"></i></summary>
+      <dl class="proto">
+        <div><dt>Data</dt><dd>[Cohorts and what is held out.]</dd></div>
+        <div><dt>Readout</dt><dd>[How each method is read.]</dd></div>
+        <div><dt>Probe</dt><dd>[The same probe for every method.]</dd></div>
+        <div><dt>Statistics</dt><dd>[The paper's one definition of a significant difference.]</dd></div>
+      </dl>
+    </details>
+  </div>
+</section>
+
+<!-- Ablations and other supporting evidence: a lead sentence and rows. Nothing here is open by default. -->
+<section id="evidence">
+  <div class="head" data-rv><h2>Ablations</h2><p class="meta">[how they were run]</p></div>
+  <p class="lead">[The paper's sentence that sums up the ablations.]</p>
+  <div class="folds">
+    <details class="fold" id="components"><summary><h3 class="claim">[Each part matters, as the paper states it.]</h3><i aria-hidden="true"></i></summary>
+      <figure class="result">
+        <div class="charts one">
+          <div class="chart"><h4 class="ch-t">Largest significant loss when a part is removed</h4><div data-chart="ablate" role="img" aria-label="[The heat map in one sentence, with every value.]"></div></div>
+        </div>
+        <figcaption>[The paper's sentences, naming rows as the heat map names them.]</figcaption>
+      </figure>
+    </details>
+  </div>
+</section>
+
+<!-- Gallery: a wall of tiles. A click opens the comparison over the page. -->
+<section id="gallery">
+  <div class="head" data-rv><h2>Gallery</h2><p class="meta">[00 samples]</p></div>
+  <p class="lead">[One sentence about what the tiles are.] Click any tile to&nbsp;compare.</p>
+  <div class="wall" id="wall"></div>
+  <dialog class="inspector" id="inspector" aria-labelledby="ins-title">
+    <div class="cmp" data-cmp>
+      <img class="cmp-a" alt=""><img class="cmp-b" alt="">
+      <div class="cmp-line"></div>
+      <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Move the divider">
+      <span class="tag cmp-tl"></span><span class="tag cmp-tr"></span>
+    </div>
+    <div class="ins-side">
+      <div class="ins-head"><b class="ins-title" id="ins-title"></b><span class="ins-meta"></span></div>
+      <div class="legend"></div>
+      <div class="ins-nav"><button type="button" class="ins-prev">previous</button><button type="button" class="ins-next">next</button></div>
+    </div>
+    <button type="button" class="ins-close">close</button>
+  </dialog>
+</section>
+
+<!-- Release: what exists and what is coming, each said once. A citation is offered only when the paper can be cited. -->
+<section id="release">
+  <div class="head" data-rv><h2>Release</h2><p class="meta">coming soon</p></div>
+  <p class="lead">[One sentence from the paper about what the model takes in and gives back.]</p>
+  <ul class="soon-list">
+    <li><b>Code</b><span>GitHub</span><em>coming soon</em></li>
+    <li><b>Weights</b><span>Hugging Face</span><em>coming soon</em></li>
+    <li id="cite"><b>Cite</b><span>BibTeX</span><em>coming soon</em></li>
+  </ul>
+  <pre class="code"><code>[Five lines that show how it will be used.]</code></pre>
+  <div class="folds">
+    <details class="fold" id="card"><summary><h3 class="claim">Model card</h3><i aria-hidden="true"></i></summary>
+      <dl class="spec">
+        <div><dt>Input</dt><dd>[what goes in]</dd></div>
+        <div><dt>Output</dt><dd>[what comes out]</dd></div>
+        <div><dt>Size</dt><dd>[parameters]</dd></div>
+        <div><dt>License</dt><dd>[license]</dd></div>
+      </dl>
+    </details>
+    <details class="fold" id="limits"><summary><h3 class="claim">Limitations</h3><i aria-hidden="true"></i></summary>
+      <p>[The paper's limitations paragraph, verbatim.]</p>
+    </details>
+  </div>
+</section>
+
+<section class="closing" id="end">
+  <p class="closing-line" data-rv>[The paper's last sentence.]</p>
+  <a class="again" href="#top">Back to the top <span aria-hidden="true">↑</span></a>
+</section>
+
+</main>
+
+<!-- The footer holds marks only (institutes, funders). Affiliations are at the top; do not repeat them here as a list. -->
+<footer class="foot">
+  <img src="brand/mark.svg" alt="[Name]" width="30" height="30" loading="lazy">
+</footer>
+
+<script type="module">
+import { initPage } from './page.js';
+import { initCharts } from './charts.js';
+initPage();
+initCharts();
+</script>
+</body>
+</html>

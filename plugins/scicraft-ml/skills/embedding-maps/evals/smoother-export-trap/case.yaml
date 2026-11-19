@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: smoother-export-trap
+expected_outcome: |
+  verdict.md does not pick the thin export on smoothness or Moran's I, and explains that a smoother map can come
+  from borrowed support (pooled neighbors) and that Moran's I measures smoothness, not reliability. It checks
+  whether the two exports come from one model by joining points on coordinates and comparing their vectors, and
+  reports that they disagree (cosine near 0, so they are different checkpoints or transforms). It notes that the
+  thin export holds about 4% of the points and that any comparison must be depth-matched (thin the dense export to
+  the same depth from the same model). It reports split-half reliability with a re-paired null, and says that r is
+  a floor that borrowed support can also inflate. It recommends the dense export or a depth-matched re-export.
+context:
+  scaffold_script: place-files.sh

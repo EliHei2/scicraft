@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: coverage-null
+expected_outcome: |
+  The assistant recomputes precision, recall, density and coverage at matched sample sizes and computes the
+  same metrics for benchmark halves and prior halves at matched sizes, showing that values around 0.9 are
+  the no-difference level for samples this small, so they cannot be read as "covers 95 %". It runs a
+  permutation-calibrated test (energy distance or MMD) and classifier two-sample tests, finds no detectable
+  difference, and reports this as a null result with the sample sizes (and, ideally, the smallest
+  difference detectable at these sizes). It prints or cites the analytic coverage null. No number is
+  computed from UMAP coordinates. coverage_summary.md gives the numbers beside their baselines and a
+  sentence that says no difference was detected at these sizes rather than a 95 % coverage claim.
+context:
+  scaffold_script: place-files.sh

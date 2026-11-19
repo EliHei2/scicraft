@@ -1,0 +1,5 @@
+# example configuration
+optimizer: adamw
+lr: 3.0e-4
+epochs: 50
+seeds: [0, 1, 2, 3, 4]

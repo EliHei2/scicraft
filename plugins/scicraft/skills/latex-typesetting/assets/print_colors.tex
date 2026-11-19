@@ -1,0 +1,12 @@
+% print_colors.tex: a print copy from the same source. Text, headings,
+% links, citations, rules and box tints go black and gray; figures keep
+% their colors. Build with:  build_latex.py main.tex --variant print_colors.tex
+% A color that must survive in print (a ranked results table, say) is
+% declared with \providecolor in the preamble and left out of this file.
+\definecolor{accent}{gray}{0}
+\definecolor{accentdark}{gray}{0}
+\definecolor{linkblue}{gray}{0}
+\definecolor{navy}{gray}{0}
+\definecolor{pale}{gray}{0.95}
+\definecolor{boxtint}{gray}{0.95}
+\hypersetup{linkcolor=black,citecolor=black,urlcolor=black,filecolor=black,menucolor=black,runcolor=black}

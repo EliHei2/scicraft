@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: variant-tournament-plan
+expected_outcome: |
+  A tournament/ folder with a design brief that records the user's constraints as hard constraints (per-column
+  embedding stage fixed, no k-means, 6 GPU hours), names the deliverable, and lays out the round: one digest
+  agent per variant with verified citations to working systems, CPU probes with committed outputs before any GPU
+  run, critics who are read-only and quote committed outputs with SURVIVES, SURVIVES-WEAKENED or DIES verdicts on
+  claim, falsifier and prerequisite, a completeness critic, and a judge using a stated ranking metric with a
+  script doing the scoring. A gates file fixes one keep or kill number before anything runs, against a floor and
+  the two-seed spread, with a gating first measurement and a STOP rule. A critic preamble holds facts and the
+  question, not a conclusion about which variant wins. Each variant has a falsifier and a class (by construction
+  or must-learn). No agents are launched.

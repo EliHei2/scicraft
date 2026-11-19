@@ -1,0 +1,12 @@
+\section{Training}
+\label{sec:training}
+The encoder is a 12-layer transformer with 8 attention heads and a hidden size of 512.
+We pretrain it on 1.2 million tables from a public corpus \cite{corpus2024} for 200,000 steps.
+Training uses a batch size of 128 and a cosine schedule with 5,000 warmup steps.
+We minimize the masked-cell loss
+\begin{equation}
+\mathcal{L} = -\sum_{i \in M} \log p(x_i \mid x_{\setminus M}),
+\end{equation}
+where $M$ masks 15\% of the cells.
+Numerical features are binned by quantile into 64 bins.
+For fine-tuning we stop early when the validation score has not improved for 10 epochs.

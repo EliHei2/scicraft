@@ -1,0 +1,5 @@
+# committed 2026-01-12, before any model was scored (git log shows the first scoring run on 2026-01-20)
+leakage:
+  threshold: 0.5
+  clip_negative: true
+  applied_to: [ours, baseline_a, baseline_b]

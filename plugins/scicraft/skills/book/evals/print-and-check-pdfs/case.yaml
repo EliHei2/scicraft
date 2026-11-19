@@ -1,0 +1,13 @@
+schema_version: "1.1"
+name: print-and-check-pdfs
+expected_outcome: |
+  Three PDFs built from main.tex without changing main.tex: the normal build, a print build in which headings,
+  links, citations and the tinted box are black or gray while the figure keeps its colors, and a text-only build
+  for the similarity check (graphics in draft mode, or an equivalent that keeps all text) with the same page
+  count as the normal build and a smaller file size. The final message gives the number of color pages and of
+  black-and-white pages of the print build, with the color pages listed by page number, and these match the print
+  PDF (only the page with the figure is in color). It reports the build status (errors, undefined references,
+  overfull boxes) and the file sizes, and says what was not checked (for example that the print shop's own
+  measurement may differ).
+context:
+  scaffold_script: place-files.sh

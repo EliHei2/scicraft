@@ -1,0 +1,11 @@
+{
+  "canvas_mm": [183, 118],
+  "letter_band_mm": 4.5,
+  "letter_pt": 8,
+  "boxes": [
+    {"letter": "a", "name": "benchmark: rank per task", "x": 0, "y": 4.5, "w": 120, "h": 52},
+    {"letter": "b", "name": "scaling: runtime vs size", "x": 124, "y": 4.5, "w": 59, "h": 52},
+    {"letter": "c", "name": "ablation: drop-one", "x": 0, "y": 63, "w": 59, "h": 52},
+    {"letter": "d", "name": "qualitative examples", "x": 62, "y": 63, "w": 121, "h": 52}
+  ]
+}

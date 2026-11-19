@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: robustness-study
+expected_outcome: |
+  A design document robustness/DESIGN.md for a perturbation study of a tabular model. It lists a taxonomy of
+  perturbation types that covers the reviewer's four kinds and the structure of the problem (for example missing
+  values, noise relative to column scale, nuisance columns that keep marginals but carry no relation, redundant
+  noisy copies, label noise, outliers, scaling), with a signed severity in natural units for each. It includes two
+  zero levels (a verbatim copy and a copy passed through the perturbation code at severity zero) and says their gap
+  measures pipeline artifacts. Evaluation always uses clean held-out labels and references, never the corrupted
+  input, and the document says how that is enforced. Each perturbed table records parent, type, severity, seed and
+  measured severity. Perturbation seeds and model seeds are separated, with at least three model seeds per level.
+  Results at every severity are reported, including unfavorable ones.

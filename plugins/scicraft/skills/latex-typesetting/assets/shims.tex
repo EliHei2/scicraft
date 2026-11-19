@@ -1,0 +1,115 @@
+% =====================================================================
+%  shims.tex: one place for every package a minimal TeX install lacks.
+%
+%  Load it from the preamble with \input{shims}, AFTER hyperref (cleveref
+%  must come after hyperref, and this file loads cleveref when present). Every real package is loaded when
+%  present; when it is absent, a small stand-in with the same interface
+%  keeps the document compiling with correct, plainer typography.
+%
+%  Rules that came out of real builds:
+%   - No chapter or section file ever adds a \usepackage. Add a shim here.
+%   - Any macro containing @ is defined between \makeatletter and
+%     \makeatother, or TeX stops with "You can't use \spacefactor in
+%     vertical mode".
+%   - A stand-in with parameters (#1) is never defined inside the argument
+%     of \IfFileExists: there it would need ##1 and stops with "Illegal
+%     parameter number". Load the package conditionally, then define the
+%     stand-in after it with \providecommand, which does nothing when the
+%     package already defined the command.
+%   - Under the cleveref shim \crefname does nothing; the noun comes from
+%     the label prefix (fig:, tab:, sec:, ...).
+%   - On a full TeX install every branch below takes the real package and
+%     this file costs nothing. Delete it there if you prefer.
+% =====================================================================
+
+% ---- multirow: the stand-in prints the cell text in the first row ----
+\IfFileExists{multirow.sty}{\usepackage{multirow}}{}
+\providecommand{\multirow}[3]{#3}
+
+% ---- csquotes ----
+\IfFileExists{csquotes.sty}{\usepackage{csquotes}}{}
+\providecommand{\enquote}[1]{``#1''}
+
+% ---- siunitx: value and unit joined by a thin space ----
+\IfFileExists{siunitx.sty}{\usepackage{siunitx}}{}
+\providecommand{\SI}[2]{#1\,#2}
+\providecommand{\SIrange}[3]{#1 to #2\,#3}
+\providecommand{\si}[1]{#1}
+\providecommand{\num}[1]{#1}
+\providecommand{\numrange}[2]{#1 to #2}
+\providecommand{\percent}{\%}
+\providecommand{\metre}{m}\providecommand{\meter}{m}
+\providecommand{\second}{s}\providecommand{\hour}{h}
+\providecommand{\gram}{g}\providecommand{\byte}{B}
+\providecommand{\kilo}{k}\providecommand{\mega}{M}
+\providecommand{\giga}{G}\providecommand{\tera}{T}
+\providecommand{\milli}{m}\providecommand{\nano}{n}
+\providecommand{\celsius}{\ensuremath{^{\circ}}C}
+\IfFileExists{upgreek.sty}{\usepackage{upgreek}}{}
+\providecommand{\upmu}{\mu}
+\providecommand{\micro}{\ensuremath{\upmu}}
+
+% ---- placeins: the same barrier, written out ----
+\IfFileExists{placeins.sty}{\usepackage{placeins}}{}
+\makeatletter
+\providecommand\FloatBarrier{\par\begingroup\let\@elt\relax
+  \edef\@tempa{\@botlist\@deferlist\@dbldeferlist}%
+  \ifx\@tempa\@empty\else\clearpage\fi\endgroup}
+\makeatother
+
+% ---- needspace: break the page here when less than #1 remains ----
+% (Suggested, not yet tested in real work: the stand-in compares the space
+% left on the page with #1 and starts a new page when it is short.)
+\IfFileExists{needspace.sty}{\usepackage{needspace}}{}
+\makeatletter
+\providecommand{\needspace}[1]{\par\penalty-100\begingroup
+  \setlength{\dimen@}{#1}\dimen@ii\pagegoal\advance\dimen@ii-\pagetotal
+  \ifdim\dimen@>\dimen@ii\ifdim\dimen@ii>\z@\vfil\fi\penalty-\@M\fi
+  \endgroup}
+\makeatother
+
+% ---- adjustbox, used only as {max width=\linewidth} ----
+% adjustbox needs collectbox; without it, shrink the content to the
+% measure when it is wider, and leave it alone when it fits.
+\IfFileExists{collectbox.sty}{\IfFileExists{adjustbox.sty}{\usepackage{adjustbox}}{}}{}
+\makeatletter
+\ifdefined\adjustbox\else
+  \newsavebox{\shim@adjbox}
+  \newenvironment{adjustbox}[1]{\begin{lrbox}{\shim@adjbox}}{\end{lrbox}%
+    \ifdim\wd\shim@adjbox>\linewidth\resizebox{\linewidth}{!}{\usebox{\shim@adjbox}}%
+    \else\usebox{\shim@adjbox}\fi}
+\fi
+\makeatother
+
+% ---- cleveref: the real package, or a prefix-aware stand-in ----
+% The stand-in reads the label prefix and prints the noun, so
+% \cref{fig:overview} gives "Figure 3" either way. \crefname and
+% \Crefname exist but do nothing under the stand-in.
+\makeatletter
+\IfFileExists{cleveref.sty}{\@ifpackageloaded{cleveref}{}{\usepackage[capitalize,noabbrev]{cleveref}}}{}
+\ifdefined\cref\else
+  \def\shim@crefsplit#1:#2\@nil{#1}
+  \newcommand{\shim@crefword}[1]{%
+    \edef\shim@ct{\shim@crefsplit#1:\@nil}%
+    \ifnum\pdfstrcmp{\shim@ct}{ch}=0 Chapter~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{sec}=0 Section~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{subsec}=0 Section~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{app}=0 Appendix~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{fig}=0 Figure~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{eq}=0 Equation~\eqref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{tab}=0 Table~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{alg}=0 Algorithm~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{box}=0 Box~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{def}=0 Definition~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{prop}=0 Proposition~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{thm}=0 Theorem~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{lem}=0 Lemma~\ref{#1}\else
+    \ifnum\pdfstrcmp{\shim@ct}{part}=0 Part~\ref{#1}\else
+    \ref{#1}\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi}
+  \newcommand{\cref}[1]{\shim@crefword{#1}}
+  \newcommand{\Cref}[1]{\shim@crefword{#1}}
+  \providecommand{\crefname}[3]{}
+  \providecommand{\Crefname}[3]{}
+  \providecommand{\crefalias}[2]{}
+\fi
+\makeatother

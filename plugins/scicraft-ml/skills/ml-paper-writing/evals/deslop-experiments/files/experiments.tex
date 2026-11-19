@@ -1,0 +1,38 @@
+\section{Experiments: Putting Weft to the Test}\label{sec:exp}
+
+It is worth noting that our evaluation is not just a leaderboard but a careful, comprehensive study of frozen representations. We evaluate on 12 downstream tasks---8 classification and 4 regression---using a linear probe on frozen embeddings, with 5 seeds per task.
+
+\paragraph{Three pillars of evaluation.} Importantly, we compare against 14 methods: 5 pretrained tabular foundation models, 6 per-dataset models including XGBoost \citep{chen2016xgboost}, and 3 baselines. Methods are ranked by mean rank and by Elo \citep{elo1978}; paired differences are tested with a Wilcoxon signed-rank test over seeds, corrected with Benjamini--Hochberg \citep{bh1995}. Each value below is the mean over the 5 seeds, and the number after it is the standard deviation across seeds.
+
+\weft{} is the strongest method overall: it wins on 7 of 12 tasks and reaches a mean rank of 2.4 against 5.1 for TabFM-L --- the best published model. On regression, gradient-boosted trees fit per dataset still win on 3 of 4 tasks; \weft{} sees only frozen features there, not the raw columns.
+
+\begin{table}[t]
+\caption{Main results.}\label{tab:main}
+\centering\small
+\begin{tabular}{lccc}
+\toprule
+Method & Cls.\ (8) & Reg.\ (4) & Mean rank \\
+\midrule
+TabFM-L & .801$\pm$.006 & .612$\pm$.011 & 5.1 \\
+XGBoost & .779$\pm$.004 & \textbf{.655}$\pm$.009 & 5.6 \\
+\weft{} (ours) & \textbf{.823}$\pm$.005$^\dagger$ & .631$\pm$.010 & \textbf{2.4} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Ablations.} In order to understand what matters, we ablate each component; masking is the point. Removing masking costs the most (Table~\ref{tab:abl}), and the EMA target is crucial.
+
+\begin{table}[t]
+\caption{Ablations (difference to full model).}\label{tab:abl}
+\centering\small
+\begin{tabular}{lcc}
+\toprule
+Variant & Cls. & Reg. \\
+\midrule
+w/o masking & $-$.041$^\dagger$ & $-$.022 \\
+w/o EMA target & $-$.019$^\dagger$ & $-$.008 \\
+w/o column attention & $-$.012 & $-$.015$^\dagger$ \\
+\weft{} (full) & .000 & .000 \\
+\bottomrule
+\end{tabular}
+\end{table}

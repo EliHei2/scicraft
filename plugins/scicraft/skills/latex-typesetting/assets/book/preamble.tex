@@ -1,0 +1,342 @@
+% =====================================================================
+%  preamble.tex: a free-form book or long report (monograph,
+%  technical report) in the classic manner of Bringhurst's book design,
+%  rebuilt on A4 from common packages (no style package, no placeins,
+%  no epigraph package).
+%  pdfLaTeX + BibTeX (natbib). Copy shims.tex next to this file.
+%
+%  The look, element by element:
+%   - Palatino text and matching Palatino math, true small caps and
+%     old-style figures (mathpazo sc,osf), leading 1.06
+%   - chapter opener: a large navy numeral flush right, the title in
+%     letterspaced capitals, a full-width hairline, an optional epigraph
+%   - section heads in letterspaced lowercase small caps, subsection
+%     heads in italic, nothing set heavier than the level above it
+%   - running heads in letterspaced small caps, page number at the outer
+%     edge, no head rule, never wrapping to a second line
+%   - captions: bold label, bold claim sentence, small type
+%   - ruled algorithm floats, booktabs tables with the caption on top
+%   - one link color for citations and cross-references
+%  Measure 150 mm, symmetric margins, no sidenote column: a sidenote
+%  column cost a centring fix, broke float placement, and was dropped.
+%  When you copy a reference document's look, measure its PDF, and write
+%  down here what was copied and where you deviate.
+% =====================================================================
+
+% ---------------------------------------------------------------- fonts
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}            % [your language; add ngerman etc. for a second one]
+% Hyphenation for names and odd tokens the patterns get wrong, letters and
+% hyphens only, for example: \babelhyphenation[english]{Lo-ren-zo HDB-SCAN}
+\babelhyphenation[english]{un-assigned}
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.06}
+\usepackage[scaled=0.86]{inconsolata}
+\usepackage{textcomp}
+\usepackage{textcase}
+\usepackage[protrusion=true,expansion=true,final]{microtype}
+
+% ---------------------------------------------------------------- page
+\usepackage{geometry}
+\geometry{a4paper,twoside,
+  textwidth=150mm, textheight=232mm,
+  inner=31mm, top=31mm,
+  headheight=13pt, headsep=10mm, footskip=13mm}
+
+% ---------------------------------------------------------------- math and tables
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,tabularx,array}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{float}
+\IfFileExists{wrapfig.sty}{\usepackage{wrapfig}}{}  % small figures beside the text
+\usepackage{flafter}   % a float never precedes its place in the text (e.g. above its own section heading)
+\usepackage{etoolbox}
+\usepackage{calc}
+
+
+% ---------------------------------------------------------------- colors
+\definecolor{navy}{HTML}{1C2449}       % chapter numerals, part titles, box rules
+\definecolor{linkblue}{HTML}{3A5BA6}   % citations, references, bracket labels
+\definecolor{boxtint}{HTML}{F2F4F9}    % conclusion boxes
+\definecolor{rulegray}{HTML}{3C3C3C}
+
+% ---------------------------------------------------------------- classic type macros
+\newcommand{\spacedallcaps}[1]{\textls[160]{\MakeTextUppercase{#1}}}
+\newcommand{\spacedlowsmallcaps}[1]{\textls[80]{\scshape\MakeTextLowercase{#1}}}
+
+% ---------------------------------------------------------------- headings
+\usepackage{titlesec}
+% The chapter number in Euler bold, navy; the title in letterspaced capitals at text size.
+\newcommand{\chapterNumber}{\usefont{U}{eur}{b}{n}\fontsize{66}{66}\selectfont}
+\titleformat{\chapter}[display]
+  {\normalfont\raggedright}
+  {\raggedleft{\color{navy}\chapterNumber\thechapter}}
+  {4mm}
+  {\normalsize\spacedallcaps}
+  [\vspace{2.0mm}{\color{rulegray}\titlerule[0.5pt]}]
+\titleformat{name=\chapter,numberless}[display]
+  {\normalfont\raggedright}
+  {}
+  {0pt}
+  {\normalsize\spacedallcaps}
+  [\vspace{2.0mm}{\color{rulegray}\titlerule[0.5pt]}]
+\titlespacing*{\chapter}{0pt}{6mm}{9mm}
+\titleformat{\section}
+  {\normalfont\raggedright}{\thesection}{1em}{\spacedlowsmallcaps}
+\titlespacing*{\section}{0pt}{4.2ex plus 1ex minus .3ex}{1.6ex plus .3ex}
+\titleformat{\subsection}
+  {\normalfont\itshape\raggedright}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{3.2ex plus .8ex minus .3ex}{1.1ex plus .2ex}
+% Subsubsections in italics like subsections, paragraph headings run in
+% spaced small capitals, all at text size, so no level is set heavier than the one above it.
+\titleformat{\subsubsection}
+  {\normalfont\itshape\raggedright}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{2.8ex plus .6ex minus .2ex}{0.9ex plus .2ex}
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}
+\titlespacing*{\paragraph}{0pt}{1.8ex plus .5ex minus .2ex}{0.7em}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+
+% Part pages carry nothing else and are followed by a blank verso.
+\makeatletter
+\renewcommand\part{%
+  \cleardoublepage
+  \thispagestyle{empty}%
+  \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
+  \null\vfil
+  \secdef\@part\@spart}
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+    \addcontentsline{toc}{part}{\protect\numberline{\thepart}#1}%
+  \else
+    \addcontentsline{toc}{part}{#1}%
+  \fi
+  \markboth{}{}%
+  {\centering\interlinepenalty\@M\normalfont
+   {\normalsize Part \thepart\par}\vskip 5mm
+   {\color{navy}\large\spacedallcaps{#2}\par}}%
+  \@endpart}
+\def\@endpart{\vfil\newpage
+  \if@twoside\if@openright\null\thispagestyle{empty}\newpage\fi\fi
+  \if@tempswa\twocolumn\fi}
+% A verso left empty by \cleardoublepage carries no running head.
+\def\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else
+  \hbox{}\thispagestyle{empty}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% ---------------------------------------------------------------- running heads
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% marks set by \tableofcontents, \listoffigures and the bibliography carry \MakeUppercase;
+% it is switched off inside the head so every mark is set in lowercase small caps.
+\newcommand{\headmark}[1]{{\let\MakeUppercase\relax\spacedlowsmallcaps{#1}}}
+\fancyhead[LE]{\small\thepage\hspace{1.4em}\headmark{\leftmark}}
+\fancyhead[RO]{\small\headmark{\rightmark}\hspace{1.4em}\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace #1}}
+% Short running heads: \runninghead{short} placed just before a \section with a long
+% title sets the recto head of that section to the short form from its first page on; the visible heading and the
+% contents entry keep the full title.
+\def\nextsectionmark{}
+\newcommand*{\runninghead}[1]{\gdef\nextsectionmark{#1}}
+% A heading of the form "Role: subject" (Problem statement, Related work, Experimental setup, Results,
+% Limitations ...) runs as its role alone, so no running head wraps onto a second line.
+\def\headbeforecolon#1:#2\relax{#1}
+\renewcommand{\sectionmark}[1]{\ifx\nextsectionmark\empty\markright{\thesection\enspace\headbeforecolon#1:\relax}%
+  \else\markright{\thesection\enspace\nextsectionmark}\global\let\nextsectionmark\empty\fi}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[RO,LE]{\small\thepage}}
+% Contents and lists: lowercase small-caps running heads like every other head.
+\patchcmd{\tableofcontents}{\MakeUppercase\contentsname}{\contentsname}{}{}
+\patchcmd{\tableofcontents}{\MakeUppercase\contentsname}{\contentsname}{}{}
+\patchcmd{\listoffigures}{\MakeUppercase\listfigurename}{\listfigurename}{}{}
+\patchcmd{\listoffigures}{\MakeUppercase\listfigurename}{\listfigurename}{}{}
+\patchcmd{\listoftables}{\MakeUppercase\listtablename}{\listtablename}{}{}
+\patchcmd{\listoftables}{\MakeUppercase\listtablename}{\listtablename}{}{}
+
+% ---------------------------------------------------------------- lists, paragraphs
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{1.5em}
+\renewcommand{\arraystretch}{1.18}
+\setlist{nosep,leftmargin=1.6em}
+\raggedbottom
+% No stranded lines: no club or widow lines, no display that opens a page.
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+% ---------------------------------------------------------------- floats and captions
+\usepackage[font=small,labelfont=bf,labelsep=colon,justification=justified,
+            singlelinecheck=false,format=plain]{caption}
+\captionsetup[figure]{skip=7pt}
+\captionsetup[table]{position=top,skip=6pt}
+\setlength{\textfloatsep}{14pt plus 3pt minus 3pt}
+\setlength{\floatsep}{12pt plus 3pt minus 2pt}
+\setlength{\intextsep}{12pt plus 3pt minus 2pt}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+
+\floatstyle{ruled}
+\newfloat{algorithm}{htbp}{loa}[chapter]
+\floatname{algorithm}{Algorithm}
+\floatstyle{plain}
+\captionsetup[algorithm]{labelsep=space,font=small,labelfont=bf}
+
+% A figure: one composed artwork at full measure, the short title set in bold
+% as the caption's lead sentence. \housefigure[width]{file}{label}{Claim}{Panel key and source.}
+\newcommand{\housefigure}[5][\textwidth]{%
+  \begin{figure}[tbp]
+  \centering
+  \includegraphics[width=#1]{#2}%
+  \caption[#4]{\textbf{#4.}\ #5}\label{#3}
+  \end{figure}}
+\graphicspath{{figures/}}                % [your figure folder]
+
+% ---------------------------------------------------------------- boxes
+% A newer tcolorbox can need a newer kernel than an older or basic TeX Live
+% ships, so the boxes are drawn with TikZ around a savebox.
+\usepackage{tikz}
+\newsavebox{\bookbox}
+\newlength{\bracketindent}\setlength{\bracketindent}{6.5mm}
+\newlength{\bracketrulex}\setlength{\bracketrulex}{0.9mm}
+
+% The bracket that opens each research chapter ("Contributions"):
+% a thin vertical rule at the left edge of the measure, interrupted by a
+% rotated blue label, with the text set 6.5 mm in.
+\newenvironment{contributionbox}[1][Contributions]{%
+  \def\bookboxlabel{#1}%
+  \par\addvspace{2mm}\noindent
+  \begin{lrbox}{\bookbox}%
+  \begin{minipage}[t]{\dimexpr\linewidth-\bracketindent\relax}\ignorespaces}
+ {\end{minipage}\end{lrbox}%
+  \begin{tikzpicture}[baseline={(0,0)}]
+    \node[inner sep=0pt,outer sep=0pt,anchor=north west] (body) at (\bracketindent,0) {\usebox{\bookbox}};
+    \coordinate (top) at (\bracketrulex,0);
+    \path let \p1=(body.south) in coordinate (bot) at (\bracketrulex,{min(\y1,-24mm)});
+    \node[overlay,rotate=90,inner sep=1.6pt,font=\scriptsize\color{linkblue}] (lab) at ($(top)!0.5!(bot)$) {\bookboxlabel};
+    \draw[line width=0.55pt,rulegray] ([yshift=0.4mm]top) -- (lab.east);
+    \draw[line width=0.55pt,rulegray] (lab.west) -- ([yshift=-0.6mm]bot);
+  \end{tikzpicture}\par\addvspace{8mm}}
+\newenvironment{contribution}{\begin{contributionbox}}{\end{contributionbox}}
+
+\usetikzlibrary{backgrounds,calc}
+
+
+% Context boxes \begin{infobox}{box:label}{Title}: a framed panel numbered per chapter
+% ("Box 1.2"), for background a reader can skip. A box cannot break across pages: keep it short.
+\newcounter{infobox}[chapter]
+\renewcommand{\theinfobox}{\thechapter.\arabic{infobox}}
+\newenvironment{infobox}[2]{%
+  \par\addvspace{10pt plus 2pt}\noindent
+  \refstepcounter{infobox}\label{#1}%
+  \begin{lrbox}{\bookbox}%
+  \begin{minipage}{\dimexpr\linewidth-7.2mm\relax}\small
+  {\color{navy}\spacedlowsmallcaps{Box \theinfobox}}\hspace{0.7em}\textbf{#2}\par\smallskip\ignorespaces}
+ {\end{minipage}\end{lrbox}%
+  \begin{tikzpicture}[baseline={(0,0)},trim left=0pt,trim right=\linewidth]
+    \node[inner sep=0pt,anchor=north west] (body) at (3.6mm,-2.6mm) {\usebox{\bookbox}};
+    \path (0,0 |- body.south) ++(0,-2.6mm) coordinate (bl);
+    \draw[rulegray,line width=0.45pt] (0,0) rectangle (\linewidth,0 |- bl);
+    \fill[navy] (0,0) rectangle (0.39mm,0 |- bl);
+  \end{tikzpicture}\par\addvspace{10pt plus 2pt}}
+
+% ---------------------------------------------------------------- epigraphs
+% \chapterquote{quote}{author}{work}{year}; set right after \chapter.
+\newcommand{\chapterquote}[4]{%
+  \par\vspace*{-1mm}%
+  {\hfill\begin{minipage}{0.64\textwidth}\small
+   {\itshape\raggedright #1\par}\vspace{1.2mm}
+   {\raggedleft #2, \textit{#3} (#4)\par}
+   \end{minipage}\par}%
+  \vspace{9mm}\noindent\ignorespaces}
+
+% ---------------------------------------------------------------- tables of contents
+\makeatletter\renewcommand{\@pnumwidth}{2.6em}\makeatother   % room for roman page numbers like xxxiii
+\usepackage{titletoc}
+\titlecontents{part}[0em]
+  {\addvspace{2.6ex}\normalfont}
+  {\thecontentslabel\hspace{1em}\spacedlowsmallcaps}
+  {\spacedlowsmallcaps}
+  {\hfill}[\addvspace{0.8ex}]
+\titlecontents{chapter}[1.6em]
+  {\addvspace{1.6ex}\normalfont}
+  {\contentslabel{1.6em}\spacedlowsmallcaps}
+  {\hspace*{-1.6em}\spacedlowsmallcaps}
+  {\hfill\contentspage}
+\titlecontents{section}[4.1em]
+  {\normalfont}
+  {\contentslabel{2.5em}}
+  {\hspace*{-2.5em}}
+  {\titlerule*[0.75em]{.}\contentspage}
+\titlecontents{figure}[2.6em]
+  {\normalfont\small}
+  {\contentslabel{2.6em}}
+  {\hspace*{-2.6em}}
+  {\titlerule*[0.75em]{.}\contentspage}
+\titlecontents{table}[2.6em]
+  {\normalfont\small}
+  {\contentslabel{2.6em}}
+  {\hspace*{-2.6em}}
+  {\titlerule*[0.75em]{.}\contentspage}
+
+% ---------------------------------------------------------------- citations and links
+\usepackage[round,authoryear,sort&compress]{natbib}
+\setlength{\bibsep}{2.4pt plus 1pt}
+\renewcommand{\bibfont}{\small\raggedright}
+\renewcommand{\bibsection}{\chapter*{\bibname}\markboth{\bibname}{\bibname}}
+\usepackage[unicode,pdfpagelabels,hyperfootnotes=false,linktoc=page]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=linkblue,citecolor=linkblue,urlcolor=linkblue,
+  bookmarksnumbered=true,bookmarksopen=true}
+\IfFileExists{cleveref.sty}{\usepackage[capitalize,noabbrev]{cleveref}}{}
+\usepackage{bookmark}
+\Urlmuskip=0mu plus 1mu\relax   % lets long URLs in the bibliography break
+% DOIs in the bibliography as https://doi.org links. plainnat writes
+% \doi{<bare DOI>}; this definition precedes the \providecommand in the .bbl. The catcode change admits "_".
+\makeatletter
+\newcommand*{\doi}{\begingroup\catcode`\_=12 \house@doi}
+\newcommand*{\house@doi}[1]{\endgroup\href{https://doi.org/#1}{\nolinkurl{https://doi.org/#1}}}
+\makeatother
+
+% ---------------------------------------------------------------- missing packages
+% After hyperref: shims.tex loads cleveref when present, a stand-in when not,
+% and stand-ins for multirow, siunitx, placeins, needspace, csquotes, adjustbox.
+\input{shims}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\crefname{infobox}{Box}{Boxes}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+\crefalias{chapter}{appendix}   % placed after \appendix, appendices print as "Appendix A"
+
+% A heading never stands alone at the foot of a page.
+\preto\section{\needspace{9\baselineskip}}
+\preto\subsection{\needspace{6\baselineskip}}
+
+% ---------------------------------------------------------------- the text's own macros
+% Every method, model and dataset name is a macro, so a renamed method
+% changes in one place. Never type the names raw.
+\newcommand{\method}{\textsc{[MethodName]}}
+\newcommand{\um}{\ensuremath{\,\text{\textmu m}}}   % write \um{} before a word: "10\um{} of"
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\sg}{sg}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Non-printing notes for the author, kept in the source and counted by QA.
+\providecommand{\authoraction}[1]{}
+
+% Front-matter chapter: unnumbered, in the contents, with running heads.
+\newcommand{\frontchapter}[1]{%
+  \chapter*{#1}\addcontentsline{toc}{chapter}{#1}\markboth{#1}{#1}}

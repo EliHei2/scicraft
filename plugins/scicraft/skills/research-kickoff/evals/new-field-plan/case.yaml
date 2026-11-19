@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: new-field-plan
+expected_outcome: |
+  A folder weather_kickoff/ with a SPEC.md that quotes the author's idea verbatim and lists its factual and
+  testable claims with verdicts and tagged evidence (claims that could not be checked are marked unverified), a
+  QUESTIONS.md with numbered research questions each tied to an analysis, an output and a reference or null (the
+  raw-field probe is the natural reference for the idea), literature notes whose statements carry a tag saying
+  how they were verified, and a STATUS.md typing planned components as exact reproduction, approximation or
+  extension. The plan reproduces a published model's released outputs or a published baseline before the probe
+  extension, and its first step is small and ends in a picture to look at. The hypothesis is stated as a test,
+  not presupposed, and the final message names what the author must decide and what was not verified.
+context: {}

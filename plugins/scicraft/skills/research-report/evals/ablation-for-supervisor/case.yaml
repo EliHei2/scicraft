@@ -1,0 +1,16 @@
+schema_version: "1.1"
+name: ablation-for-supervisor
+expected_outcome: |
+  A folder ablation_report holding the report as an offline HTML file and a PDF built from the same source. The HTML
+  has no script, no stylesheet link and no image or font loaded from another host; its figures are inlined. The
+  report opens with one sentence that gives the answer with its number, then a bold "Summary." paragraph of three
+  sentences that names the question (which of mixup, warmup
+  and EMA are needed), what was run (one component removed at a time, 3 seeds each) and the answer with its number
+  (removing mixup costs the most top-1 accuracy, about 2.3 points by median). A TL;DR of one-line items with figure
+  references follows; there is no glossary, terms or limits box. Each numbered section opens with one bold
+  sentence. Figures are numbered Figure R1 onward in reading order with full-sentence captions that give the
+  statistic, its spread and n = 3 seeds. Every number traces to results.csv or run_notes.txt. The final message
+  gives the folder path, says whether the equations were rendered and whether the PDF was made, and says what was
+  not checked.
+context:
+  scaffold_script: place-files.sh

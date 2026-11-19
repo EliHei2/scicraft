@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: method-colors-across-media
+expected_outcome: |
+  A palette file (JSON or similar) that maps the six methods to fixed colors used in every medium, drawn from a
+  color-blind-safe set such as Okabe-Ito with no red-green pair, with the own method holding one locked hue. The
+  answer declines the thicker line and bigger markers for the own method (equal line width, marker size and fill
+  for all methods) and offers an honest aid instead, such as the locked hue or a thin grey reference line. It
+  notes how the same palette works on the dark slide ground and white print, that slide text stays in one ink of
+  at least 28 px on a 1920 px canvas, and that poster type stays at least 14 pt printed.

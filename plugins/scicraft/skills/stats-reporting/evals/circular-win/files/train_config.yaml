@@ -1,0 +1,10 @@
+model: dual_encoder_base
+embedding_dim: 256
+loss:
+  name: info_nce
+  similarity: cosine          # maximize cosine(query_emb, doc_emb) for paired items
+  temperature: 0.05
+optimizer: adamw
+lr: 3.0e-4
+steps: 200000
+seed: 0

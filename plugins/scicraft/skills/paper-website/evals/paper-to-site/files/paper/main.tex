@@ -1,0 +1,74 @@
+% A fictional paper for the evals of the paper-website skill. Every number below is in records/; the scores are
+% synthetic, drawn by a seeded generator (the same values as the starter's example results.json).
+\documentclass{article}
+\usepackage{amsmath}
+\title{Kestrel: a pretrained encoder for multivariate sensor streams}
+\author{Ana Example$^{1}$, Ben Sample$^{2}$, Chen Placeholder$^{1}$, Dora Fictive$^{1,\dagger}$\\
+$^{1}$Institute of Example Studies, $^{2}$Sample University, $^{\dagger}$supervision}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Sensor streams from power grids, data centres, wearables, roads and machines are long, irregular and rarely labelled.
+Models trained for one stream do not transfer to the next.
+We present Kestrel, an encoder pretrained on 137 public datasets that turns any multivariate stream into one embedding per time step.
+On five benchmark tasks Kestrel ranks first on four and second on one, with a rating of 1125 against 1025 for the strongest comparator.
+\end{abstract}
+
+\section{Introduction}
+Every new sensor deployment starts without labels.
+A model trained on one stream breaks when the sampling rate, the channel count or the noise changes.
+Labelled anomalies are rare, so supervised models see a few dozen positives at most.
+We ask whether one encoder, pretrained once on public streams, can serve every new stream without retraining.
+Kestrel turns any multivariate stream into one embedding per time step, so a linear probe can read any downstream label from it.
+
+\section{Method}
+Kestrel cuts each channel into patches of 24 steps and embeds each patch with a shared tokenizer.
+A cross-channel attention layer mixes the channels at every patch, so the encoder accepts any number of channels.
+During pretraining, 35\% of the patches are masked and the encoder predicts their embeddings from the rest.
+A masking curriculum grows the masked span from one patch to six over training.
+Kestrel was pretrained on 137 public datasets with 2.4 billion time steps from 7 domains.
+The model has 31.6 million parameters in 10 layers.
+This is the first checkpoint; larger models trained on more domains will follow.
+
+\section{Results}
+We compare Kestrel with four methods on five tasks: grid load forecasting, server log anomaly detection, gait phase classification, traffic incident detection and bearing wear grading.
+Every method is read with the same linear probe on frozen embeddings, and scored by macro F1.
+\begin{itemize}
+\item Grid load: forecast the next hour of load from the previous day, scored as a three-class trend.
+\item Server logs: flag the minutes that operators marked as incidents.
+\item Gait: label each step phase from a wrist sensor.
+\item Traffic: detect incidents from loop detector counts.
+\item Bearing wear: grade the wear of a bearing from its vibration, in three classes.
+\end{itemize}
+Kestrel ranks first on four of the five tasks and second on gait.
+Across tasks, Kestrel has a rating of 1125 against 1025 for the strongest comparator, Method B, where the baseline is fixed at 1000.
+Kestrel is rated above every other method in a two-sided sign test over all task and seed pairs ($p = 0.002$).
+On traffic alone the difference to Method B is weaker ($p = 0.04$; 95\% confidence interval of the F1 difference 0.003 to 0.047).
+
+\begin{table}
+\caption{Macro F1 per task on held-out streams; mean rank over the five tasks.}
+\begin{tabular}{lrrrrrr}
+method & grid load & server logs & gait & traffic & bearing wear & mean rank\\
+Kestrel & .587 & .773 & .626 & .613 & .709 & 1.20\\
+Method B & .381 & .673 & .767 & .588 & .508 & 3.00\\
+Method C & .523 & .582 & .517 & .411 & .646 & 3.20\\
+Method D & .511 & .654 & .451 & .374 & .532 & 4.00\\
+Baseline & .473 & .379 & .557 & .544 & .549 & 3.60\\
+\end{tabular}
+\end{table}
+
+\section{Ablations}
+Removing any part of Kestrel lowers macro F1 on at least one task at one of the two model sizes.
+Without pretraining, F1 falls by up to .157; without the masking curriculum, by up to .094.
+The cross-channel attention matters least: removing it costs at most .056.
+
+\section{Limitations}
+Kestrel saw only public datasets in pretraining, and seven domains do not cover every sensor.
+Streams sampled faster than 2 kHz were not part of pretraining.
+The five tasks use linear probes; fine-tuning was not evaluated.
+
+\section{Conclusion}
+One pretrained encoder can read many kinds of sensor streams without being trained again.
+
+\end{document}

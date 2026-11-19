@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: cleaner-project-page
+expected_outcome: |
+  index.html is edited in place into a cleaner page inside the same look: the dark ground #141416, the Helvetica
+  Neue stack and the one blue accent stay. The machine-made patterns are removed: the uppercase eyebrow with "·"
+  separators, the gradient title, the tagline with "×" chains and the emoji, the pill labels, the glowing stat
+  tiles, the three cards with emoji headers and shadows, the accent-colored punchline, and the second typeface
+  (Space Grotesk). Grey small text is gone or raised. The results table keeps every number and every method
+  exactly. No new typeface, color or layout system is introduced. The final message lists what was removed and
+  what was kept.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,55 @@
+% A minimal revised manuscript that exercises every case of rev_macros.tex. Compile it once before using the macros
+% in a real paper:  bash build_variants.sh rev_example   (or pdflatex rev_example.tex twice)
+\documentclass[11pt]{article}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[numbers]{natbib}
+\input{rev_macros.tex}
+\revisedcolortrue % the switch build_variants.sh flips; it must stand in the main file
+\makeatletter\renewcommand*{\rev@bibkeys}{,newwork2025,}\makeatother
+
+\begin{document}
+\section{Results}
+Our encoder ranks first on 9 of 14 tasks \citep{oldwork2020}. \rev{It also ranks first on the two datasets
+added in the revision \citep{newwork2025}.} The rest of this
+paragraph is submitted text and stays black.
+
+\rev{An added paragraph is wrapped whole. The \textbackslash leavevmode in the macro keeps it attached to the text above.}
+
+The training objective is
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_{\rm pred} \mathbin{\rev{+}} \rev{\lambda\,\mathcal{L}_{\rm counts}}.
+\end{equation}
+
+\begin{table}[h]
+\centering
+\revcap{\caption{Ablations of the full model against an identically trained control (new table).}\label{tab:abl}}
+\rev{\begin{tabular}{lr}
+\toprule
+Ablation & Change in score \\
+\midrule
+no context & $-.05$ \\
+no counts head & $-.03$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Benchmark on 14 tasks (existing table, \rev{now with two added datasets}).}\label{tab:bench}
+\begin{tabular}{lr}
+\toprule
+Method & Mean rank \\
+\midrule
+Ours & 3.2 \\
+Baseline & 4.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{thebibliography}{2}
+\bibitem[Old(2020)]{oldwork2020} A. Author. An earlier method. \emph{Journal}, 2020.
+\bibitem[New(2025)]{newwork2025} B. Author. A method added in the revision. \emph{Proceedings}, 2025.
+\end{thebibliography}
+\end{document}

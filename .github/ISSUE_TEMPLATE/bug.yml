@@ -1,0 +1,28 @@
+name: A skill did the wrong thing
+description: Claude followed a skill and the result was wrong, or a script failed
+labels: [bug]
+body:
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      placeholder: data-figures
+    validations:
+      required: true
+  - type: textarea
+    id: asked
+    attributes:
+      label: What you asked for
+      description: The request as you typed it. Remove anything private.
+    validations:
+      required: true
+  - type: textarea
+    id: got
+    attributes:
+      label: What happened, and what you expected
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: scicraft version and Claude Code version

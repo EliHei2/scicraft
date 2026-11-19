@@ -1,0 +1,5 @@
+removed,size,task,delta_f1,p
+pretraining,small,gait,-0.157,0.002
+pretraining,large,bearing wear,-0.145,0.003
+cross-channel attention,large,gait,-0.056,0.007
+masking curriculum,small,gait,-0.094,0.005

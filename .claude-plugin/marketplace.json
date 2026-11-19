@@ -1,0 +1,28 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "scicraft",
+  "description": "Research craft for Claude Code: skills for figures, papers, experiments and audits.",
+  "owner": {
+    "name": "Elyas Heidari"
+  },
+  "plugins": [
+    {
+      "name": "scicraft",
+      "description": "Research craft that transfers to any lab: figures and schematics, paper, rebuttal and book writing, de-slopping, LaTeX, talks, posters, paper websites, quality gates, integrity audits, project structure, research code and releases, prompts and agent orchestration.",
+      "author": {
+        "name": "Elyas Heidari"
+      },
+      "source": "./plugins/scicraft",
+      "category": "productivity"
+    },
+    {
+      "name": "scicraft-ml",
+      "description": "Machine-learning research craft: experiment and ablation design, evaluation and benchmarks, training diagnostics, design review, ML paper writing, embedding maps. Builds on the scicraft plugin.",
+      "author": {
+        "name": "Elyas Heidari"
+      },
+      "source": "./plugins/scicraft-ml",
+      "category": "productivity"
+    }
+  ]
+}

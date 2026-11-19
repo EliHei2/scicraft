@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: pick-an-encoder
+expected_outcome: |
+  recommendation.md recommends beta, not alpha. It reports for each encoder the noise floor (median distance
+  between the two halves of the same dataset), retrieval of the other half (top-1 and reciprocal rank, with the
+  chance level 1/60), the label shift (full vs shuffled) and the label sensitivity as label shift divided by the
+  noise floor. It explains that alpha's raw label shift is the largest but sits inside its own noise floor
+  (sensitivity well below 1), that beta's shift is several times its noise floor, and that gamma barely moves
+  under label shuffling, so it describes the data and not the task. It says retrieval is saturated and does not
+  separate the encoders on 60 datasets.
+context:
+  scaffold_script: place-files.sh

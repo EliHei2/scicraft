@@ -1,0 +1,38 @@
+% PLACEHOLDER: replace this whole file with the manuscript's own table source, copied unchanged.
+% The poster's \resultstable wrapper neutralizes table, \caption and \label, so the manuscript file goes in as it is.
+% The only edit allowed: the comparator's citation number after its name, matching the poster's reference list.
+% Every value below is a placeholder in [brackets]; none is a result. A cell that starts with [ right after \\
+% or a rule must be braced, {[...]}, or LaTeX reads it as an optional argument.
+\begin{table}[t]
+\centering
+\definecolor{rankgreen}{HTML}{159A6C}
+\definecolor{rankblue}{HTML}{0A84FF}
+\definecolor{rankorange}{HTML}{F5A20B}
+\definecolor{soft}{RGB}{105,105,105}
+\caption{[The manuscript's caption: it is dropped on the poster.]}
+\label{tab:results}
+\begingroup
+\fontsize{24}{29}\selectfont
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.15}
+\newcommand{\rfirst}[2]{\cellcolor{rankgreen!19}\textbf{#1}{\fontsize{17}{19}\selectfont\color{soft}$\pm$#2}}
+\newcommand{\rsecond}[2]{\cellcolor{rankblue!16}\textbf{#1}{\fontsize{17}{19}\selectfont\color{soft}$\pm$#2}}
+\newcommand{\rthird}[2]{\cellcolor{rankorange!20}\textbf{#1}{\fontsize{17}{19}\selectfont\color{soft}$\pm$#2}}
+\newcommand{\res}[2]{#1{\fontsize{17}{19}\selectfont\color{soft}$\pm$#2}}
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X cccc c@{}}
+\toprule
+\textbf{method} & \textbf{setting} & \textbf{[task 1]} & \textbf{[task 2]} & \textbf{[task 3]} & \textbf{[task 4]}
+  & \textbf{mean rank} $\downarrow$\\
+\midrule
+\multicolumn{7}{@{}l}{\textit{[group of comparators]}}\\
+{[Comparator A]}\,\cite{5} & [setting] & \rsecond{[.00]}{[.00]} & \res{[.00]}{[.00]} & \rthird{[.00]}{[.00]} & \res{[.00]}{[.00]} & [0.0]\\
+{[Comparator B]} & [setting] & \res{[.00]}{[.00]} & \rthird{[.00]}{[.00]} & \res{[.00]}{[.00]} & \rsecond{[.00]}{[.00]} & [0.0]\\
+{[Comparator C]} & [setting] & \rthird{[.00]}{[.00]} & \res{[.00]}{[.00]} & \rsecond{[.00]}{[.00]} & \res{[.00]}{[.00]} & [0.0]\\
+\multicolumn{7}{@{}l}{\textit{[baselines]}}\\
+{[Baseline]} & [setting] & \res{[.00]}{[.00]} & \rsecond{[.00]}{[.00]} & \res{[.00]}{[.00]} & \rthird{[.00]}{[.00]} & [0.0]\\
+\midrule
+\textbf{[Method] (ours)} & [setting] & \rfirst{[.00]}{[.00]} & \rfirst{[.00]}{[.00]} & \rfirst{[.00]}{[.00]} & \rfirst{[.00]}{[.00]} & \textbf{[0.0]}\\
+\bottomrule
+\end{tabularx}
+\endgroup
+\end{table}

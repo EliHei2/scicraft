@@ -1,0 +1,5 @@
+# Outputs whose appearance is meant to change in this refactor, one per line:
+# <path relative to the repository root><TAB><one-line reason>
+# Anything not listed must come out identical or identical-modulo-encoding, or compare.py fails.
+figures/figure_3/panels/panel_c_ablation.png	whiskers switched from 95% CI to interquartile range, as the caption states
+figures/figure_3/panels/panel_c_ablation.pdf	whiskers switched from 95% CI to interquartile range, as the caption states

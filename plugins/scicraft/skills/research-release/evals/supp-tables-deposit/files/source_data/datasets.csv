@@ -1,0 +1,6 @@
+dataset,rows,features,license,url
+tab_alpha,48000,54,CC BY 4.0,https://example.org/alpha
+tab_beta,12500,31,CC0,https://example.org/beta
+tab_gamma,30210,77,CC BY 4.0,https://example.org/gamma
+tab_delta,9050,22,CC BY 4.0,https://example.org/delta
+tab_eps,64000,40,CC0,https://example.org/eps

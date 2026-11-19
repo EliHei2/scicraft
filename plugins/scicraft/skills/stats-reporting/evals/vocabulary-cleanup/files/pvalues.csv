@@ -1,0 +1,12 @@
+family,label,p,stored_adjusted,stored_method
+ablations,no_attention,0.0004,0.0024,holm
+ablations,no_pretraining,0.0011,0.0055,holm
+ablations,no_row_shuffle,0.012,0.048,holm
+ablations,no_feature_tokens,0.021,0.063,holm
+ablations,small_context,0.19,0.38,holm
+ablations,no_label_smoothing,0.62,0.62,holm
+benchmark,vs_xgboost,0.0002,0.000333,bh
+benchmark,vs_catboost,0.0009,0.001125,bh
+benchmark,vs_mlp,0.00001,0.000025,bh
+benchmark,vs_tabbase,0.034,0.034,bh
+benchmark,vs_knn,0.000001,0.000005,bh

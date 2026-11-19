@@ -1,0 +1,28 @@
+{
+ "deck": "Deck.pptx",
+ "static": false,
+ "first": 1,
+ "last": 6,
+ "exempt": [
+  1,
+  6
+ ],
+ "max_words": 25,
+ "max_title_words": 10,
+ "max_line_words": 10,
+ "min_px": 28,
+ "min_name_px": 24,
+ "band_top": 990,
+ "margin": 110,
+ "ink": "F4F4F5",
+ "ground": "141416",
+ "key_terms": [
+  "sweat signatures"
+ ],
+ "clipwords": {},
+ "free_titles": [],
+ "sources": "deck_sources.json",
+ "warnings": [
+  "slide 5: small.png is 300 px wide and shown at 600 px (enlarged 2.00x)"
+ ]
+}
