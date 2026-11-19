@@ -1,0 +1,10 @@
+{
+ "downloads": 0,
+ "clones": 0,
+ "own_workflow_runs": 0,
+ "release_downloads": 0,
+ "note": "downloads = clones - own_workflow_runs (per day, never below 0) + release_downloads",
+ "counted_from": null,
+ "counted_to": null,
+ "days": {}
+}
