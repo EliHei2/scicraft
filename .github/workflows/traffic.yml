@@ -1,67 +1,38 @@
 name: traffic
 
-# Archives the clone counts of this repository once a day. GitHub keeps them for 14 days only.
-# Off until a repository secret named TRAFFIC_TOKEN exists: a fine-grained personal access token
-# for this repository with the permission "Administration: read-only".
-# The totals go to the branch "traffic" as clones.json and badge.json. Badge:
-#   https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/EliHei2/scicraft/traffic/badge.json
-# The count includes automated clones, among them this workflow's own daily checkout.
+# Keeps the downloads badge of the README up to date. It runs .github/scripts/downloads.py, which explains the count.
+# The totals live on the branch "traffic": downloads.json, badge.svg and badge.json.
+#
+# GitHub reports clones for 14 days only, so this runs once a day, and once after every push to main.
+# The clone counts need a repository secret named TRAFFIC_TOKEN: a fine-grained personal access token for this
+# repository with the permission "Administration: read-only". Without it the badge keeps its last number.
+# The job reads and writes through the API and checks nothing out, so it adds no clone of its own.
 
 on:
   schedule:
     - cron: "23 4 * * *"
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: read
+
+concurrency:
+  group: traffic
+  cancel-in-progress: false
 
 jobs:
   archive:
     runs-on: ubuntu-latest
-    env:
-      TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
     steps:
-      - name: Skip when no token is configured
-        id: gate
-        run: |
-          if [ -z "$TRAFFIC_TOKEN" ]; then
-            echo "run=no" >> "$GITHUB_OUTPUT"
-            echo "no TRAFFIC_TOKEN secret: nothing to do"
-          else
-            echo "run=yes" >> "$GITHUB_OUTPUT"
-          fi
-      - uses: actions/checkout@v4
-        if: steps.gate.outputs.run == 'yes'
-      - name: Fetch, merge and push
-        if: steps.gate.outputs.run == 'yes'
+      - name: Count the downloads and draw the badge
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git ls-remote --exit-code --heads origin traffic >/dev/null 2>&1; then
-            git fetch origin traffic
-            git checkout traffic
-          else
-            git checkout --orphan traffic
-            git rm -rf --quiet .
-          fi
-          curl -sS --fail -H "Authorization: Bearer $TRAFFIC_TOKEN" -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/traffic/clones?per=day" -o new.json
-          python3 - <<'PY'
-          import json
-          import pathlib
-
-          new = json.load(open("new.json"))
-          path = pathlib.Path("clones.json")
-          days = json.loads(path.read_text()) if path.exists() else {}
-          for day in new.get("clones", []):
-              days[day["timestamp"][:10]] = {"count": day["count"], "uniques": day["uniques"]}
-          path.write_text(json.dumps(dict(sorted(days.items())), indent=1) + "\n")
-          total = sum(v["count"] for v in days.values())
-          badge = {"schemaVersion": 1, "label": "clones", "message": f"{total:,}", "color": "blue"}
-          pathlib.Path("badge.json").write_text(json.dumps(badge) + "\n")
-          PY
-          rm new.json
-          git add clones.json badge.json
-          git commit --quiet -m "traffic: $(date -u +%F)" || echo "no change"
-          git push origin traffic
+          curl -sS --fail -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github.raw" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/contents/.github/scripts/downloads.py?ref=$GITHUB_SHA" -o downloads.py
+          python3 downloads.py
