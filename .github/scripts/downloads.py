@@ -102,14 +102,17 @@ def main() -> None:
     if TRAFFIC_TOKEN:
         clones = (api(f"/repos/{REPO}/traffic/clones?per=day", TRAFFIC_TOKEN) or {}).get("clones", [])
         if clones:
-            window = [c["timestamp"][:10] for c in clones]
+            created = (api(f"/repos/{REPO}") or {}).get("created_at", "")[:10]      # no count is older than the repository
+            window = [d for d in (c["timestamp"][:10] for c in clones) if d >= created]
+            clones = [c for c in clones if c["timestamp"][:10] >= created]
+        if clones:
             runs = own_runs_by_day(min(window))
             for c in clones:
                 day = c["timestamp"][:10]
                 row = {"clones": c["count"], "unique": c["uniques"], "own_workflow_runs": runs.get(day, 0)}
                 if row["clones"] or day in days:
                     days[day] = row
-            counted_from = min(counted_from or min(window), min(window))
+            counted_from = max(min(counted_from or min(window), min(window)), created)
             counted_to = max(counted_to or max(window), max(window))
     else:
         print("no TRAFFIC_TOKEN: the stored clone counts stay as they are")
