@@ -105,6 +105,7 @@ def main() -> None:
             created = (api(f"/repos/{REPO}") or {}).get("created_at", "")[:10]      # no count is older than the repository
             window = [d for d in (c["timestamp"][:10] for c in clones) if d >= created]
             clones = [c for c in clones if c["timestamp"][:10] >= created]
+        if clones:
             runs = own_runs_by_day(min(window))
             for c in clones:
                 day = c["timestamp"][:10]
