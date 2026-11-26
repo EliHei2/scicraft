@@ -34,7 +34,7 @@ reviewer attacked, an error that one check would have caught.
 ## The registry at a glance
 
 <!-- BEGIN GENERATED map: edit tools/catalog.json, then run python3 tools/build_index.py -->
-**40 skills, 265 reference files, 232 scripts, 121 test cases with 884 graded checks.** They come as two plugins: `scicraft` (31 skills, any field) and `scicraft-ml` (9 skills, machine-learning research).
+**40 skills, 267 reference files, 238 scripts, 121 test cases with 887 graded checks.** They come as two plugins: `scicraft` (31 skills, any field) and `scicraft-ml` (9 skills, machine-learning research).
 
 The skills follow a research project from the first idea to the release:
 
@@ -178,8 +178,8 @@ You say, for example: "write the brief for the other session", "run this overnig
 Every skill has test cases. [`docs/INDEX.md`](docs/INDEX.md) repeats this list with the sentence Claude reads to
 decide whether to load each skill, and with the number of reference files, scripts and tests inside it.
 
-<p align="center"><img src="docs/assets/demo-tikz-figure.png" alt="A training schematic drawn by the tikz-figures skill" width="70%"></p>
-<p align="center"><sub>A training schematic from the <code>tikz-figures</code> skill, compiled and checked by its own scripts.</sub></p>
+<p align="center"><img src="docs/assets/demo-tikz-figure.png" alt="An example figure built by the tikz-figures skill: data tiles on both sides of a training scheme" width="100%"></p>
+<p align="center"><sub>An example figure from the <code>tikz-figures</code> skill, on seeded synthetic data: built, audited and size-checked by its own scripts.</sub></p>
 
 ## What is in a skill
 
