@@ -56,7 +56,7 @@ Three more sets belong to the registry and are not in this repository:
 |---|---|---|
 | Spatial omics and single-cell work (`scicraft-bio`) | 5 | follows when the work it comes from is published |
 | Large-scale pretraining | in preparation | follows when the work it comes from is published |
-| The cluster of the author's institute | 1 | private, shared with the host labs |
+| The DKFZ cluster | 1 | private, shared with the Gerstung lab and the Stegle lab |
 
 ## Install
 
@@ -280,9 +280,8 @@ A rule goes in when something happened that the rule would have prevented. Read
 
 ## Acknowledgments
 
-scicraft was developed during the author's research in two host labs, which paid for the Claude
-subscriptions and the compute behind it. Both labs and the institute will be named here as they wish to be
-credited. Until then this repository is a private release candidate.
+scicraft was developed during the author's research at the German Cancer Research Center (DKFZ), in the
+Gerstung lab and the Stegle lab, which paid for the Claude subscriptions and the compute behind it.
 
 scicraft is a personal project. It is not a product of, and is not endorsed by, any employer or institution of
 the author, or by Anthropic.
